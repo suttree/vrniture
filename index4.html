@@ -1,3 +1,4 @@
+
 <script src="script/processing.min.js"></script> 
 <script type="text/processing" data-processing-target="vrniture">
 
@@ -20,10 +21,17 @@ void setup() {
 
 void draw() {
   //background(20);
-  fill(255, 5); // semi-transparent white
+	fill(255, 5); // semi-transparent white
   rect(0, 0, width, height);
+
+	strokeWeight(4);
+	line_height = random(height);
+	stroke(random(255), random(255), random(255), random(45));
+	stroke(255 - random(25), random(45));
+	line(0, line_height, width, line_height);
+	strokeWeight(1);
  
-  fill(random(255));
+  //fill(random(255));
 
 /*
   for (int i = 0; i < triangles.length; i++) {
@@ -37,7 +45,7 @@ void draw() {
   translate(width/2, height/2);
   for (int i = 0; i < triangles.length; i++) {
     t = triangles[i];
-    accel = t[7] + 1;
+    accel = t[7];
     for (int j = 0; j < t.length - 1; j++) {
       t[j] = t[j] + accel;
     }
@@ -45,6 +53,7 @@ void draw() {
 
     pushMatrix();
     rotate(t[6]);
+		fill(random(255),random(255), random(255), random(80));
     triangle(t[0], t[1], t[2], t[3], t[4],t[5]);
     popMatrix();
 
@@ -73,8 +82,9 @@ console.log(t);
     }
     triangles[i] = t;
   }
-
+	noStroke();
 }
 </script>
 
 <canvas id="vrniture"></canvas>
+
