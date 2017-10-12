@@ -1,0 +1,22 @@
+<script src="processing.min.js"></script> 
+<script type="text/processing" data-processing-target="vrniture">
+<script type="javascript">
+	function setup() {
+		createCanvas(windowWidth, windowHeight);
+		background(0);
+		noFill();
+		stroke(255, 64, 8, 128);
+		triangles = [
+			[10, 20, 30, 40, 50, 60],	
+		];
+	}
+
+	function draw() {
+		for (int i = 0; i < triangles.length; i++) {
+			int[] t = triangles[i];
+			triangle(t[0], t[1], t[2], t[3], t[4], t[5]);
+		}
+		ellipse(50, 50, 80, 80);
+	}
+</script>
+<canvas id="vrniture">canvas>

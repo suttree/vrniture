@@ -1,0 +1,87 @@
+<script src="processing.min.js"></script> 
+<script type="text/processing" data-processing-target="sf">
+
+var trace = [];
+
+var num = 1000;
+
+float xoff = 0.0;
+float xincrement = 0.01; 
+
+float yoff = 0.0;
+float yincrement = 0.01; 
+
+int prevX;
+int prevY;
+
+void setup() {
+ 	noStroke();
+	size(window.innerWidth * 0.98, window.innerHeight * 0.98);
+}
+
+void draw() {
+ 	noStroke();
+
+	var maxy;
+  if (frameCount % 4 == 0) {
+    var r = 255 - map(hour(), 0, 23, 0, 255); // darker at night, lighter during the day
+    var g = 255 - r;
+    var b = 255 - r;
+    background(r, g, b, 75);
+
+		fill(r, g, b, map(noise(yoff), 0, 1, 75, 100));
+		beginShape(); 
+
+		maxy = height;
+		var xoff = 0.0;
+		var incr = map(noise(yoff), 0, 1, 8, 80);
+		var depth = map(noise(yoff), 0, 1, 200, 1000);
+		for (var x = 0; x <= width + 60; x += incr) {
+			var y = map(noise(xoff, yoff), 0, 1, -1, height + depth);
+			vertex(x, y); 
+
+			if (y < maxy) {
+				maxy = y;
+			}
+			xoff += xincrement;
+		}
+		yoff += yincrement;
+
+		vertex(width, height);
+		vertex(0, height);
+
+		endShape();
+	
+	  float x;
+	  float y;
+	
+		strokeWeight(4)
+	  stroke(random(r) ,random(b), random(g));
+
+    x = noise(xoff) * width;
+		if ((prevY + 50) < maxy) {
+	    y = prevY + (maxy - (prevY + 64));
+		} else {
+	    y = prevY - random(12);
+	  }
+	
+		if (prevY - 2 > maxy) {
+			stroke(255); // alert white
+		}
+	
+	  x = constrain(x, 0, width);
+	  y = constrain(y, 0, height);
+
+	  line(prevX, prevY, x, y);
+
+	  prevX = x;
+	  prevY = y;
+
+	  xoff += xincrement;
+	  yoff += yincrement;
+  }
+}
+</script>
+
+<canvas id="sf"></canvas>
+

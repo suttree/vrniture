@@ -1,0 +1,39 @@
+<script src="script/processing.min.js"></script> 
+<script type="text/processing" data-processing-target="vrniture">
+
+var accel = 0.2;
+var triangles = [];
+
+void setup() {
+  noStroke();
+  size(window.innerWidth * 0.98, window.innerHeight * 0.98);
+  triangles = [
+    [30, 75, 58, 20, 86, 75],
+    [50, 95, 78, 40, 106, 95],
+    [150, 195, 178, 140, 206, 195],
+    [250, 295, 278, 240, 306, 295],
+  ];
+}
+
+void draw() {
+  noStroke();
+  background(0);
+
+  for (int i = 0; i < triangles.length; i++) {
+    t = triangles[i];
+    triangle(t[0], t[1], t[2], t[3], t[4], t[5]);
+
+    triangles[i] = [
+      t[0] = t[0] + accel,
+      t[1] = t[1] + accel,
+      t[2] = t[2] + accel,
+      t[3] = t[3] + accel,
+      t[4] = t[4] + accel,
+      t[5] = t[5] + accel,
+    ]
+  }
+
+}
+</script>
+
+<canvas id="vrniture"></canvas>
