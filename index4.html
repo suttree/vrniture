@@ -13,10 +13,6 @@ void setup() {
     [0, 0, 40, 0, 0, 40, 45, 0.1],
     [-80, -80, -20, -80, -80, -20, 27, random(0.2)],
   ];
-  original_triangles = [
-    [0, 0, 40, 0, 0, 40, 45, random(0.2)],
-    [-80, -80, -20, -80, -80, -20, 27, random(0.2)],
-  ];
 }
 
 void draw() {
@@ -30,17 +26,6 @@ void draw() {
 	stroke(255 - random(25), random(45));
 	line(0, line_height, width, line_height);
 	strokeWeight(1);
- 
-  //fill(random(255));
-
-/*
-  for (int i = 0; i < triangles.length; i++) {
-    t = triangles[i];
-    rotate(0.1);
-    //triangle(t[0], t[1], t[2], t[3], t[4], t[5]);
-    triangle(0, 0, 40, 0, 0, 40);
-  }
-*/
 
   translate(width/2, height/2);
   for (int i = 0; i < triangles.length; i++) {
@@ -49,32 +34,20 @@ void draw() {
     for (int j = 0; j < t.length - 1; j++) {
       t[j] = t[j] + accel;
     }
-    //t[6] = t[6] + accel;
 
     pushMatrix();
-    rotate(t[6]);
+		if ( i % 2 == 0 ) {
+			rotate(-t[6]);
+		} else {
+			rotate(t[6]);
+		}
 		fill(random(255),random(255), random(255), random(80));
     triangle(t[0], t[1], t[2], t[3], t[4],t[5]);
     popMatrix();
-
-/*
-    for (int j = 0; j < triangles.length; j++) {
-      t = triangles[j];
-      t[0] = constrain(t[0], 0, width - 400);
-      t[1] = constrain(t[1], 0, height - 400); 
-      t[2] = constrain(t[2], 0, width - 400);
-      t[3] = constrain(t[3], 0, height - 400);
-      t[4] = constrain(t[4], 0, width - 400);
-      t[5] = constrain(t[5], 0, height - 400);
-      t[6] = constrain(t[6], 0, width - 400);
-      triangles[j] = t;
-console.log(t);
-    }
-*/
-
     
 		// detect out of bounds stuff
-    if (t[0] > width/2 || t[2] > width/2 || t[4] > width/2) {
+    if (t[0] > width/2 || t[2] > width/2 || t[4] > width/2 ||
+			  t[1] > height/2 || t[3] > height/2 || t[5] > height/2) {
 			t = [
 				[0, 0, 40, 0, 0, 40, 45, random(0.2)],
 				[-80, -80, -20, -80, -80, -20, 27, random(0.2)],
