@@ -1,6 +1,11 @@
 <script src="script/processing.min.js"></script> 
 <script type="text/processing" data-processing-target="vrniture">
+
 void setup() {
+  smooth();
+  noStroke();
+  size(window.innerWidth * 0.98, window.innerHeight * 0.98);
+
   triangles = [
     [
       new PVector(40, 20), // location
@@ -12,10 +17,22 @@ void setup() {
       new PVector(50, 25),
       new PVector(0.5, 1.0),
     ],
+    [
+      new PVector(125, -75),
+      new PVector(30, 85),
+      new PVector(0.25, 1.0),
+    ],
+    [
+      new PVector(-240, -124),
+      new PVector(120, -65),
+      new PVector(0.75, 0.8),
+    ],
   ];
 }
 
 void draw() {
+  background(20);
+
   for (var i = 0; i < triangles.length; i++ ) {
     t = triangles[i];
     t[0].add(t[2]);
@@ -30,7 +47,6 @@ void draw() {
     )
   }
 }
-
 </script>
 
 <canvas id="vrniture"></canvas>
