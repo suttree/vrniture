@@ -51,11 +51,12 @@ class TriangleShape {
 
     location = new PVector(x, y);
     velocity = new PVector((Math.random() * 4) - 2, (Math.random() * 3) - 1);
-    shape = new PVector( Math.floor(Math.random() * 202) - 101, Math.floor(Math.random() * 202) - 101);
+    shape = new PVector(Math.floor(Math.random() * 202) - 101, Math.floor(Math.random() * 202) - 101);
   }
 
   void update() {
     location.add(velocity);
+
   }
 
   void checkEdges() {
