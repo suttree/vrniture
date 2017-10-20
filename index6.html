@@ -1,0 +1,86 @@
+<script src="script/processing.min.js"></script> 
+<script type="text/processing" data-processing-target="vrniture">
+
+void setup() {
+  smooth();
+  noStroke();
+  size(window.innerWidth * 0.98, window.innerHeight * 0.98);
+
+  triangles = [
+    [
+      new PVector(40, 20), // location
+      new PVector(50, 50), // size
+      new PVector(1, 3.3), // velocity
+    ],
+    [
+      new PVector(25, 50),
+      new PVector(50, 25),
+      new PVector(0.5, 1.0),
+    ],
+    [
+      new PVector(125, -75),
+      new PVector(30, 85),
+      new PVector(0.25, 1.0),
+    ],
+    [
+      new PVector(-240, -124),
+      new PVector(120, -65),
+      new PVector(0.75, 0.8),
+    ],
+  ];
+}
+
+void draw() {
+  background(20);
+
+  for (var i = 0; i < 8; i++) {
+
+    // draw the triangle
+
+  }
+
+
+  for (var i = 0; i < triangles.length; i++ ) {
+    t = triangles[i];
+    t[0].add(t[2]);
+
+    triangle(
+      t[0].x,
+      t[0].y,
+      t[0].x + t[1].x,
+      t[0].y,
+      t[0].x,
+      t[0].y + t[1].y,
+    )
+  }
+}
+
+class TriangleShape {
+  PVector location;
+  PVector velocity;
+
+  TriangleShape() {
+    i = Math.random(8);
+
+    if (i < 2) {
+      x = Math.floor(Math.random() * -20);
+      y = random(height);
+    } else if (i < 4) {
+      x = random(width);
+      y = Math.floor(Math.random() * -20);
+    } else if (i < 6) {
+      x = Math.floor(Math.random() * 20);
+      y = random(height);
+    } else if (i < 8) {
+      x = random(width);
+      y = Math.floor(Math.random() * 20);
+    }
+
+    location = new PVector(x, y);
+    velocity = new PVector(random(1), (Math.random() * 3) + 1);
+  }
+}
+
+</script>
+
+<canvas id="vrniture"></canvas>
