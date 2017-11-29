@@ -1,0 +1,31 @@
+<script src="script/processing.min.js"></script> 
+<script type="text/processing" data-processing-target="vrniture">
+
+void setup() {
+  smooth();
+
+  noStroke();
+  size(window.innerWidth * 0.98, window.innerHeight * 0.98);
+}
+
+void draw() {
+	fill(255, 95); // semi-transparent white
+	stroke(0);
+
+	var fps = frameRate;
+	println("FPS: " + parseInt(fps).toFixed(2));
+
+
+  // draw a line from x to y (or vice versa)
+    // lines must be drawn step by step
+    // create  vector with x and y, plus target_x and target_y
+      // drawLine method steps through this, checking for edges or targets each time
+      // when it hits, it calculates the next line and recurses
+  // when it hits the end, create a shape:
+    // go back along the y axis, then back along the x axis (or vice versa)
+    // create a shape from those points and colour it in (could do this gradually?)
+
+}
+</script>
+
+<canvas id="vrniture"></canvas>
