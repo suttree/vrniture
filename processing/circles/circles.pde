@@ -13,7 +13,8 @@ void setup() {
   smooth();
 
   noStroke();
-  size(800, 600);
+  //size(800, 600);
+  fullScreen();
   //triangles = [
   //  [0, 0, 40, 0, 0, 40, 45, 0.1],
   //  [-80, -80, -20, -80, -80, -20, 27, random(0.2)],
