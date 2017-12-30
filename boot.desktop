@@ -1,0 +1,10 @@
+# From https://www.raspberrypi.org/forums/viewtopic.php?f=34&t=187613
+# Copy to ~/.config/autostart/ 
+
+[Desktop Entry]
+Name = vrniture
+Comment = Digital art therapy
+Exec = processing /home/pi/src/vrniture/processing/circles/circles.pde
+Icon = /home/pi/Desktop/Eres_Unico/application.linux-armv6hf/data/0_inicio.jpg
+Terminal = false
+Type = Application
