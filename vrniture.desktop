@@ -4,7 +4,7 @@
 [Desktop Entry]
 Name = vrniture
 Comment = Digital art therapy
-Exec = processing /home/pi/src/vrniture/processing/circles/circles.pde
-Icon = /home/pi/Desktop/Eres_Unico/application.linux-armv6hf/data/0_inicio.jpg
+Exec = /usr/local/bin/processing-java --sketch=/home/pi/src/vrniture/processing/circles/ --run
+Icon = /home/pi/src/vrniture/icons/png/008-fields.png
 Terminal = false
 Type = Application
