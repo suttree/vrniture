@@ -1,10 +1,9 @@
+[Desktop Entry]
+Name = vrniture
+Exec = /usr/local/bin/processing-java --sketch=/home/pi/src/vrniture/processing/circles/ --run
+Icon = /home/pi/src/vrniture/icons/png/008-fields.png
+Type = Application
+
 # From https://www.raspberrypi.org/forums/viewtopic.php?f=34&t=187613
 # Copy to ~/.config/autostart/ 
 
-[Desktop Entry]
-Name = vrniture
-Comment = Digital art therapy
-Exec = /usr/local/bin/processing-java --sketch=/home/pi/src/vrniture/processing/circles/ --run
-Icon = /home/pi/src/vrniture/icons/png/008-fields.png
-Terminal = false
-Type = Application
