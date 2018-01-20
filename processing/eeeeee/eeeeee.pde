@@ -1,8 +1,13 @@
+// TODO: try with a curve drawn from the starting point through each of points
+
+
+
 ArrayList <PVector> points = new ArrayList <PVector> ();
 int marge = 50;
 int numPoints = 10;
 int currentPoint;
 PVector current;
+PImage img;
 
 void setup () {
   //fullScreen();
@@ -15,10 +20,14 @@ void setup () {
   current = points.get(currentPoint);
   noStroke();
   smooth();
+  
+  img = loadImage("eeeee.png");
+  img.resize(width, height);
 }
 
 void draw () {
   background(255);
+  image(img, 0, 0);
   fill(0, 102, 153, 204);
   
   for(PVector p : points) {
@@ -34,5 +43,5 @@ void draw () {
   ellipse(current.x, current.y, 25, 25);
   
   textSize(18);
-  text("x: " + mouseX + " y: " + mouseY, 10, 25); 
+  text("x: " + mouseX + " y: " + mouseY, 10, 25);
 }
