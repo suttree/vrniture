@@ -40,7 +40,7 @@ void draw () {
   image(img, 0, 0);
   fill(0, 102, 153, 204);
   
-  if( frameCount % 5 == 0) {
+  if( frameCount % 2 == 0) {
     if (t >= curvePoints.size()) {
       t = 0;
     } else {
