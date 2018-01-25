@@ -51,6 +51,7 @@ void draw () {
   // draw a curve
   noFill();
   stroke(255, 102, 0);
+  strokeWeight(1);
   beginShape();
   for(int i = 0; i < t; i++) {
     PVector point = curvePoints.get(i);
