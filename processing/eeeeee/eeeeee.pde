@@ -29,11 +29,22 @@ void setup () {
   curvePoints.add(new PVector(370, 245));
   */
   curvePoints.add(new PVector(288, 228));
+  curvePoints.add(new PVector(303, 228));
+  
   curvePoints.add(new PVector(287, 211));
+  curvePoints.add(new PVector(302, 207));
+  
   curvePoints.add(new PVector(284, 208));
   curvePoints.add(new PVector(292, 194));
-  curvePoints.add(new PVector(302, 207));
-  curvePoints.add(new PVector(303, 228));
+  
+  curvePoints.add(new PVector(275, 208));
+  curvePoints.add(new PVector(271, 186));
+  
+  curvePoints.add(new PVector(269, 212));
+  curvePoints.add(new PVector(248, 196));
+  
+  curvePoints.add(new PVector(264, 217));
+  curvePoints.add(new PVector(239, 213));
   
 
   //fullScreen();
@@ -62,10 +73,11 @@ void draw () {
   beginShape();
   for(int i = 0; i < t; i++) {
     PVector point = curvePoints.get(i);
-    //curveVertex(point.x, point.y);
     vertex(point.x, point.y);
-    ellipse(point.x, point.y, 10, 10);
-    text(i, point.x, point.y);
+    //ellipse(point.x, point.y, 10, 10);
+    //fill(0);
+    //text(i, point.x, point.y);
+    //fill(0, 102, 153, 204);
   }
   endShape(CLOSE);
 
