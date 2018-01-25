@@ -2,6 +2,7 @@
 // TODO: can I draw the shape by picking a starting point and incrementing/decrementing through the points
 // i.e. [0, +10], [+10, +20]
 // TODO use PVector velocity on each curvePoint?
+// TODO use PShapes?
 
 final ArrayList<PVector> curvePoints = new ArrayList();
 
@@ -9,6 +10,7 @@ int t = 0;
 PImage img;
 
 void setup () {
+  /*
   curvePoints.add(new PVector(286, 226));
   curvePoints.add(new PVector(296, 226));
   curvePoints.add(new PVector(291, 206));
@@ -25,6 +27,14 @@ void setup () {
   curvePoints.add(new PVector(350, 245));
   curvePoints.add(new PVector(360, 245));
   curvePoints.add(new PVector(370, 245));
+  */
+  curvePoints.add(new PVector(288, 228));
+  curvePoints.add(new PVector(287, 211));
+  curvePoints.add(new PVector(284, 208));
+  curvePoints.add(new PVector(292, 194));
+  curvePoints.add(new PVector(302, 207));
+  curvePoints.add(new PVector(303, 228));
+  
 
   //fullScreen();
   size(500, 500);
@@ -40,7 +50,7 @@ void draw () {
   image(img, 0, 0);
   fill(0, 102, 153, 204);
   
-  if( frameCount % 2 == 0) {
+  if( frameCount % 10 == 0) {
     if (t >= curvePoints.size()) {
       t = 0;
     } else {
@@ -48,16 +58,16 @@ void draw () {
     }
   }
   
-  // draw a curve
-  noFill();
-  stroke(255, 102, 0);
-  strokeWeight(1);
+  // draw a shape
   beginShape();
   for(int i = 0; i < t; i++) {
     PVector point = curvePoints.get(i);
-    curveVertex(point.x, point.y);
+    //curveVertex(point.x, point.y);
+    vertex(point.x, point.y);
+    ellipse(point.x, point.y, 10, 10);
+    text(i, point.x, point.y);
   }
-  endShape();
+  endShape(CLOSE);
 
   noStroke();
   textSize(18);
