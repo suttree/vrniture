@@ -31,8 +31,26 @@ void draw() {
       rect(-10 + (i * 20), 0, 10, 10);
     }
   }
+
+  if (angle1 > 0.12) {
+    for(int i = 0; i < 100; i++) {
+      rotateZ(-angle1);
+      stroke(125, 255, 255); 
+      rect(-10 + (i * 20), 0, 10, 10);
+    }
+  }
   
+  if (angle1 > 0.18) {
+    for(int i = 0; i < 100; i++) {
+      rotateZ(-angle1);
+      stroke(255, 125, 125); 
+      rect(-10 + (i * 22), 0, 10, 10);
+    }
+  }
+  
+  /*
   if (angle1 > 0.16) {
     angle1 = 0;
   }
+  */
 }
