@@ -20,18 +20,19 @@ void draw() {
   
   for(int i = 0; i < 100; i++) {
     rotateZ(angle1);
-    stroke(255); 
-    rect(-100 + (i * 20), 0, 10, 10);
+    stroke(255, random(255), random(255));
+    rect(-200 + (i * 20), 0, 10, 10);
   }
   
   if (angle1 > 0.06) {
     for(int i = 0; i < 100; i++) {
       rotateZ(-angle1);
-      stroke(0); 
+      stroke(random(255), 255, 255);
       rect(-10 + (i * 20), 0, 10, 10);
     }
   }
 
+  /*
   if (angle1 > 0.12) {
     for(int i = 0; i < 100; i++) {
       rotateZ(-angle1);
@@ -47,6 +48,7 @@ void draw() {
       rect(-10 + (i * 22), 0, 10, 10);
     }
   }
+  */
   
   /*
   if (angle1 > 0.16) {
