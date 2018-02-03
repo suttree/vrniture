@@ -1,6 +1,6 @@
 float theta = 0.0;
 int points = 4;
-int dist = width/4;
+float dist = width/4;
 
 float t = 0.0;
 int shapeWidth = 100;
@@ -45,25 +45,34 @@ void draw() {
   noStroke();
   fill(255, 0, 255, 90);
   rect(0, 0, width, height);
-  
-  translate(width/2, height/2);
-  fill(250, 240, 231);
-  beginShape();
-  vertex(0, 0);
-  quadraticVertex(200 * noise(t), -75, 0 + shapeWidth, 0);
-  
-  vertex(0 + shapeWidth, 0);
-  quadraticVertex(50, 120 * noise(t), shapeWidth, shapeHeight);
 
-  vertex(0 + shapeWidth, 0 + shapeHeight);
-  quadraticVertex(80 * noise(t), 120, 0, shapeHeight);
+  dist = 50;
+  translate(width/2, height/2);
+  for(int i = 0; i < 2; i++) {
+    fill(250, 240, dist, 90);
+    stroke(0);
+    noStroke();
+    beginShape();
+    
+    vertex(0, 0);
+    quadraticVertex(0 + dist, 0 - dist, 0 + shapeWidth, 0);
+    
+    vertex(0 + shapeWidth, 0);
+    quadraticVertex(0 + shapeWidth - dist / 2, 0 + dist, shapeWidth, shapeHeight);
   
-  vertex(0, 0 + shapeHeight);
-  quadraticVertex(-100, 100 * noise(t), 0, 0);
-  
-  endShape(CLOSE);
-  
-  t = t + 0.0035;
+    vertex(0 + shapeWidth, 0 + shapeHeight);
+    quadraticVertex(0 + shapeWidth - dist, 0 + shapeHeight + dist, 0, shapeHeight);
+    
+    vertex(0, 0 + shapeHeight);
+    quadraticVertex(0 - dist, 0 + shapeHeight - dist / 4, 0, 0);
+
+    vertex(0, 0);
+    
+    endShape(CLOSE);
+    
+    dist = dist - 10;
+    t = t + 0.0025;
+  }
   
 /*
   translate(width/2, height/2);
