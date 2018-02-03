@@ -1,3 +1,5 @@
+import gifAnimation.*;
+
 float angle1;
  
 void setup() {
