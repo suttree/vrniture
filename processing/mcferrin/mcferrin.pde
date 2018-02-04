@@ -1,7 +1,3 @@
-float theta = 0.0;
-int points = 4;
-float dist = width/4;
-
 float t = 0.0;
 
 void setup() {
@@ -11,92 +7,67 @@ void setup() {
 }
 
 void draw() {
-  background(250, 240, 231);
-  stroke(34);
+  //background(250, 240, 231);
+  //stroke(34);
   
   noFill();
-  strokeWeight(4);
-
-/*
- pushMatrix(); 
- translate(mouseX,mouseY); 
- rotate(radians(frameCount)); 
- beginShape(); 
- vertex( 59 , 11); 
- bezierVertex( 59 , 11 , 51 , 0 , 33 , 0); 
- bezierVertex( 14 , 0 , 0 , 15 , 0 , 37); 
- bezierVertex( 0 , 58 , 15 , 70 , 34 , 70); 
- bezierVertex( 52 , 70 , 59 , 59 , 59 , 59); 
- endShape(CLOSE); 
- popMatrix();
-*/
-
-  /*
-  translate(width/2, height/2);
-  for(int i = 0; i < points; i++) {
-    fill(0, 0, 255);
-    rotate(radians(360/points));
-    ellipse(5, -25, 10, 10);
-  }
-  */
-  
+    
   noStroke();
-  fill(255, 0, 255, 90);
+  fill(10, 200, 255, 90);
   rect(0, 0, width, height);
 
-  int shapeWidth = 200;
-  int shapeHeight = 200;
 
   int startx = 0;
   int starty = 0;
-  dist = noise(t) * 8;
+  int shapeWidth = 100;
+  int shapeHeight = 100;
+  float dist = 50;
+
   translate(width/2, height/2);
-  for(int i = 0; i < 10; i++) {
-    fill(250, 240, dist, 90);
-    fill(0, 255, 0, 90);
+  for(int i = 0; i < 2; i++) {
+    
+    if (i == 0) {
+      //background(250, 240, 231, 90);
+      fill(255, 0, 0, 90);
+    } else if (i == 1) {
+      //background(250, 0, 0, 90);
+      fill(0, 255, 0, 90);
+     } else {
+       //background(34, 90);
+       fill(0, 0, 255, 90);
+     }
     //fill(lerpColor(0, 255, t));
-    fill(10 + dist, 100 - 15 * i);
-    stroke(0);
-    noStroke();
+    //fill(255, 90);
+    
+    ellipse(startx, starty, 10, 10);
+    ellipse(startx + shapeWidth, starty, 10, 10);
+    ellipse(startx + shapeWidth, starty + shapeHeight, 10, 10);
+    ellipse(startx, starty + shapeHeight, 10, 10);
+    
     beginShape();
     
-/*
-    vertex(0 - i * 10, 0 + i * 10);
-    quadraticVertex(0 + dist, 0 - dist, 0 + shapeWidth, 0);
-    
-    vertex(0 + shapeWidth, 0);
-    quadraticVertex(0 + shapeWidth - dist / 2, 0 + dist, shapeWidth, shapeHeight);
-  
-    vertex(0 + shapeWidth, 0 + shapeHeight);
-    quadraticVertex(0 + shapeWidth - dist, 0 + shapeHeight + dist, 0, shapeHeight);
-    
-    vertex(0, 0 + shapeHeight);
-    quadraticVertex(0 - dist, 0 + shapeHeight - dist / 4, 0 - i * 10, 0 + i * 10);
-
-    vertex(0 - i * 10, 0 + i * 10);
- */
-    vertex(startx - dist, starty - dist);
+    vertex(startx, starty);
     quadraticVertex(startx + dist, starty - dist, startx + shapeWidth, starty);
     
     vertex(startx + shapeWidth, starty);
-    quadraticVertex(startx + shapeWidth - dist * 2, starty + dist, startx + shapeWidth, starty + shapeHeight);
+    quadraticVertex(startx + shapeWidth - dist * 2, starty + dist, startx + shapeWidth, starty + shapeHeight);    
   
     vertex(startx + shapeWidth, starty + shapeHeight);
     quadraticVertex(startx + shapeWidth - dist, starty + shapeHeight + dist, startx, starty + shapeHeight);
     
     vertex(startx, starty + shapeHeight);
-    quadraticVertex(startx - dist, starty + shapeHeight - dist / 4, startx - dist, starty - dist);
+    quadraticVertex(startx - dist, starty + shapeHeight - dist, startx, starty);
 
-    vertex(startx - dist, starty - dist);
+    vertex(startx, starty);
     
     endShape(CLOSE);
     
-    shapeWidth = shapeWidth + 20;
-    shapeHeight = shapeHeight + 20;
-    dist = dist + 15;
+    shapeWidth = shapeWidth + 100;
+    shapeHeight = shapeHeight + 100;
+    //dist = dist + 5;
     t = t + 0.0025;
-    startx = startx - 20;
-    starty = starty - 20;
+    startx = startx - 50;
+    starty = starty - 50;
   }
   
 /*
