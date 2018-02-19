@@ -1,7 +1,13 @@
+StarShape[] stars = new StarShape[10];
+
 void setup() {
   //fullScreen();
   size(640, 480, P3D);
   smooth(8);
+  
+  for (int i = 0; i < stars.length; i++) {
+    stars[i] = new StarShape(); 
+  }
 }
 
 void draw() {
@@ -64,7 +70,44 @@ void draw() {
     t = t + 0.05;
     dist = dist + (8 * cos(dist));
     
+    // starfield
+    for (int i = 0; i < stars.length; i++) {
+      stars[i].update();
+      stars[i].checkEdges();
+      stars[i].render();
+    }
+  }
+}
+
+class StarShape {
+  PVector location;
+  PVector velocity;
+  PVector shape;
+
+  StarShape() {
+    int i = (int) Math.floor(Math.random() * 8.0);
+    int x = (int) (0 - Math.random() * width/2);
+    int y = (int) Math.random() * height;
+    println(x, y);
+
+    location = new PVector(int(x), int(y));
+    velocity = new PVector((int) (Math.random() * 4) - 2, (int) (Math.random() * 3) - 1);
+  }
+
+  void update() {
+    location.add(velocity);
+  }
+
+  void checkEdges() {
+    if (location.x > width/2 + 40) {
+      location.x = -40;
+    } else if (location.y > height + 40) {
+      location.y = -40;
+    }
+  }
+
+  void render() {
     fill(238, 233, 233);
-    rect(100, 100, 2, 2, 90);
+    rect(location.x, location.y, 2, 2, 90);
   }
 }
