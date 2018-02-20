@@ -14,8 +14,16 @@ void draw() {
   background(250, 240, 231);
   stroke(34);
 
+    
+  // starfield
+  for (int i = 0; i < stars.length; i++) {
+    stars[i].update();
+    stars[i].checkEdges();
+    stars[i].render();
+  }
+
   float t = 0.0; 
-  float dist = 20.0;
+  float dist = 40.0;
   float startx, endx, x, y, prevx, prevy;
 
   for (int j = 0; j < 15; j++) {
@@ -47,7 +55,7 @@ void draw() {
     beginShape();
     vertex(0, 0);
     vertex(startx, 0);
-    int numPoints = 4;
+    int numPoints = 3;
     for (int i = 0; i < numPoints; i++) {
       x = startx + (noise(t) * 90 * i);
       y = height/(numPoints + 1) * (i+1);
@@ -69,13 +77,6 @@ void draw() {
     endShape();
     t = t + 0.05;
     dist = dist + (8 * cos(dist));
-    
-    // starfield
-    for (int i = 0; i < stars.length; i++) {
-      stars[i].update();
-      stars[i].checkEdges();
-      stars[i].render();
-    }
   }
 }
 
@@ -98,15 +99,25 @@ class StarShape {
   }
 
   void checkEdges() {
+    /*
     if (location.x > width/4) {
       location.x = -100 - (int) Math.random() * 100;
     } else if (location.y > height - height/8) {
-      location.y = -100 - (int) Math.random() * 100;;
+      location.y = -100 - (int) Math.random() * 100;
     }
+    */
+    if (location.x > width + 100) {
+      location.x = -100 - (int) Math.random() * 100;
+    } else if (location.y > height + 100) {
+      location.y = -100 - (int) Math.random() * 100;
+    } 
   }
 
   void render() {
-    fill(233, 233, (int) Math.floor(Math.random() * 255));
-    rect(location.x, location.y, 1, 1, 90 + (float) Math.random() * 8);
+    //fill(233, 233, (int) Math.floor(Math.random() * 255));
+    //fill(24);
+    //fill(76, 224, 230);
+    fill(204, 102, 0);
+    rect(location.x, location.y, 1, 1);
   }
 }
