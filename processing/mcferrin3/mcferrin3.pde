@@ -1,4 +1,4 @@
-StarShape[] stars = new StarShape[10];
+StarShape[] stars = new StarShape[3];
 
 void setup() {
   //fullScreen();
@@ -85,13 +85,12 @@ class StarShape {
   PVector shape;
 
   StarShape() {
-    int i = (int) Math.floor(Math.random() * 8.0);
-    int x = (int) (0 - Math.random() * width/2);
-    int y = (int) Math.random() * height;
-    println(x, y);
+    int x = (int) (Math.random()*200 - Math.random() * width/3);
+    int y = (int) (Math.random() * height);
 
     location = new PVector(int(x), int(y));
     velocity = new PVector((int) (Math.random() * 4) - 2, (int) (Math.random() * 3) - 1);
+    velocity = new PVector((float) Math.random() / 2, 0.1);
   }
 
   void update() {
@@ -99,15 +98,15 @@ class StarShape {
   }
 
   void checkEdges() {
-    if (location.x > width/2 + 40) {
-      location.x = -40;
-    } else if (location.y > height + 40) {
-      location.y = -40;
+    if (location.x > width/4) {
+      location.x = -100 - (int) Math.random() * 100;
+    } else if (location.y > height - height/8) {
+      location.y = -100 - (int) Math.random() * 100;;
     }
   }
 
   void render() {
-    fill(238, 233, 233);
-    rect(location.x, location.y, 2, 2, 90);
+    fill(233, 233, (int) Math.floor(Math.random() * 255));
+    rect(location.x, location.y, 1, 1, 90 + (float) Math.random() * 8);
   }
 }
