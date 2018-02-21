@@ -1,4 +1,4 @@
-StarShape[] stars = new StarShape[3];
+StarShape[] stars = new StarShape[8];
 
 void setup() {
   //fullScreen();
@@ -13,14 +13,6 @@ void setup() {
 void draw() {
   background(250, 240, 231);
   stroke(34);
-
-    
-  // starfield
-  for (int i = 0; i < stars.length; i++) {
-    stars[i].update();
-    stars[i].checkEdges();
-    stars[i].render();
-  }
 
   float t = 0.0; 
   float dist = 40.0;
@@ -78,6 +70,13 @@ void draw() {
     t = t + 0.05;
     dist = dist + (8 * cos(dist));
   }
+ 
+  // starfield
+  for (int i = 0; i < stars.length; i++) {
+    stars[i].update();
+    stars[i].checkEdges();
+    stars[i].render();
+  }
 }
 
 class StarShape {
@@ -99,25 +98,26 @@ class StarShape {
   }
 
   void checkEdges() {
-    /*
     if (location.x > width/4) {
       location.x = -100 - (int) Math.random() * 100;
     } else if (location.y > height - height/8) {
       location.y = -100 - (int) Math.random() * 100;
     }
-    */
+    /*
     if (location.x > width + 100) {
       location.x = -100 - (int) Math.random() * 100;
     } else if (location.y > height + 100) {
       location.y = -100 - (int) Math.random() * 100;
-    } 
+    }
+    */
   }
 
   void render() {
     //fill(233, 233, (int) Math.floor(Math.random() * 255));
     //fill(24);
     //fill(76, 224, 230);
-    fill(204, 102, 0);
+    fill(204, 102, 90);
+    fill(200, 90);
     rect(location.x, location.y, 1, 1);
   }
 }
