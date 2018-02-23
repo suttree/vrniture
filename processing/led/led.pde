@@ -1,3 +1,9 @@
+import gifAnimation.*;
+
+GifMaker gifExport;
+int frames = 0;
+int totalFrames = 120;
+
 float t = 0;
 float gap = 2;
 int offset = 4;
@@ -25,6 +31,9 @@ void setup() {
   size(640, 480, P3D);
   //fullScreen();
   smooth();
+  
+  gifExport = new GifMaker(this, "export.gif", 100);
+  gifExport.setRepeat(0); // make it an "endless" animation
 }
 
 void draw() {
@@ -62,4 +71,18 @@ void draw() {
   }
 
   //t = t + 0.0002;
+  export();
+}
+
+void export() {
+  if(frames < totalFrames) {
+    gifExport.setDelay(20);
+    gifExport.addFrame();
+    frames++;
+  } else {
+    gifExport.finish();
+    frames++;
+    println("gif saved");
+    exit();
+  }
 }
