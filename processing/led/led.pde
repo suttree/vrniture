@@ -40,38 +40,39 @@ void draw() {
   background(49, 54, 57);
 
   // draw a line of rects
-  for (int i = 0; i < (width/boxSize) + 2; i++ ) {
-    float[] c = boxColours[i];
-    stroke(34);
-    fill(c[0], c[1], c[2]);
-    rect((i * boxSize - boxSize/3) + (i * gap), (height/2 - boxSize/2), boxSize, boxSize, 0);
-
-    noStroke();
-    for (int j = 0; j < boxLayers; j++) {
-      t = t + 0.01;
-      fill(c[0], c[1], c[2], noise(t) * 50 * j);
-      rect((i * boxSize - boxSize/3) + (i * gap) + (offset * j) + 1, (height/2 - boxSize/2) - (offset * j) - 1, boxSize, boxSize, 0);
-    }
-  }
-  fill(69, 74, 77, 10);
-  rect(0, 0, width, height);
+  for(int h = 0; h < 5; h++) {
+    for (int i = 0; i < (width/boxSize) + 2; i++ ) {
+      float[] c = boxColours[i];
+      stroke(34);
+      fill(c[0], c[1], c[2]);
+      rect((i * boxSize - boxSize/3) + (i * gap), (height/2 - boxSize/4) + (h * boxSize) - height/2 + gap, boxSize, boxSize, 0);
   
-  if (frameCount % 12 == 0) {
-    for(int i = 0; i < boxColours.length; i++) {
-      int j;
-      if (i + 1 == boxColours.length) {
-        j = 0;
-      } else {
-        j = i + 1;
+      noStroke();
+      for (int j = 0; j < boxLayers; j++) {
+        t = t + 0.01;
+        fill(c[0], c[1], c[2], noise(t) * 50 * j);
+        rect((i * boxSize - boxSize/3) + (i * gap) + (offset * j) + 1, (height/2 - boxSize/4) + (h * boxSize) - (offset * j) - 1 - height/2 + gap, boxSize, boxSize, 0);
       }
-        
-      boxColours2[i] = boxColours[j];
     }
-    boxColours = boxColours2;
+    fill(69, 74, 77, 10);
+    rect(0, 0, width, height);
+    
+    if (frameCount % 12 == 0) {
+      for(int i = 0; i < boxColours.length; i++) {
+        int j;
+        if (i + 1 == boxColours.length) {
+          j = 0;
+        } else {
+          j = i + 1;
+        }
+          
+        boxColours2[i] = boxColours[j];
+      }
+      boxColours = boxColours2;
+    }
   }
-
   //t = t + 0.0002;
-  export();
+  //export();
 }
 
 void export() {
