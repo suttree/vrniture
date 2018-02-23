@@ -22,8 +22,8 @@ float[][] boxColours2 = boxColours;
 // shift the array on each draw() so that leds lights travel along the wall
 
 void setup() {
-  //fullScreen();
   size(640, 480, P3D);
+  //fullScreen();
   smooth();
 }
 
@@ -44,7 +44,7 @@ void draw() {
       rect((i * boxSize - boxSize/3) + (i * gap) + (offset * j) + 1, (height/2 - boxSize/2) - (offset * j) - 1, boxSize, boxSize, 0);
     }
   }
-  fill(69, 74, 77, 49);
+  fill(69, 74, 77, 10);
   rect(0, 0, width, height);
   
   if (frameCount % 12 == 0) {
