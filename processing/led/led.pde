@@ -40,7 +40,7 @@ void draw() {
   background(49, 54, 57);
 
   // draw a line of rects
-  for(int h = 0; h < 1; h++) {
+  for(int h = 0; h < 5; h++) {
     for (int i = 0; i < (width/boxSize) + 2; i++ ) {
       float[] c = boxColours[i];
       stroke(34);
