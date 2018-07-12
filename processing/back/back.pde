@@ -38,19 +38,21 @@ void draw() {
   
   rotateY(PI/8);
   
-  int size = 20;
+  int size = 40;
   stroke(0,0,0);
   fill(0xee, 0xee, 0xff, 90);
   rect(size, size, width - (size * 2), height - (size * 2));
   
   fill(125);
   stroke(212, 38, 194);
-  for(int i = 0; i < 7; i++) {
-    pushMatrix();
-    println(second());
-    translate(50 + size + (100 * i), (size), 0 - (4 * i)); // this last var should be a variable on the box object?
-    box(40);
-    popMatrix();
+  for(int j = 0; j < 7; j++ ) {      
+    for(int i = 0; i < 7; i++) {
+      float angle = i * TWO_PI / 7;
+      pushMatrix();
+      translate(50 + size + (100 * i), size + 50 + (size * j), size/2 * cos(angle)); // this last var should be a variable on the box object?
+      box(size);
+      popMatrix();
+    }
   }
 
 }
