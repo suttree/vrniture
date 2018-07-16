@@ -6,6 +6,12 @@ float x = width/2;
 float y = height/2;
 float z = 0;
 
+int size = 40;
+
+int w = size;
+int h = size;
+int d = size;
+
 void setup() {
   size(800, 800, P3D);
   //fullScreen(P3D);
@@ -35,7 +41,7 @@ void draw() {
     z++; // The rectangle moves forward as z increments.
   }
   */
-  
+  /*
   rotateY(PI/8);
   
   int size = 40;
@@ -54,5 +60,19 @@ void draw() {
       popMatrix();
     }
   }
-
+  */
+  
+  fill( 0xee, 0xee, 0xff, 10);
+  rect(0, 0, width, height);  
+  rotateX(PI/8);
+  
+  pushMatrix();
+  translate(w, h, z);
+  if (h > 250) {
+    h--;
+  } else {
+    h++;
+  }
+  box(w, h, d);
+  popMatrix();
 }
