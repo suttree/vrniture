@@ -1,9 +1,20 @@
-//Cuboid c = new Cuboid(100, 100, 100);
+import gifAnimation.*;
+
 Cuboid[] cuboids = new Cuboid[30];
+Cuboid[] cuboids2 = new Cuboid[15];
+
+GifMaker gifExport;
+int frames = 0;
+int totalFrames = 120;
 
 void setup() {
-  size(800, 800, P3D);
   smooth();
+  size(800, 800, P3D);
+  
+  gifExport = new GifMaker(this, "export.gif", 100);
+  gifExport.setRepeat(0); // make it an "endless" animation
+  
+  stroke(0);
   
   for(int i = 0; i < cuboids.length; i++) {
      cuboids[i] = new Cuboid(
@@ -12,6 +23,17 @@ void setup() {
                    (width / cuboids.length) - 10,
                    (width/cuboids.length) + (i * 25),
                    (height/3),
+                   i
+                  );
+  }
+  
+  for(int i = 0; i < cuboids2.length; i++) {
+     cuboids2[i] = new Cuboid(
+                   (width / cuboids2.length) - 10,
+                   (width / cuboids2.length) - 10,
+                   (width / cuboids2.length) - 10,
+                   (width/cuboids2.length) + (i * 50),
+                   (height/6),
                    i
                   );
   }
@@ -24,6 +46,26 @@ void draw() {
   for(int i = 0; i < cuboids.length; i++) {
     cuboids[i].update();
     cuboids[i].render();
+  }
+  
+  for(int i = 0; i < cuboids2.length; i++) {
+    cuboids2[i].update();
+    cuboids2[i].render();
+  }
+  
+  export();
+}
+
+void export() {
+  if(frames < totalFrames) {
+    gifExport.setDelay(20);
+    gifExport.addFrame();
+    frames++;
+  } else {
+    gifExport.finish();
+    frames++;
+    println("gif saved");
+    exit();
   }
 }
 
