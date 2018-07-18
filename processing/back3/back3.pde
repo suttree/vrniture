@@ -5,13 +5,13 @@ Cuboid[] cuboids2 = new Cuboid[15];
 
 GifMaker gifExport;
 int frames = 0;
-int totalFrames = 120;
+int totalFrames = 100;
 
 void setup() {
   smooth();
   size(800, 800, P3D);
   
-  gifExport = new GifMaker(this, "export.gif", 100);
+  gifExport = new GifMaker(this, "export.gif", 255, 255);
   gifExport.setRepeat(0); // make it an "endless" animation
   
   stroke(0);
@@ -32,7 +32,7 @@ void setup() {
                    (width / cuboids2.length) - 10,
                    (width / cuboids2.length) - 10,
                    (width / cuboids2.length) - 10,
-                   (width/cuboids2.length) + (i * 50),
+                   (width/cuboids2.length) + (i * 70),
                    (height/6),
                    i
                   );
@@ -58,7 +58,7 @@ void draw() {
 
 void export() {
   if(frames < totalFrames) {
-    gifExport.setDelay(20);
+    gifExport.setDelay(30);
     gifExport.addFrame();
     frames++;
   } else {
@@ -106,6 +106,7 @@ class Cuboid {
     
     pushMatrix();
     translate(x, y, z);
+    rotateY(radians(frameCount));
     box(w, h, d);
     popMatrix();
   }
