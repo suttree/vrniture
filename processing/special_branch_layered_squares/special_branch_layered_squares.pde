@@ -13,7 +13,7 @@ int gap = 100;
 
 void setup() {
   noSmooth();
-  size(800, 800);
+  size(800, 800, P3D);
   font = createFont("Arial Bold", 36);
   
   gifExport = new GifMaker(this, "export.gif", 255, 255);
@@ -39,7 +39,8 @@ void draw() {
   text(frameCount, 20, 40);
   */
   
-  fill(10, 200, 255, 65);
+  //fill(10, 200, 255, 85);
+  fill(0, 20);
   rect(0, 0, width, height);
  
   for(int i = 0; i < layers.length; i++) {
@@ -47,12 +48,12 @@ void draw() {
     layers[i].update();
   }
   
-  export();
+  //export();
 }
 
 void export() {
   if(frames < totalFrames) {
-    gifExport.setDelay(30);
+    gifExport.setDelay(60);
     gifExport.addFrame();
     frames++;
   } else {
@@ -95,6 +96,7 @@ class Layer {
   void render() {
     noFill();
     stroke(c);
+    rotateX(PI/32);
     rect(x, y, w, h);
   }
 }
