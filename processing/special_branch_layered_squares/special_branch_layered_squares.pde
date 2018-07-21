@@ -7,7 +7,7 @@ Layer[] layers = new Layer[5];
 
 GifMaker gifExport;
 int frames = 0;
-int totalFrames = 600;
+int totalFrames = 824;
 
 int gap = 100;
 
@@ -33,9 +33,11 @@ void setup() {
 
 void draw() {
   // fps
+  /*
   fill(255);
   textFont(font, 36);
   text(frameCount, 20, 40);
+  */
   
   fill(10, 200, 255, 65);
   rect(0, 0, width, height);
@@ -45,7 +47,7 @@ void draw() {
     layers[i].update();
   }
   
-  //export();
+  export();
 }
 
 void export() {
