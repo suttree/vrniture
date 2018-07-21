@@ -12,8 +12,8 @@ int totalFrames = 600;
 int gap = 100;
 
 void setup() {
-  smooth();
-  size(800, 800, P3D);
+  //smooth();
+  size(800, 800);
   font = createFont("Arial Bold", 36);
   
   gifExport = new GifMaker(this, "export.gif", 255, 255);
@@ -39,7 +39,7 @@ void draw() {
   fill(255);
   text(frameCount, 20, 40);
   
-  fill(10, 200, 255, 90);
+  fill(10, 200, 255, 65);
   rect(0, 0, width, height);
   
   for(int i = 0; i < layers.length; i++) {
@@ -47,7 +47,7 @@ void draw() {
     layers[i].update();
   }
   
-  export();
+  //export();
 }
 
 void export() {
