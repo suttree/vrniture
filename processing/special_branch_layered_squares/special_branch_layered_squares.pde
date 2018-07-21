@@ -12,14 +12,12 @@ int totalFrames = 600;
 int gap = 100;
 
 void setup() {
-  //smooth();
+  noSmooth();
   size(800, 800);
   font = createFont("Arial Bold", 36);
   
   gifExport = new GifMaker(this, "export.gif", 255, 255);
   gifExport.setRepeat(0);
-  
-  stroke(0);
 
   for(int i = 0; i < layers.length; i++) {
     int start = 0 - (i * gap);
@@ -39,9 +37,10 @@ void draw() {
   fill(255);
   text(frameCount, 20, 40);
   
+  //background(10, 200, 255, 65);
   fill(10, 200, 255, 65);
   rect(0, 0, width, height);
-  
+ 
   for(int i = 0; i < layers.length; i++) {
     layers[i].render();
     layers[i].update();
@@ -65,7 +64,7 @@ void export() {
 
 class Layer {
   float x, y, w, h;
-  float accel = 0.68;
+  float accel = 0.98;
   color c = color(255, 255, 255);
   
   Layer(float _x, float _y, float _w, float _h, color _c) {
@@ -93,6 +92,29 @@ class Layer {
   void render() {
     noFill();
     stroke(c);
-    rect(x, y, w, h);
+    //rect(x, y, w, h);
+
+    beginShape();
+    vertex(x, y);
+    vertex(x + w, y);
+    vertex(x + w, y + h);
+    vertex(x, y + h);
+    
+    float cx, cy, cw, ch;
+    cw = w/3;
+    ch = h/3;
+    cx = width/2 + w/2;
+    cy = height/2 + h/2;
+    cx = x + cw;
+    cy = y + ch;
+    
+    beginContour();
+    vertex(cx, cy);
+    vertex(cx + cw, cy);
+    vertex(cx + cw, cy + ch);
+    vertex(cx, cy + ch);
+    endContour();
+    
+    endShape(CLOSE);
   }
 }
