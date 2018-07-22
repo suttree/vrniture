@@ -41,6 +41,7 @@ void draw() {
   */
   
   //fill(10, 200, 255, 85);
+  noStroke();
   fill(0, 32);
   rect(0, 0, width, height);
  
@@ -102,19 +103,19 @@ class Layer {
     //rect(x, y, w, h);
     beginShape();
     vertex(x, y);
-    //quadraticVertex(x, y, x + (xoff * w), y - (xoff * h/2));
-    for(int i = 0; i < 2; i++) {
-      float qx = x + (xoff * 90 * i);
-      float qy = height/(2 + 1) * (i+1);
-      println(qx, qy);
-      quadraticVertex(qx, qx, x, y);
-    }
-    
+    curveVertex(x, y);
+    curveVertex(x + 10, y - 10);
+    curveVertex((x + w) / 2, y);
+    curveVertex(x + w, y);
     vertex(x + w, y);
     vertex(x + w, y + h);
-    //vertex(x, y + h);
-    endShape();
-    
-    xoff = xoff + .05;
+    vertex(x, y + h);
+    endShape(CLOSE);
+
+    //quadraticVertex(x, y, x + (xoff * w), y - (xoff * h/2));
+    //quadraticVertex(x, y, x + w/4, y + h/8);
+    //quadraticVertex(x + w/4, y + h/8, x + w/2, y);
+
+    xoff = xoff + .04;
   }
 }
