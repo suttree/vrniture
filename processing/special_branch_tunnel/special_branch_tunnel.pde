@@ -1,9 +1,9 @@
-// NEXT: same but with contour?
-// NEXT: do this with a PShape and perlin edges
+// Reverse the animation, squares grow towards us
+
 import gifAnimation.*;
 
 PFont font;
-Layer[] layers = new Layer[5];
+Layer[] layers = new Layer[4];
 
 GifMaker gifExport;
 int frames = 0;
@@ -79,8 +79,7 @@ class Layer {
     w = _w;
     h = _h;
     c = _c;
-    xoff = noise(_xoff);
-    
+    xoff = 0.0;
   }
   
   void update() {
@@ -89,11 +88,37 @@ class Layer {
     w = w - (accel * 2);
     h = h - (accel * 2);
     
+    println(noise(xoff) * 10);
+    if (noise(xoff) * 10 > 6) {
+      println(1);
+      x = x - noise(xoff);
+    } else if (noise(xoff) * 10 > 2) {
+      println(2);
+      x = x + noise(xoff);
+    } else {
+      println(3);
+      // stay the same
+    }
+/*
+    println(xoff);
+    println(noise(xoff));
+*/
+    println("--");
+    /*
     if (w <= 0) {
       status = "repeating";
       accel = 0 - accel;
     } else if (w > width && status == "repeating") {
       accel = 0.98;
+      c = color(100 + random(155), random(255), 160);
+    }
+    */
+    
+    if (w <= 0) {
+      x = 0;
+      y = 0;
+      w = width;
+      h = height;
       c = color(100 + random(155), random(255), 160);
     }
   }
