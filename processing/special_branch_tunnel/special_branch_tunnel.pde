@@ -1,7 +1,7 @@
 // layers should grow towards you from nothing in the middle
-int gap = 100;
+int gap = 50;
 
-Layer[] layers = new Layer[4];
+Layer[] layers = new Layer[8];
 
 void setup() {
   smooth();
@@ -29,7 +29,7 @@ void draw() {
 }
 
 class Layer {
-  float x, y, w, h, xoff;
+  float x, y, w, h, offset;
   float accel = 0.98;
   int counter = 0;
   int timer;
@@ -43,16 +43,31 @@ class Layer {
     h = _h;
     timer = _timer;
     c = _c;
-    xoff = noise(0.0);
+    offset = noise(0.0);
   }
 
   void update() {
+    // Render when we're ready
     if (counter > timer) {
       x = x - accel;
       y = y - accel;
       w = w + (accel * 2);
       h = h + (accel * 2);
-      xoff = xoff + 0.4;
+      
+      //x = x + xoff;
+      float p = noise(offset) * 12;
+      if (p > 8) {
+         x = x - offset;
+       } else if (p > 6) {
+         y = y - offset;
+       } else if (p > 4) {
+          x = x + offset;
+       } else if (p > 2) {
+          y = y + offset;
+       } else {
+         // stay the same
+       }
+      offset = noise(offset + 0.8);
     } else {
       counter++;
       if (counter > timer) {
@@ -60,7 +75,8 @@ class Layer {
       }
     }
     
-    if (w > width) {
+    // Loop 
+    if (w > width && h > height) {
       x = width/2;
       y = height/2;
       w = 0;
