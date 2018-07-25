@@ -2,6 +2,8 @@
  // Use the noise variable to determine the location and height of the curves
  // - use the constrain function?
  //     constrain(amt, low, high)
+ // Next: make a rectangle to fill the screen and draw a contour with the vertexes (anti-clockwise)
+ // - test with a square contour first
 int gap = 100;
 
 Layer[] layers = new Layer[4];
