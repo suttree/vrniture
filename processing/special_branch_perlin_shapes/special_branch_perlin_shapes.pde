@@ -1,11 +1,16 @@
+ // Give each Layer a noise variable (and change it on reset)
+ // Use the noise variable to determine the location and height of the curves
+ // - use the constrain function?
+ //     constrain(amt, low, high)
 int gap = 100;
 
 Layer[] layers = new Layer[4];
 
 void setup() {
   smooth();
-  size(800, 800, P3D);
-  //fullScreen(P3D);
+  //size(800, 800, P3D);
+  fullScreen(P3D);
+  noCursor();
   
   float x = width/2;
   float y = height/2;
