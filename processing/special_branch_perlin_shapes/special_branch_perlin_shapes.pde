@@ -1,12 +1,11 @@
-// layers should grow towards you from nothing in the middle
 int gap = 100;
 
 Layer[] layers = new Layer[4];
 
 void setup() {
   smooth();
-  //size(800, 800, P3D);
-  fullScreen(P3D);
+  size(800, 800, P3D);
+  //fullScreen(P3D);
   
   float x = width/2;
   float y = height/2;
@@ -55,6 +54,7 @@ class Layer {
       w = w + (accel * 2);
       h = h + (accel * 2);
       
+      /*
       // Move gently or stay the same
       float p = noise(offset) * 12;
       if (p > 8) {
@@ -66,6 +66,7 @@ class Layer {
       } else if (p > 2) {
         y = y + (offset/2);
       }
+      */
       offset = noise(offset + 0.8);
     } else {
       counter++;
@@ -92,9 +93,17 @@ class Layer {
       stroke(c);
       beginShape();
       vertex(x, y);
+      quadraticVertex(x + (w/3), y - (h/8), x + (w/2), y);
+      quadraticVertex(x + w - (w/3), y + (h/8), x + w, y);
       vertex(x + w, y);
+      quadraticVertex(x + w - (w/3), y + h/3, x + w, y + (h/2));
+      quadraticVertex(x + w + (w/3), y + h - (h/4), x + w, y + h);
       vertex(x + w, y + h);
+      quadraticVertex(x + w - (w/3), y + h - (h/3), x + (w/2), y + h);
+      quadraticVertex(x + (w/3), y + h + (h/3), x, y + h);
       vertex(x, y + h);
+      quadraticVertex(x - (w/3), y + h - (h/3), x, y + (h/2));
+      quadraticVertex(x + (w/3), y + (h/3), x, y);
       endShape(CLOSE);
     }
   }
