@@ -10,8 +10,8 @@ Layer[] layers = new Layer[4];
 
 void setup() {
   smooth();
-  //size(800, 800, P3D);
-  fullScreen(P3D);
+  size(800, 800, P3D);
+  //fullScreen(P3D);
   noCursor();
   
   float x = width/2;
@@ -50,7 +50,7 @@ class Layer {
     h = _h;
     timer = _timer;
     c = _c;
-    offset = noise(0.0);
+    offset = 0.0;
   }
 
   void update() {
@@ -74,7 +74,9 @@ class Layer {
         y = y + (offset/2);
       }
       */
-      offset = noise(offset + 0.8);
+      offset = offset + 0.3;
+      println(noise(offset));
+      println(constrain(noise(offset)*10, 0, 8));
     } else {
       counter++;
       if (counter > timer) {
@@ -96,6 +98,7 @@ class Layer {
   
   void render() {
     if (visible) {
+      //float off1 = constrain(noise(offset)*10, 0, w);
       noFill();
       stroke(c);
       beginShape();
