@@ -1,5 +1,5 @@
 float xoff = 0.0;
-Wave[] waves = new Wave[2];
+Wave[] waves = new Wave[4];
 
 void setup() {
   smooth();
@@ -10,7 +10,7 @@ void setup() {
   for(int i = 0; i < waves.length; i++) {
     //color c = color(100 + random(155), random(255), 106);
     color c = color(0, 105, 148);
-    waves[i] = new Wave(c, 0 - (i * 100), 10, 10);
+    waves[i] = new Wave(c, 0 - (i * 100), 10, 5);
   }
 }
 
@@ -18,14 +18,13 @@ void draw() {
   noStroke();
   fill(237, 201, 175, 32);
   rect(0, 0, width, height);
-  stroke(0, 105, 148);
   
-  if (frameCount % 10 == 0) {
+  //if (frameCount % 10 == 0) {
     for(int i = 0; i < waves.length; i++) {
       waves[i].render();
       waves[i].update();
     }
-  }
+  //}
 }
 
 class Wave {
@@ -58,9 +57,16 @@ class Wave {
   }
   
   void render() {
+    fill(c);
+    beginShape();
+    vertex(0, 0);
     for(int i = 0; i < width; i += gap) {
-      point(i, y + (noise(xoff) * 100));
+      //point(i, y + (noise(xoff) * 100));
+      vertex(i, y + (noise(xoff) * 100));
       xoff = xoff + 0.04;
     }
+    vertex(width + 100, y);
+    vertex(width, 0);
+    endShape(CLOSE);
   }
 }
