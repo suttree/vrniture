@@ -1,10 +1,7 @@
 import processing.sound.*;
-import com.hamoid.*;
-
-VideoExport videoExport;
 SoundFile file;
 
-Wave[] waves = new Wave[5];
+Wave[] waves = new Wave[6];
 
 void setup() {
   smooth();
@@ -21,13 +18,6 @@ void setup() {
 
   file = new SoundFile(this, "waves.wav");
   file.loop();
-  
-  /*
-  videoExport = new VideoExport(this);
-  videoExport.setFrameRate(4);
-  videoExport.setAudioFileName("export.mp3");
-  videoExport.startMovie();
-  */
 }
 
 void draw() {
@@ -48,8 +38,7 @@ class Wave {
   float gap;
   float inc = 0;
   float y = 0;
-  float xoff = random(2);
-  String status = "incoming";
+  float xoff = random(3.75);
   
   Wave(color _c, int _y, float _mag, float _gap, float _inc) {
     c = _c;
@@ -60,17 +49,9 @@ class Wave {
   }
   
   void update() {
-    if ( status == "incoming" ) {
-      y = y + inc;
-    } else {
-      y = y - inc;
-    }
-    
+    y = y + inc;
     if ( y >= (height - height/3)) { 
-      status = "receding";
       y = 0 - gap;
-    } else if ( y <= 0) {
-      status = "incoming";
     }
   }
   
@@ -80,7 +61,6 @@ class Wave {
     vertex(-10, -10);
     stroke(255, 255, 242, 70);
     for(int i = 0; i < width; i += gap) {
-      //point(i, y + (noise(xoff) * 100));
       vertex(i, y + (noise(xoff) * 100));
       xoff = xoff + 0.04;
     }

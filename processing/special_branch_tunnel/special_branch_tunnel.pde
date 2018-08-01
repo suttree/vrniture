@@ -1,12 +1,17 @@
 // layers should grow towards you from nothing in the middle
 int gap = 100;
 
+import processing.sound.*;
+SoundFile file;
+
 Layer[] layers = new Layer[4];
 
 void setup() {
   smooth();
   //size(800, 800, P3D);
   fullScreen(P3D);
+  noCursor();
+  println(dataPath(""));
   
   float x = width/2;
   float y = height/2;
@@ -16,6 +21,9 @@ void setup() {
     color c = color(100 + random(155), random(255), 106);
     layers[i] = new Layer(x, y, size, size, timer, c);
   }
+  
+  file = new SoundFile(this, "binaural.wav");
+  file.loop();
 }
 
 void draw() {
@@ -55,6 +63,7 @@ class Layer {
       w = w + (accel * 2);
       h = h + (accel * 2);
       
+      /*
       // Move gently or stay the same
       float p = noise(offset) * 12;
       if (p > 8) {
@@ -66,6 +75,7 @@ class Layer {
       } else if (p > 2) {
         y = y + (offset/2);
       }
+      */
       offset = noise(offset + 0.8);
     } else {
       counter++;
@@ -96,6 +106,9 @@ class Layer {
       vertex(x + w, y + h);
       vertex(x, y + h);
       endShape(CLOSE);
+    }
+    if (frameCount > 1024) {
+      rotateY(radians(frameCount * 2 % 360));
     }
   }
 }

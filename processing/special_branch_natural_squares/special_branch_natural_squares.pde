@@ -1,11 +1,11 @@
 // NEXT: same but with contour?
 // NEXT: do this with a PShape and perlin edges
-import gifAnimation.*;
+//import gifAnimation.*;
 
 PFont font;
 Layer[] layers = new Layer[5];
 
-GifMaker gifExport;
+//GifMaker gifExport;
 int frames = 0;
 int totalFrames = 440;
 
@@ -16,8 +16,8 @@ void setup() {
   size(800, 800, P3D);
   font = createFont("Arial Bold", 36);
   
-  gifExport = new GifMaker(this, "export.gif", 255, 255);
-  gifExport.setRepeat(0);
+  //gifExport = new GifMaker(this, "export.gif", 255, 255);
+  //gifExport.setRepeat(0);
 
   for(int i = 0; i < layers.length; i++) {
     int start = 0 - (i * gap);
@@ -54,6 +54,7 @@ void draw() {
   //export();
 }
 
+/*
 void export() {
   if(frames < totalFrames) {
     gifExport.setDelay(60);
@@ -66,6 +67,7 @@ void export() {
     exit();
   }
 }
+*/
 
 class Layer {
   float x, y, w, h, xoff;
