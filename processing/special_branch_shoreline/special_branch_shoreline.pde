@@ -1,12 +1,15 @@
 import processing.sound.*;
+import com.hamoid.*;
+
+VideoExport videoExport;
 SoundFile file;
 
 Wave[] waves = new Wave[5];
 
 void setup() {
   smooth();
-  size(800, 800);
-  //fullScreen();
+  //size(800, 800);
+  fullScreen();
   noCursor();
   
   for(int i = 0; i < waves.length; i++) {
@@ -16,8 +19,15 @@ void setup() {
   
   frameRate(4);
 
-  file = new SoundFile(this, "waves.mp3");
+  file = new SoundFile(this, "waves.wav");
   file.loop();
+  
+  /*
+  videoExport = new VideoExport(this);
+  videoExport.setFrameRate(4);
+  videoExport.setAudioFileName("export.mp3");
+  videoExport.startMovie();
+  */
 }
 
 void draw() {
