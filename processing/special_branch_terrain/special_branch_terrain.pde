@@ -2,6 +2,9 @@
 // and https://github.com/CodingTrain/website/blob/master/CodingChallenges/CC_011_PerlinNoiseTerrain/CC_011_PerlinNoiseTerrain.pde
 // audio via: https://freesound.org/people/kvgarlic/sounds/135472/
 
+// TODO: animate the sky colour and brightness to reflect a passing day
+PFont font;  
+
 import processing.sound.*;
 SoundFile file;
 
@@ -9,17 +12,20 @@ int cols, rows;
 int scl = 20;
 int w = 2800;
 int h = 1600;
+int counter;
 
 float flying = 0;
 float[][] terrain;
 ArrayList<PVector> stars;
 
 void setup() {
-  //size(800, 800, P3D);
   fullScreen(P3D);
-  smooth();
   noCursor();
+    
+  smooth();
   colorMode(HSB);
+
+  font = createFont("Arial Bold", 36);
   
   cols = w / scl;
   rows = h / scl;
@@ -29,10 +35,11 @@ void setup() {
   for (int y = 0; y < 15; y++) {
     for (int x = 0; x < cols; x++) {
       if (random(5) > 4.875) {
-        stars.add( new PVector(x*scl + (noise(x) * 10), y*scl + (noise(y) * 10)) );
+        stars.add( new PVector(x*scl + (noise(x) * 12), y*scl + (noise(y) * 14)) );
       }
     }
   }
+  
   frameRate(4);
   
   file = new SoundFile(this, "field.wav");
@@ -41,38 +48,69 @@ void setup() {
 
 
 void draw() {
-  flying -= 0.1;
+  lights(); 
+  ambientLight(64,64,64); // TODO is this the right colour here? do we need it?
+ 
+  // Calculate sky colour and sun/moon position to simulate daytime and nighttime
+  color sky;
+  if (frameCount < 100) {
+    sky = color(29, 19, 76, 70); // moonlight: 29, 19, 76 
+  } else if (frameCount < 200) {
+    sky = color(0, 0, 0, 20); // sunrise: 0, 0, 0
+  } else if (frameCount < 300) {
+    sky = color(70, 70, 70, 20); // daylight
+  } else if (frameCount < 400) {
+    sky = color(60, 1.6, 100, 20); // noon: 60, 1.6, 100
+  } else if (frameCount < 500) {
+    sky = color(70, 70, 70, 20); // daylight
+  } else if (frameCount < 600) {
+    sky = color(70, 70, 70, 20); // evening
+  } else if (frameCount < 700) {
+    sky = color(70, 70, 70, 20); // sunset
+  } else {
+    sky = color(29, 19, 76, 80); // moonlight again (reset counter)
+  }
 
+  // move light from from -1, 1, 1 to 1, 1, 1 (left to right)
+  // move light from x, 1, 1 to x, 0, 1 (top to middle)
+  //directionalLight(128,128,128, 0, 0, -1);  // light from viewer
+  directionalLight(128,128,128, 0, 1, 0);   // light from above
+  directionalLight(128, 128, 128, 1, 1, 1); // light from middle, above and the back
+  
+  background(sky);
+  
+  fill(255);
+  textFont(font, 36);
+  text(frameCount, 20, 40);
+  
+  // Add some stars (as the sky becomes brighter they'll fade from view...)
+  fill(225);
+  for(int i = 0; i < stars.size(); i++) {
+    rect(stars.get(i).x, stars.get(i).y, 1, 1);
+  }
+
+  // Move the terrain forwards
+  flying -= 0.1;
   float yoff = flying;
   for (int y = 0; y < rows; y++) {
     float xoff = 0;
     for (int x = 0; x < cols; x++) {
       terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 100);
-      xoff += 0.075;
+      xoff += 0.045;
     }
-    yoff += 0.065;
+    yoff += 0.045;
   }
-
-  // brightness: darken and lighten over time
-  background(150, 90, 127, 50);
+  
+  // Render the terrain
   noStroke();
-
-  // draw stars
-  fill(225);
-  for(int i = 0; i < stars.size(); i++) {
-    rect(stars.get(i).x, stars.get(i).y, 1, 1);
-  }
-  //fill(225);
-  //rect(x*scl + noise(x) * 10, y*scl + noise(y) * 10, 1, 1);
-
   translate(width/2, height/2 + 150);
   rotateX(PI/3);
   translate(-w/2, -h/2);
   for (int y = 0; y < rows-1; y++) {
     beginShape(TRIANGLE_STRIP);
-    // match the lower value (87) with the background brightness
+    // TODO: match the lower value here (87) with the background brightness
     float brightness = map(y, 0, rows-1, 87, 256);
-    fill(85, 83, brightness);
+    fill(85, 83, brightness, 10 + (y*5));
     for (int x = 0; x < cols; x++) {
       vertex(x*scl, y*scl, terrain[x][y]);
       vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
