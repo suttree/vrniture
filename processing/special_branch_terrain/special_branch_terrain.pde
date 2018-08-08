@@ -12,7 +12,7 @@ int cols, rows;
 int scl = 20;
 int w = 2800;
 int h = 1600;
-int counter;
+int counter = 0;
 
 float flying = 0;
 float[][] terrain;
@@ -53,22 +53,28 @@ void draw() {
  
   // Calculate sky colour and sun/moon position to simulate daytime and nighttime
   color sky;
-  if (frameCount < 100) {
-    sky = color(29, 19, 76, 70); // moonlight: 29, 19, 76 
-  } else if (frameCount < 200) {
-    sky = color(0, 0, 0, 20); // sunrise: 0, 0, 0
-  } else if (frameCount < 300) {
-    sky = color(70, 70, 70, 20); // daylight
-  } else if (frameCount < 400) {
-    sky = color(60, 1.6, 100, 20); // noon: 60, 1.6, 100
-  } else if (frameCount < 500) {
-    sky = color(70, 70, 70, 20); // daylight
-  } else if (frameCount < 600) {
-    sky = color(70, 70, 70, 20); // evening
-  } else if (frameCount < 700) {
-    sky = color(70, 70, 70, 20); // sunset
+  counter++;
+  if (counter < 10) {
+    sky = color(199, 57, 38); // moonlight 
+  } else if (frameCount < 20) {
+    sky = color(199, 57, 50); // sunrise
+  } else if (frameCount < 30) {
+    file.loop();
+    sky = color(199, 57, 90); // daylight
+  } else if (frameCount < 40) {
+    sky = color(199, 57, 100); // noon
+  } else if (frameCount < 50) {
+    sky = color(199, 57, 90); // daylight
+  } else if (frameCount < 60) {
+    sky = color(199, 57, 86); // evening
+  } else if (frameCount < 70) {
+    sky = color(199, 57, 58); // sunset
+  } else if (frameCount < 80) {
+    file.stop();
+    sky = color(199, 57, 35); // moonlight again
   } else {
-    sky = color(29, 19, 76, 80); // moonlight again (reset counter)
+    counter = 0;
+    sky = color(199, 57, 30); // moonlight again (reset counter)
   }
 
   // move light from from -1, 1, 1 to 1, 1, 1 (left to right)
@@ -81,7 +87,7 @@ void draw() {
   
   fill(255);
   textFont(font, 36);
-  text(frameCount, 20, 40);
+  text(counter, 20, 40);
   
   // Add some stars (as the sky becomes brighter they'll fade from view...)
   fill(225);
@@ -110,7 +116,7 @@ void draw() {
     beginShape(TRIANGLE_STRIP);
     // TODO: match the lower value here (87) with the background brightness
     float brightness = map(y, 0, rows-1, 87, 256);
-    fill(85, 83, brightness, 10 + (y*5));
+    fill(127, 68, brightness, 10 + (y*5));
     for (int x = 0; x < cols; x++) {
       vertex(x*scl, y*scl, terrain[x][y]);
       vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
