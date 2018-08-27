@@ -58,7 +58,7 @@ void draw() {
 
   delay(125);
   
-  saveFrame("line-######.png");
+  //saveFrame("line-######.png");
 }
 
 class Rectangle {
