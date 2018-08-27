@@ -1,19 +1,19 @@
-## Processing MethCla Interface
+## Processing Sound library
 
-This is a processing interface and a collection of plugins for MethCla, a leight-weight, efficient sound engine for mobile devices [methcla](http://methc.la). 
+The new Sound library for Processing 3 provides a simple way to work with audio. It can play, analyze, and synthesize sound. The library comes with a collection of oscillators for basic wave forms, a variety of noise generators, and effects and filters to alter sound files and other generated sounds. The syntax is minimal to make it easy for beginners who want a straightforward way to add some sound to their Processing sketches!
 
+### How to use
 
-## Building the libMethClaInterface
+The easiest way to install the Sound library is through Processing's Contribution Manager. The library comes with many example sketches, the full online reference can be found [here](https://www.processing.org/reference/libraries/sound/). Please report bugs [https://github.com/processing/processing-sound/issues](here).
 
-The library requires a compiled shared library of MethCla for each platform. There are specific Makefile in the src folder which compile the JNI library. For the moment this library is OSX + Linux only. To build the JNI Lib simply rename the respective Makefile_x to Makefile and do 
+### How to build
 
-$make 
-$make install 
+1. `git clone git@github.com:processing/processing-sound.git`
+2. into the `library/` folder copy (or soft-link) your Processsing's `core.jar` (and, optionally, also your Android SDK's `android.jar`, API level 26 or higher). Other dependencies (in particular Phil Burk's [JSyn](http://www.softsynth.com/jsyn/) engine on which this library is based) are downloaded automatically.
+3. `ant dist` (or, alternatively, run build.xml from within Eclipse)
 
-in the src/cpp folder.
+The resulting `processing-sound.zip` can be extracted into your Processing installation's `libraries/` folder.
 
-The Java Library is to be compiled with ant. Please install the latest version on ant on your computer. The build.xml file is in in the root folder. Core.jar needs to be compiled and ready in ../../../core/library. To compile do
+### License
 
-$ ant
-
-in the root folder.
+LGPL v2.1
