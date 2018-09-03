@@ -34,11 +34,11 @@ void draw() {
     } else if (j == 1) {
       fill(32, 178, 170);
     } else {
-      fill(24, 80);
+      fill(0, 80);
     }
     
-    startx = width/2 - (10 * j);
-    endx = width/2 - (40 * j);
+    startx = width/3 - (12 * j);
+    endx = width - width/3 - (60 * j);
     prevx = startx;
     prevy = 0;
   
@@ -48,10 +48,10 @@ void draw() {
     vertex(startx, 0);
     int numPoints = 3;
     for (int i = 0; i < numPoints; i++) {
-      x = startx + (noise(t) * 90 * i);
+      x = startx + (noise(t) * 80 * i);
       y = height/(numPoints + 1) * (i+1);
   
-      if ( i % 2 == 0 ) {
+      if ( i % 4 == 0 ) {
         quadraticVertex(prevx + dist, prevy + dist, x, y);
       } else {
         quadraticVertex(prevx - (dist * 2), prevy + (dist * 2), x, y);
