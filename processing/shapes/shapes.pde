@@ -1,7 +1,8 @@
 float angle1;
 
 void setup() {
-  size(800, 800, P3D);  
+  fullScreen(OPENGL);
+  //size(800, 800, P3D);  
   smooth();
 }
  

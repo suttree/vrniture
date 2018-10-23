@@ -2,8 +2,8 @@ float angle1;
 float z = 0;
  
 void setup() {
-  //fullScreen(P3D);
-  size(800, 800, OPENGL);
+  fullScreen(P3D);
+  //size(800, 800, OPENGL);
   noCursor();
   smooth();
   lights();

@@ -12,6 +12,7 @@ boolean growing = false;
 void setup() {
   fullScreen();
   //size(640, 480);
+  noCursor();
   smooth();
   noStroke();
   background(15);
