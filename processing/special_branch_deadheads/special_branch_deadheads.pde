@@ -3,6 +3,7 @@ void setup() {
   size(800, 800);
   //fullScreen();
   noCursor();
+  frameRate(4);
 }
 
 void draw() {
@@ -37,7 +38,7 @@ void draw() {
       fill(0, 80);
     }
     
-    startx = width/3 - (12 * j);
+    startx = width/random(4) - (12 * j);
     endx = width - width/3 - (60 * j);
     prevx = startx;
     prevy = 0;
@@ -68,5 +69,8 @@ void draw() {
     endShape();
     t = t + 0.05;
     dist = dist + (8 * cos(dist));
+    
+    //delay(125);
+    //saveFrame("line-######.png");
   }
 }
