@@ -11,8 +11,8 @@ void draw() {
   noFill();
   lights();
   
-  //fill(255, 10);
-  fill( 0xee, 0xee, 0xff, 10);
+  fill(10, 5);
+  //fill( 0xee, 0xee, 0xff, 10);
   rect(0, 0, width, height);
   
   angle1+=.0001;
