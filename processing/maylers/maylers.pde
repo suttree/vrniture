@@ -3,7 +3,7 @@ void setup() {
   noCursor();
   fullScreen();
   smooth(8);
-  frameRate(random(3,4));
+  frameRate(2);
 }
 
 void draw() {
