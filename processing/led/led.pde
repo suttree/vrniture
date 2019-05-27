@@ -31,7 +31,7 @@ void setup() {
   //size(640, 480, P3D);
   fullScreen();
   smooth();
-  noCursos();
+  noCursor();
   
   //gifExport = new GifMaker(this, "export.gif", 100);
   //gifExport.setRepeat(0); // make it an "endless" animation
