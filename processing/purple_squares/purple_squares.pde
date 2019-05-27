@@ -52,8 +52,8 @@ void draw() {
   dist = noise(t) * 8;
   translate(width/2, height/2);
   for(int i = 0; i < 10; i++) {
-    fill(250, 240, dist, 90);
-    fill(0, 255, 0, 90);
+    //fill(250, 240, dist, 90);
+    //fill(0, 255, 0, 90);
     //fill(lerpColor(0, 255, t));
     fill(10 + dist, 100 - 15 * i);
     stroke(0);
