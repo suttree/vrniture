@@ -1,6 +1,7 @@
 void setup() {
-  //fullScreen();
-  size(640, 480, P3D);
+  //size(640, 480, P3D);
+  noCursor();
+  fullScreen();
   smooth(8);
   frameRate(random(3,4));
 }
