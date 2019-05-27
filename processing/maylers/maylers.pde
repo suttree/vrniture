@@ -1,13 +1,24 @@
+int[][] colours = {
+  {233, 178, 0},
+  {32, 178, 170},
+  {25, 237, 20},
+  {255, 140, 0},
+  {34, 139, 34, 20},
+  {25, 237, 20},
+  {76, 224, 230}
+};
+  
 void setup() {
   //size(640, 480, P3D);
-  noCursor();
   fullScreen();
+  
+  noCursor();
   smooth(8);
   frameRate(2);
 }
 
 void draw() {
-  background(250, 240, 231);
+  background(250, 240, random(84,231));
   stroke(34);
 
   float t = random(0,1);
@@ -15,16 +26,18 @@ void draw() {
   float startx, endx, x, y, prevx, prevy;
 
   for (int j = 0; j < 15; j++) {
-    // ROTATE THESE COLOURS
-    fill(233, 178, 0);
-    fill(32, 178, 170);
-    fill(25, 237, 20);
-    fill(255, 140, 0);
-    fill(34, 139, 34, 20);
     if (j == 0) {
-      fill(76, 224, 230);
+      int rand = (int) random(colours.length);
+      int[] c = colours[rand];
+      fill(c[0], c[1], c[2]);
     } else if (j == 1) {
-      fill(25, 237, 20);
+      int rand = (int) random(colours.length);
+      int[] c = colours[rand];
+      fill(c[0], c[1], c[2]);
+    } else if (j < 7) {
+      int rand = (int) random(colours.length);
+      int[] c = colours[rand];
+      fill(c[0], c[1], c[2]);
     } else {
       fill(24, 80);
     }
