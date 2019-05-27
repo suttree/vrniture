@@ -5,8 +5,9 @@ float dist = width/4;
 float t = 0.0;
 
 void setup() {
-  //fullScreen();
-  size(640, 480, P3D);
+  //size(640, 480, P3D);
+  fullScreen();
+  noCursor();
   smooth(8);
 }
 
