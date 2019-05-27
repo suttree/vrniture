@@ -28,9 +28,10 @@ float[][] boxColours2 = boxColours;
 // shift the array on each draw() so that leds lights travel along the wall
 
 void setup() {
-  size(640, 480, P3D);
-  //fullScreen();
+  //size(640, 480, P3D);
+  fullScreen();
   smooth();
+  noCursor();
   
   //gifExport = new GifMaker(this, "export.gif", 100);
   //gifExport.setRepeat(0); // make it an "endless" animation
