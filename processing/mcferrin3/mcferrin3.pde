@@ -1,8 +1,9 @@
 StarShape[] stars = new StarShape[8];
 
 void setup() {
-  //fullScreen();
-  size(640, 480, P3D);
+  //size(640, 480, P3D);
+  fullScreen();
+  noCursor();
   smooth(8);
   
   for (int i = 0; i < stars.length; i++) {
