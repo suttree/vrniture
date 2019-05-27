@@ -1,7 +1,7 @@
-import peasy.*;
-import gifAnimation.*;
+//import peasy.*;
+//import gifAnimation.*;
 
-PeasyCam cam;
+//PeasyCam cam;
 
 int columns, rows;
 int scl = 20;
@@ -12,7 +12,7 @@ float flying = 0;
 
 float[][] terrain;
 
-GifMaker gifExport;
+//GifMaker gifExport;
 int frames = 0;
 int totalFrames = 100;
 
@@ -24,10 +24,10 @@ void setup() {
   rows = h / scl;
   terrain = new float[columns][rows];
   
-  cam = new PeasyCam(this, 1000);
+  //cam = new PeasyCam(this, 1000);
 
-  gifExport = new GifMaker(this, "export.gif", 255, 255);
-  gifExport.setRepeat(0); // make it an "endless" animation
+  //gifExport = new GifMaker(this, "export.gif", 255, 255);
+  //gifExport.setRepeat(0); // make it an "endless" animation
 }
 
 void draw() {
@@ -71,11 +71,11 @@ void draw() {
 
 void export() {
   if(frames < totalFrames) {
-    gifExport.setDelay(30);
-    gifExport.addFrame();
+    //gifExport.setDelay(30);
+    //gifExport.addFrame();
     frames++;
   } else {
-    gifExport.finish();
+    //gifExport.finish();
     frames++;
     println("gif saved");
     exit();

@@ -118,6 +118,6 @@ class StarShape {
     //fill(76, 224, 230);
     fill(204, 102, 90);
     fill(200, 90);
-    rect(location.x, location.y, 1, 1);
+    rect(location.x, location.y, 5, 5);
   }
 }

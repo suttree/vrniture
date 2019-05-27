@@ -1,9 +1,9 @@
-import gifAnimation.*;
+//import gifAnimation.*;
 
 Cuboid[] cuboids = new Cuboid[30];
 Cuboid[] cuboids2 = new Cuboid[15];
 
-GifMaker gifExport;
+//GifMaker gifExport;
 int frames = 0;
 int totalFrames = 100;
 
@@ -11,8 +11,8 @@ void setup() {
   smooth();
   size(800, 800, P3D);
   
-  gifExport = new GifMaker(this, "export.gif", 255, 255);
-  gifExport.setRepeat(0); // make it an "endless" animation
+  //gifExport = new GifMaker(this, "export.gif", 255, 255);
+  //gifExport.setRepeat(0); // make it an "endless" animation
   
   stroke(0);
   
@@ -58,11 +58,11 @@ void draw() {
 
 void export() {
   if(frames < totalFrames) {
-    gifExport.setDelay(30);
-    gifExport.addFrame();
+    //gifExport.setDelay(30);
+    //gifExport.addFrame();
     frames++;
   } else {
-    gifExport.finish();
+    //gifExport.finish();
     frames++;
     println("gif saved");
     exit();
