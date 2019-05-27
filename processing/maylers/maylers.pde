@@ -14,7 +14,7 @@ void setup() {
   
   noCursor();
   smooth(8);
-  frameRate(2);
+  frameRate(1);
 }
 
 void draw() {
