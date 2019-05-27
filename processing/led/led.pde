@@ -1,13 +1,13 @@
-import gifAnimation.*;
+//import gifAnimation.*;
 
-GifMaker gifExport;
+//GifMaker gifExport;
 int frames = 0;
 int totalFrames = 120;
 
 float t = 0;
 float gap = 2;
-int offset = 4;
-int boxSize = 100;
+int offset = 6;
+int boxSize = 160;
 int boxLayers = 3;
 
 float[][] boxColours = {                                                                                                                                                   
@@ -32,15 +32,17 @@ void setup() {
   //fullScreen();
   smooth();
   
-  gifExport = new GifMaker(this, "export.gif", 100);
-  gifExport.setRepeat(0); // make it an "endless" animation
+  //gifExport = new GifMaker(this, "export.gif", 100);
+  //gifExport.setRepeat(0); // make it an "endless" animation
 }
 
 void draw() {
   background(49, 54, 57);
 
+  pushMatrix();
+  translate(0, height/2 - boxSize/2);
   // draw a line of rects
-  for(int h = 0; h < 5; h++) {
+  for(int h = 0; h < 1; h++) {
     for (int i = 0; i < (width/boxSize) + 2; i++ ) {
       float[] c = boxColours[i];
       stroke(34);
@@ -71,17 +73,20 @@ void draw() {
       boxColours = boxColours2;
     }
   }
+  
+  popMatrix();
+
   //t = t + 0.0002;
   //export();
 }
 
 void export() {
   if(frames < totalFrames) {
-    gifExport.setDelay(20);
-    gifExport.addFrame();
+//    gifExport.setDelay(20);
+//    gifExport.addFrame();
     frames++;
   } else {
-    gifExport.finish();
+    //gifExport.finish();
     frames++;
     println("gif saved");
     exit();
