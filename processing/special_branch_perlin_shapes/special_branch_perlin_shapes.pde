@@ -10,8 +10,8 @@ Layer[] layers = new Layer[4];
 
 void setup() {
   smooth();
-  size(800, 800, P3D);
-  //fullScreen(P3D);
+  //size(800, 800, P3D);
+  fullScreen(P3D);
   noCursor();
   
   float x = width/2;

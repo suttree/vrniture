@@ -1,5 +1,5 @@
-import processing.sound.*;
-SoundFile file;
+//import processing.sound.*;
+//SoundFile file;
 
 Wave[] waves = new Wave[6];
 
@@ -16,8 +16,8 @@ void setup() {
   
   frameRate(4);
 
-  file = new SoundFile(this, "waves.wav");
-  file.loop();
+  //file = new SoundFile(this, "waves.wav");
+  //file.loop();
 }
 
 void draw() {

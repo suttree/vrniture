@@ -1,7 +1,9 @@
 Cuboid c = new Cuboid(100, 100, 100);
 
 void setup() {
-  size(800, 800, P3D);
+  //size(800, 800, P3D);
+  fullScreen();
+  noCursor();
   smooth();
 }
 

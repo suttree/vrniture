@@ -1,10 +1,11 @@
-import gifAnimation.*;
+//import gifAnimation.*;
 
 float angle1;
  
 void setup() {
   //fullScreen(P3D);
-  size(800, 800, P3D);
+  //size(800, 800, P3D);
+  fullScreen();
   noCursor();
   smooth();
   frameRate(30);

@@ -2,7 +2,7 @@
 // NEXT: do this with a PShape and perlin edges
 //import gifAnimation.*;
 
-PFont font;
+//PFont font;
 Layer[] layers = new Layer[5];
 
 //GifMaker gifExport;
@@ -13,8 +13,10 @@ int gap = 100;
 
 void setup() {
   smooth();
-  size(800, 800, P3D);
-  font = createFont("Arial Bold", 36);
+  //size(800, 800, P3D);
+  fullScreen();
+  noCursor();
+  //font = createFont("Arial Bold", 36);
   
   //gifExport = new GifMaker(this, "export.gif", 255, 255);
   //gifExport.setRepeat(0);

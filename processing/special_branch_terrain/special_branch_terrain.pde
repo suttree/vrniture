@@ -6,7 +6,7 @@
 PFont font;  
 
 import processing.sound.*;
-SoundFile file;
+//SoundFile file;
 
 int cols, rows;
 int scl = 20;
@@ -25,7 +25,7 @@ void setup() {
   smooth();
   colorMode(HSB);
 
-  font = createFont("Arial Bold", 36);
+  //font = createFont("Arial Bold", 36);
   
   cols = w / scl;
   rows = h / scl;
@@ -42,8 +42,8 @@ void setup() {
   
   frameRate(4);
   
-  file = new SoundFile(this, "field.wav");
-  file.loop();
+  //file = new SoundFile(this, "field.wav");
+  //file.loop();
 }
 
 
@@ -59,7 +59,7 @@ void draw() {
   } else if (frameCount < 20) {
     sky = color(199, 57, 50); // sunrise
   } else if (frameCount < 30) {
-    file.loop();
+    //file.loop();
     sky = color(199, 57, 90); // daylight
   } else if (frameCount < 40) {
     sky = color(199, 57, 100); // noon
@@ -70,7 +70,7 @@ void draw() {
   } else if (frameCount < 70) {
     sky = color(199, 57, 58); // sunset
   } else if (frameCount < 80) {
-    file.stop();
+    //file.stop();
     sky = color(199, 57, 35); // moonlight again
   } else {
     counter = 0;
@@ -86,8 +86,8 @@ void draw() {
   background(sky);
   
   fill(255);
-  textFont(font, 36);
-  text(counter, 20, 40);
+  //textFont(font, 36);
+  //text(counter, 20, 40);
   
   // Add some stars (as the sky becomes brighter they'll fade from view...)
   fill(225);
