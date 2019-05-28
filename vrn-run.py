@@ -6,9 +6,12 @@ import random
 sketches = [ 
     'stare',
     'maylers',
-    'etc'
+    'purple_squares',
+    'led',
 ]
 
-sketch = '/usr/local/processing-java --sketch=/home/pi/src/vrnijure/{0} --run'.format(random.choice(sketches))
-#print(sketch)
-#os.system(sketch)    
+sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
+
+print(sketch)
+os.system('killall java')
+os.system(sketch)    
