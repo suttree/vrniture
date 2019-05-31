@@ -5,7 +5,7 @@
 // TODO: animate the sky colour and brightness to reflect a passing day
 PFont font;  
 
-import processing.sound.*;
+//import processing.sound.*;
 //SoundFile file;
 
 int cols, rows;

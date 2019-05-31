@@ -5,7 +5,7 @@ float angle1;
 void setup() {
   //fullScreen(P3D);
   //size(800, 800, P3D);
-  fullScreen();
+  fullScreen(P3D);
   noCursor();
   smooth();
   frameRate(30);
