@@ -18,7 +18,7 @@ sketches = [
     'circles',
     'shapes',
     'shapes2',
-    'special_branch_layared_squares',
+    'special_branch_layered_squares',
     'special_branch_layers',
     'special_branch_natural_squares',
     'special_branch_perlin_shapes',

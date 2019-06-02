@@ -14,7 +14,7 @@ int gap = 100;
 void setup() {
   noSmooth();
   //size(800, 800, P3D);
-  fullScreen();
+  fullScreen(P3D);
   noCursor();
   //font = createFont("Arial Bold", 36);
   
