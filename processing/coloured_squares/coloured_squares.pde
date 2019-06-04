@@ -1,3 +1,23 @@
+// Color Harmony library: https://github.com/cageehv/ColorHarmony/
+import com.cage.colorharmony.*;
+
+// Create a colorharmony instance
+ColorHarmony colorHarmony = new ColorHarmony(this);
+
+// The harmonized palette
+color[] colors = new color[8];
+
+// Fetch a monochromatic palette, based on a random base colour
+colors = colorHarmony.Monochromatic();
+
+// Fetch a random palette
+//colors = colorHarmony.GetRandomPalette();
+
+// println("Palette type: " + colorHarmony.GetCurrentTypeText() + ", base color: #" + colorHarmony.GetBaseColor());
+
+// Pick and use a random colour
+// color c = colors[(int)random(8)];
+
 float theta = 0.0;
 int points = 4;
 float dist = width/4;
@@ -12,14 +32,17 @@ void setup() {
 }
 
 void draw() {
-  background(250, 240, 231);
+  //background(250, 240, 231);
+  color c = colors[(int)random(8)];
+  background(c)
 
   //stroke(34);
   //strokeWeight(4);
 
   noFill();
   noStroke();
-  fill(255, 0, 255, 90);
+  //fill(255, 0, 255, 90);
+  fill(c, 90);
   rect(0, 0, width, height);
 
   int shapeWidth = 200;
@@ -35,7 +58,10 @@ void draw() {
     //fill(0, 255, 0, 90);
     //fill(lerpColor(0, 255, t));
 
-    fill(10 + dist, 100 - 15 * i);
+    //fill(10 + dist, 100 - 15 * i);
+
+    color c = colors[(int)random(8)];
+    fill(c, 100 - 15 * 1)
 
     //stroke(0);
 
