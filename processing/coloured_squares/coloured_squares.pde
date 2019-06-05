@@ -36,6 +36,13 @@ void setup() {
 }
 
 void draw() {
+  color c = colors[(int)random(8)];
+  
+  // Change the color infrequently
+  if (frameRate % 100 == 0) {
+    c = colors[(int)random(8)];
+  }
+  
   background(250, 240, 231);
 
   //stroke(34);
@@ -53,21 +60,15 @@ void draw() {
   int starty = 0;
   dist = noise(t) * 8;
   translate(width/2, height/2);
-
-  color c = colors[(int)random(8)];
+  
   for(int i = 0; i < 10; i++) {
     //fill(250, 240, dist, 90);
     //fill(0, 255, 0, 90);
     //fill(lerpColor(0, 255, t));
 
     //fill(10 + dist, 100 - 15 * i);
-
-    // Change the color infrequently
-    if (i % 10 == 0) {
-      c = colors[(int)random(8)];
-    }
     
-    fill(c, 100 - 15 * 1);
+    fill(c, 100 - 25 * 1);
 
     //stroke(0);
 

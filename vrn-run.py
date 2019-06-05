@@ -25,6 +25,7 @@ sketches = [
     'special_branch_shoreline',
     'special_branch_stage_lighting',
     'special_branch_terrain',
+    'coloured_squares',
 ]
 
 sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
