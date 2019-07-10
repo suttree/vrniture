@@ -3,6 +3,7 @@
 # TODO: run via cron every 5 minutes, and use random.choice() to either quit or run
 
 import sys
+from datetime import datetime
 
 def main():
     if shutdown_at_nighttime():
@@ -10,7 +11,6 @@ def main():
 
     import os
     import random
-    import datetime
 
     # TODO: select scripts based on this? or dim screen...
     day_part = get_part_of_day(datetime.now().hour)
@@ -59,7 +59,7 @@ def get_part_of_day(hour):
     )
 
 def shutdown_at_nighttime():
-    if get_part_of_day(datetime.now().hour) == 'night'
+    if get_part_of_day(datetime.now().hour) == 'night':
         if random.randint(0, 10) < 8:
             sys.exit()
 
