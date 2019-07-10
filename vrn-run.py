@@ -32,6 +32,7 @@ def main():
         'special_branch_stage_lighting',
         'special_branch_terrain',
         'coloured_squares',
+        'special_branch_spotlights',
     ]
 
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
