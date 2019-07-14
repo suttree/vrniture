@@ -4,19 +4,9 @@ import com.cage.colorharmony.*;
 // Create a colorharmony instance
 ColorHarmony colorHarmony = new ColorHarmony(this);
 
-// The harmonized palette
-//color[] colors = new color[8];
-
-// Fetch a monochromatic palette, based on a random base colour
-//color[] colors = colorHarmony.Monochromatic();
-
-// Fetch a random palette
+int numLayers = 8;
+int val = round(random(5));
 color[] colors = colorHarmony.GetRandomPalette();
-
-//println("Palette type: " + colorHarmony.GetCurrentTypeText() + ", base color: #" + colorHarmony.GetBaseColor());
-
-// Pick and use a random colour
-// color c = colors[(int)random(8)];
 
 float theta = 0.0;
 int points = 4;
@@ -24,55 +14,39 @@ float dist = width/4;
 
 float t = random(0.0, 1.0);
 
-
 void setup() {
-  fullScreen(P3D);
+  fullScreen();
   //size(640, 480, P3D);
   
   noCursor();
-  smooth(8);
-  
-  frameRate(3);
+  frameRate(20);
 }
 
 void draw() {
-  color c = colors[(int)random(8)];
+  color c = colors[(int)random(numLayers)];
   
-  // Change the color infrequently
-  if (frameRate % 100 == 0) {
-    c = colors[(int)random(8)];
-  }
-  
-  background(250, 240, 231);
-
-  //stroke(34);
-  //strokeWeight(4);
-
-  noFill();
+  background(0);
   noStroke();
-  fill(255, 0, 255, 90);
+  fill(20, 20, 20, 90);
   rect(0, 0, width, height);
 
   int shapeWidth = 200;
   int shapeHeight = 200;
-
   int startx = 0;
   int starty = 0;
-  dist = noise(t) * 8;
+  dist = noise(t) * 6;
   translate(width/2, height/2);
+  rotate(75);
   
-  for(int i = 0; i < 10; i++) {
-    //fill(250, 240, dist, 90);
-    //fill(0, 255, 0, 90);
-    //fill(lerpColor(0, 255, t));
-
-    //fill(10 + dist, 100 - 15 * i);
-    
+  for(int i = 0; i < numLayers; i++) {
+    c = colors[i];
     fill(c, 100 - 25 * 1);
-
-    //stroke(0);
-
-    noStroke();
+    
+    if(i % 2 == 0) {
+      stroke(colors[0], 95);
+    } else {
+      noStroke();
+    }
 
     // Draw the square
     beginShape();
@@ -104,6 +78,19 @@ void draw() {
   // Change the palette infrequently
   if ( frameCount % 250 == 0 ) {
     println("change");
-    color[] colors = colorHarmony.GetRandomPalette();
+
+    int val = round(random(4));
+    println(val);
+    if(val == 0) {
+      colors = colorHarmony.Monochromatic();
+    } else if (val == 1) {
+      colors = colorHarmony.Analogous();
+    } else if (val == 2) {
+      colors = colorHarmony.Complementary();
+    } else if (val == 3) {
+      colors = colorHarmony.Triads();
+    } else {
+      // stay the same colour for a while longer...
+    }
   }
 }
