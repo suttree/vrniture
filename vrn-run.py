@@ -35,6 +35,7 @@ def main():
         'special_branch_spotlights',
         'plain_square',
         'plain_waves',
+        'triad_lines',
     ]
 
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
