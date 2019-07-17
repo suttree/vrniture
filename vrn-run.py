@@ -23,7 +23,6 @@ def main():
         'maylers',
         'purple_squares',
         'led',
-        'back2',
         'circles',
         'shapes',
         'shapes2',
