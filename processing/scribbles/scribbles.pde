@@ -9,14 +9,13 @@ Layer[] layers = new Layer[(int)random(3,8)];
 int frames = 0;
 int totalFrames = 440;
 
-int gap = 101;
+int gap = width/layers.length;
 
 void setup() {
   smooth();
   //size(800, 800, P3D);
   fullScreen();
   noCursor();
-
   //font = createFont("Arial Bold", 36);
   
   //gifExport = new GifMaker(this, "export.gif", 255, 255);
@@ -93,21 +92,12 @@ class Layer {
     y = y + accel;
     w = w - (accel * 2);
     h = h - (accel * 2);
-
+    println(h);
     if (w <= 0 || h <=0) {
       status = "repeating";
       //accel = 0 - accel;
-      if (frameCount % 2 == 0) {
-        x = 0 - gap - xoff;
-        y = 0 - gap + xoff;
-        w = width + gap - xoff;
-        h = height + gap + xoff + random(0, 3);
-      } else {
-      x = 0 - gap + xoff;
-      y = 0 - gap - xoff;
-      w = width + gap + xoff + random(1,4);
-      h = height + gap - xoff;
-      }
+      x = 0;// - gap + xoff;
+      y = 0;// - gap + xoff;
     } else if (w > width && status == "repeating") {
       accel = 0.78;
       c = color(90 + random(175), random(255), 160 + xoff);
@@ -125,13 +115,13 @@ class Layer {
     vertex(x, y);
     
     curveVertex(x, y);
-    curveVertex(x + random(10,13) + xoff, y - random(10,17) - xoff);
+    curveVertex(x + random(10,width/2) + xoff, y - random(10,20) - xoff);
     curveVertex((x + w) / 2, y);
     curveVertex(x + w, y);
     
     vertex(x + w, y);
     
-    vertex(x + w - random(5,7) + xoff, y + h + random(4,8) + xoff/2);
+    vertex(x + w, y + h);
     vertex(x, y + h);
     endShape(CLOSE);
 
@@ -139,6 +129,6 @@ class Layer {
     //quadraticVertex(x, y, x + w/4, y + h/8);
     //quadraticVertex(x + w/4, y + h/8, x + w/2, y);
 
-    xoff = xoff + 0.0274;
+    xoff = xoff + .0274;
   }
 }
