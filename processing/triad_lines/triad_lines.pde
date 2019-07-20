@@ -50,6 +50,7 @@ void draw() {
   }
 
   stroke(c);
+  strokeWeight(7);
   line(x, x2, x, y + dist);
     
   // Increment vars
