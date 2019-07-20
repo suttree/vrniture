@@ -26,7 +26,6 @@ def main():
         'purple_squares',
         'led',
         'shapes',
-        'shapes2',
         'special_branch_layered_squares',
         'special_branch_layers',
         'special_branch_shoreline',
