@@ -10,7 +10,7 @@ def main():
     import random
 
     # We run via cron every 5 minutes, so this means we only change infrequently
-    if random.randint(0,9) > 7:
+    if random.randint(0,19) > 16:
         print("No change")
         sys.exit()
 
@@ -25,7 +25,6 @@ def main():
         'maylers',
         'purple_squares',
         'led',
-        'circles',
         'shapes',
         'shapes2',
         'special_branch_layered_squares',
