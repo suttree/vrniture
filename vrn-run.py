@@ -1,7 +1,5 @@
 #! /usr/bin/env python
 
-# TODO: run via cron every 5 minutes, and use random.choice() to either quit or run
-
 import sys
 from datetime import datetime
 
@@ -9,25 +7,30 @@ def main():
     if shutdown_at_nighttime():
         sys.exit()
 
-    import os
     import random
+
+    # We run via cron every 5 minutes, so this means we only change infrequently
+    if random.randint(0,9) > 7:
+        print("No change")
+        sys.exit()
+
+    import os
 
     # TODO: select scripts based on this? or dim screen...
     day_part = get_part_of_day(datetime.now().hour)
 
     sketches = [ 
+        'special_branch_perlin_shapes',
         'stare',
         'maylers',
         'purple_squares',
         'led',
-        'back2',
         'circles',
         'shapes',
         'shapes2',
         'special_branch_layered_squares',
         'special_branch_layers',
         'special_branch_natural_squares',
-        'special_branch_perlin_shapes',
         'special_branch_shoreline',
         'special_branch_stage_lighting',
         'special_branch_terrain',
