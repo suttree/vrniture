@@ -46,11 +46,8 @@ def main():
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
 
     print(sketch)
-    os.system(sketch)    
-
-def cleanup():
-    # TODO: find a cleaner way to do this
     os.system('killall java')
+    os.system(sketch)    
 
 def brightness():
     return True
