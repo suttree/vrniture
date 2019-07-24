@@ -48,17 +48,22 @@ void draw() {
 class Circle {
   float x;
   float y;
+  float easing = 0.05;
+
+  int gap;
   int size;
   int sizeCounter;
+  int maxSize;
+
   color colour;
     
   Circle(int width, int height, int sizeCounter) {
-    x = random(0, 25);
-    y = random(0, 25);
+    x = width/2 - random(0, 25);
+    y = height/3 + random(0, 25);
     
     size = (width > height) ? (int)random(10, width/2 - 500/sizeCounter) : (int)random(10, height/2 - 200/sizeCounter);
-    x = width/2 - x;
-    y = height/3 + y;
+    maxSize = size + (int)random(size/4, size/3);
+
     colour = colors[(int)random(8)];
   }
   
@@ -69,6 +74,12 @@ class Circle {
     // modify size to emulate breathing
     // use easing functions from here: http://processingjs.org/learning/basic/easing/
     // inhale/exhale for the count of three
+    gap = maxSize - size;
+    if (size > maxSize || size > 0) {
+      size -= gap * easing;
+    } else {
+      size += gap * easing;
+    }
 
     ellipse(x, y, size, size);
   }
