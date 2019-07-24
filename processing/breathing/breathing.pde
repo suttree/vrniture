@@ -3,9 +3,9 @@ import com.cage.colorharmony.*;
 
 // Create a colorharmony instance
 ColorHarmony colorHarmony = new ColorHarmony(this);
-color[] colors = colorHarmony.GetRandomPalette();
+color[] colors = colorHarmony.Triads();
 
-int numCircles = 4;
+int numCircles = 5;
 Circle[] circles = new Circle[numCircles];
 
 void setup() {
@@ -48,39 +48,26 @@ void draw() {
 class Circle {
   float x;
   float y;
-  float easing = 0.05;
+  float v; // sin value
 
   int gap;
-  int size;
   int sizeCounter;
-  int maxSize;
 
   color colour;
     
   Circle(int width, int height, int sizeCounter) {
     x = width/2 - random(0, 25);
     y = height/3 + random(0, 25);
-    
-    size = (width > height) ? (int)random(10, width/2 - 500/sizeCounter) : (int)random(10, height/2 - 200/sizeCounter);
-    maxSize = size + (int)random(size/4, size/3);
-
     colour = colors[(int)random(8)];
   }
   
   void render() {
     fill(colour, 5);
 
-    // TODO
-    // modify size to emulate breathing
-    // use easing functions from here: http://processingjs.org/learning/basic/easing/
-    // inhale/exhale for the count of three
-    gap = maxSize - size;
-    if (size > maxSize || size > 0) {
-      size -= gap * easing;
-    } else {
-      size += gap * easing;
-    }
-
+    // From https://www.openprocessing.org/sketch/108563/
+    float size = 193 + 220 * sin(v) + 70;
     ellipse(x, y, size, size);
+    
+    v += 0.1;
   }
 }
