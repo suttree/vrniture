@@ -40,6 +40,7 @@ def main():
         'colour_wipes',
         'special_branch_coloured_spotlights',
         'mcferrin_circles',
+        'breathing',
     ]
 
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
