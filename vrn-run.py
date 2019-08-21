@@ -30,7 +30,6 @@ def main():
         'special_branch_layers',
         'special_branch_shoreline',
         'special_branch_stage_lighting',
-        'special_branch_terrain',
         'coloured_squares',
         'special_branch_spotlights',
         'plain_square',
