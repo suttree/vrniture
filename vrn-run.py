@@ -21,25 +21,24 @@ def main():
 
     sketches = [ 
         'special_branch_perlin_shapes',
-        'stare',
         'maylers',
         'purple_squares',
-        'led',
-        'shapes',
-        'special_branch_layered_squares',
-        'special_branch_layers',
-        'special_branch_shoreline',
         'special_branch_stage_lighting',
+        'led',
+        'special_branch_layered_squares',
+        'shapes',
+        'special_branch_layers',
+        'plain_waves',
+        'special_branch_shoreline',
         'coloured_squares',
         'special_branch_spotlights',
         'plain_square',
-        'plain_waves',
         'special_branch_natural_squares',
         'triad_lines',
         'colour_wipes',
-        'special_branch_coloured_spotlights',
         'mcferrin_circles',
         'breathing',
+        'special_branch_coloured_spotlights',
     ]
 
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
