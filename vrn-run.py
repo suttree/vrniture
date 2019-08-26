@@ -21,7 +21,6 @@ def main():
 
     sketches = [ 
         'special_branch_perlin_shapes',
-        'maylers',
         'floyd',
         'purple_squares',
         'special_branch_stage_lighting',
