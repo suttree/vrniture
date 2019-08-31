@@ -38,6 +38,7 @@ def main():
         'colour_wipes',
         'mcferrin_circles',
         'breathing',
+        'floyd_big',
     ]
 
     sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
