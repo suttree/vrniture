@@ -81,11 +81,11 @@ class Triangle {
   
   void render() {
     noFill();
-    stroke(colour, 5);
-    strokeWeight(2 + sin(v));
+    stroke(colour, 15);
+    strokeWeight(3.0 + sin(v));
 
     triangle(x1, y1, x2, y2, x3, y3);
     
-    v += 0.1;
+    v += 0.314159;
   }
 }
