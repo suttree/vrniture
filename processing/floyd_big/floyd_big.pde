@@ -39,12 +39,6 @@ void setup() {
   triangles[0] = new Triangle(x1, y1, x2, y2, x3, y3);
   triangles[1] = new Triangle(x1 + 20, y1 - 10, x2, y2 + 20, x3 - 20, y3 - 10);
   triangles[2] = new Triangle(x1 + 40, y1 - 20, x2, y2 + 40, x3 - 40, y3 - 20);
-
-  /*
-  for(int i = 0; i < numTriangles; i++) {
-    triangles[i] = new Triangle(x1, y1, x2, y2, x3, y3);
-  }
-  */
 }
 
 void draw() {
@@ -57,23 +51,37 @@ void draw() {
   }
 
   // Reset colours
-  if ( frameCount % 540 == 0 ) {
+  if ( frameCount % 280 == 0 ) {
     colors = colorHarmony.GetRandomPalette();
   }
  
-  if ( frameCount % 200 == 0 ) {
-    if ( cos(frameCount) % 2 > 0 ) {
+  if ( frameCount % 100 == 0 ) {
+    int val = round(random(4));                                                                      
+    if(val == 0) {
+      colors2 = colorHarmony.Monochromatic();
+    } else if (val == 1) {
+      colors2 = colorHarmony.Analogous();
+    } else if (val == 2) {
+      colors2 = colorHarmony.Complementary();
+    } else if (val == 3) {
       colors2 = colorHarmony.Triads();
-    } else {
+    } else if (val == 4) {
       colors2 = colorHarmony.GetRandomPalette();
+    } else {
+      // stay the same colour for a while longer...
     }
   }
   
-  if ( frameCount % 160 == 0 ) {
-    for(int i = 0; i < triangles.length; i++) {
-      delay(2);
-      triangles[i].changeColour();
-    }
+  if ( frameCount % 320 == 0 ) {
+    triangles[0].changeColour();
+  }
+  
+  if ( frameCount % 240 == 0 ) {
+    triangles[1].changeColour();
+  }
+  
+  if ( frameCount % 180 == 0 ) {
+    triangles[2].changeColour();
   }
 }
 
@@ -100,13 +108,12 @@ class Triangle {
   }
   
   void changeColour() {
-    colour = colors2[(int)random(8)];
+    colour = colors2[(int)random(colors2.length)];
   }
   
   void render() {
-    //noFill();
-    fill(colour, 7);
-    stroke(colour, 6);
+    fill(colour, 5);
+    stroke(colour, 50);
     strokeWeight(1.5 + sin(v));
 
     rotate( rotation );
