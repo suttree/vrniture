@@ -77,10 +77,7 @@ void draw() {
   
   // Change the palette infrequently
   if ( frameCount % 250 == 0 ) {
-    println("change");
-
     int val = round(random(4));
-    println(val);
     if(val == 0) {
       colors = colorHarmony.Monochromatic();
     } else if (val == 1) {
