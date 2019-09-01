@@ -42,7 +42,7 @@ void draw() {
     colors = colorHarmony.GetRandomPalette();
   }
   
-  delay(125);
+  delay(25);
 }
 
 class Circle {
@@ -57,7 +57,7 @@ class Circle {
     
   Circle(int width, int height, int sizeCounter) {
     x = width/2 - random(0, 25);
-    y = height/3 + random(0, 25);
+    y = height/3 + random(0, 50);
     colour = colors[(int)random(8)];
   }
   
@@ -68,6 +68,6 @@ class Circle {
     float size = 193 + 220 * sin(v) + 70;
     ellipse(x, y, size, size);
     
-    v += 0.1;
+    v += 0.125;
   }
 }
