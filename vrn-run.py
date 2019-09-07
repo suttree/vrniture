@@ -34,6 +34,7 @@ def main():
         'special_branch_spotlights',
         'plain_square',
         'special_branch_natural_squares',
+        'pyramid',
         'triad_lines',
         'colour_wipes',
         'mcferrin_circles',
