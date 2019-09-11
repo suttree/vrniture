@@ -42,10 +42,10 @@ void setup() {
 }
 
 void draw() {
+  blendMode(BLEND);
   noStroke();
   fill(colors[0], 15);
   rect(0, 0, width, height);
-
   blendMode(ADD);
 
   for(int i = 0; i < triangles.length; i++) {
