@@ -25,6 +25,8 @@ void draw() {
   fill(7, 75);
   rect(0, 0, width, height);
 
+  blendMode(ADD);
+
   //stroke(27);
   fill(255);
   
