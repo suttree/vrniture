@@ -50,7 +50,7 @@ void draw() {
 class Brush {
   boolean left_to_right, top_to_bottom;
   int strands, lifetime, points, iterations;
-  float v, x, y, dx, dy, prevx, prevy, targetx, targety;
+  float v, x, y, prevx, prevy, targetx, targety;
   
   Brush(int _strands) {
     strands = _strands;
@@ -95,23 +95,23 @@ class Brush {
     if (left_to_right) {
       //x = x + 5;
       //x = x + 2 * sin(v) * noise(xoff);
-      dx = targetx - x;
-      x += dx * easing;
+      float dx = targetx - x;
+       x += dx * easing;
     } else {
       //x = x - 5;
-      dx = targetx - x;
-      x += dx * easing;
+      float dx = targetx - x;
+       x += dx * easing;
     }
     
     if (top_to_bottom) {
       //y = y + 2 * cos(v) * noise(xoff);
       //y = y + 5;
-      dy = targety - y;
-      y -= dy * easing;
+      float dy = targety - y;
+      y += dy * easing;
     } else {
       //y = y - 5;
-      dy = targety - y;
-      y += dy * easing;
+      float dy = targety - y;
+      y -= dy * easing;
     }
 
     println(left_to_right, top_to_bottom);
@@ -126,7 +126,6 @@ class Brush {
       lifetime = (int) random(30);
       x = random(50, width);
       y = random(50, height);
-      reset();
       v = random(-1, 1);
       prevx = x;
       prevy = y;
@@ -141,7 +140,7 @@ class Brush {
   void render() {
     pg.beginDraw();
     
-    if (random(100) > 99) {
+    if (random(3) == 3) {
       pg.fill(colors[1]);
     } else {
       pg.noFill();
@@ -149,8 +148,7 @@ class Brush {
     pg.stroke(colors[1]);
 
     // thinner/fatter brushes
-    float weight = (int) random(5);
-    weight = 3;
+    float weight = (int) random(4);
     pg.strokeWeight(weight);
 
 /*
@@ -184,22 +182,11 @@ class Brush {
 //quadraticVertex(80, 20, 50, 50);
     pg.beginShape();
     pg.vertex(prevx, prevy);
-
-    /*
-    //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
-    pg.quadraticVertex(prevx, prevy, dx, dy);
-    
-    if (random(0) > 1) {
-      pg.quadraticVertex(targetx, targety, targetx * cos(v), targety * sin(v));
-      if (random(2) > 1) {
-        pg.quadraticVertex(targetx, targety, targetx - noise(xoff), targety - noise(xoff));
-      }
-    }
-    */
-    
-    pg.vertex(x, y);
-    
+    pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
+    pg.quadraticVertex(targetx, targety, targetx * cos(v), targety * sin(v));
+    //pg.quadraticVertex(targetx, targety, targetx - noise(xoff), targety - noise(xoff));
     pg.endShape();
+
     pg.endDraw();
 
     image(pg, 0, 0);
@@ -207,6 +194,6 @@ class Brush {
     //noStroke();
     //rect(x, y, 2, 2);
     
-    delay(1000);
+    delay(500);
   }
 }
