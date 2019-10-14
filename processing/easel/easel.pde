@@ -100,7 +100,7 @@ class Brush {
     } else {
       //x = x - 5;
       dx = targetx - x;
-      x += dx * easing;
+      x -= dx * easing;
     }
     
     if (top_to_bottom) {
