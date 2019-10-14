@@ -99,7 +99,7 @@ class Brush {
       x += dx * easing;
     } else {
       //x = x - 5;
-      dx = targetx - x;
+      dx = x - targetx;
       x -= dx * easing;
     }
     
