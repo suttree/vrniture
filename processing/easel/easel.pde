@@ -10,6 +10,19 @@ then make it random
 */
 
 // TODO: https://bjango.com/articles/processingperfectloops/
+/*
+float timeLoop(float totalframes, float offset) {
+  return (frameCount + offset) % totalframes / totalframes;
+}
+
+float tri(float t) {
+  return t < 0.5 ? t * 2 : 2 - (t * 2);
+}
+
+float inOutSin(float t) {
+  return 0.5 - cos(PI * t) / 2;
+}
+*/
 
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
