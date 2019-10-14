@@ -107,11 +107,11 @@ class Brush {
       //y = y + 2 * cos(v) * noise(xoff);
       //y = y + 5;
       dy = targety - y;
-      y -= dy * easing;
+      y += dy * easing;
     } else {
       //y = y - 5;
-      dy = targety - y;
-      y += dy * easing;
+      dy = y - targety;
+      y -= dy * easing;
     }
 
     println(left_to_right, top_to_bottom);
