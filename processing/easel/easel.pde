@@ -9,6 +9,8 @@ then make it random
 - number of strands
 */
 
+// TODO: https://bjango.com/articles/processingperfectloops/
+
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
 
