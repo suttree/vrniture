@@ -34,14 +34,14 @@ color[] colors = colorHarmony.Analogous();
 // PG code from the Processing tutorials
 PGraphics pg;
 
-float easing = 0.005;
+float easing = 0.25;
 float xoff = random(3.75);
 
 Brush[] brushes = new Brush[1];
 
 void setup() {
-  fullScreen();
-  //size(640, 480);
+  //fullScreen();
+  size(640, 480);
   noCursor();
   smooth();
 
@@ -64,8 +64,8 @@ void draw() {
 
 class Brush {
   boolean left_to_right, top_to_bottom;
-  int strands, lifetime, points, iterations;
-  float v, x, y, dx, dy, prevx, prevy, targetx, targety;
+  int strands, lifetime, points, iterations, x, y, targetx, targety;
+  float v, dx, dy, prevx, prevy;
   
   Brush(int _strands) {
     strands = _strands;
@@ -74,14 +74,14 @@ class Brush {
 
   void init() {
     v = random(-1, 1);
-    x = random(50, width);
-    y = random(50, height);
+    x = (int) random(50, width - 50);
+    y = (int) random(50, height - 50);
     
     prevx = x;
     prevy = y;
 
     points = 5;
-    iterations = 1;
+    iterations = 0;
     lifetime = (int) random(30);
 
     delay(500);
@@ -116,6 +116,7 @@ class Brush {
     if (left_to_right) {
       //x = x + 2 * sin(v) * noise(xoff);
       dx = targetx - x;
+      println(x, dx);
       x += dx * easing;
     } else {
       dx = x - targetx;
@@ -131,8 +132,10 @@ class Brush {
       y -= dy * easing;
     }
 
+    rect(x, y, 5, 5);
+
     //println(left_to_right, top_to_bottom);
-    //println(x, y, lifetime);
+    println(x, y, dx, dy, lifetime);
 
     lifetime--;
     if (lifetime == 0) {
@@ -141,7 +144,7 @@ class Brush {
 
     iterations++;
     if (iterations % 3 == 0) {
-      delay(5000);
+      //delay(5000);
     }
 
     v += v;
@@ -149,7 +152,12 @@ class Brush {
   
   void render() {
     pg.beginDraw();
-    
+
+    fill(0);
+    rect(x, y, 15, 15);
+    fill(255);
+    rect(targetx, targety, 15, 15);
+
     if (random(100) > 99) {
       pg.fill(colors[1]);
     } else {
@@ -162,11 +170,14 @@ class Brush {
     //weight = 3;
     pg.strokeWeight(weight);
 
-println(prevx, prevy, x, y);
-println("---");
+    //println(prevx, prevy, x, y);
+    //println("---");
 
+    // TODO: Review https://processing.org/reference/beginShape_.html for different styles
     pg.beginShape();
-    pg.vertex(prevx, prevy);
+    pg.curveVertex(prevx, prevy);
+    pg.curveVertex(prevx, prevy);
+    //rect(prevx, prevy, 2, 2);
 
     //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
     //pg.quadraticVertex(prevx, prevy, dx, dy);
@@ -179,13 +190,37 @@ println("---");
       }
     }
     */
-    pg.quadraticVertex(x, y, x * cos(v), y * sin(v));
-    pg.quadraticVertex(targetx/2, targety/2, x, y);
-    pg.vertex(x/2, y/2);
+    //pg.quadraticVertex(x, y, x * cos(v), y * sin(v));
+    //rect(x * cos(v), y * sin(v), 2, 2);
     
-    pg.vertex(x, y);
+    //pg.quadraticVertex(targetx/2, targety/2, x, y);
+    //rect(targetx/2, targety/2, 2, 2);
     
-    pg.endShape();
+    //pg.vertex(x/2, y/2);
+    //rect(x/2, y/2, 2, 2);
+    
+    // TODO: add a curve to the single line
+    
+    //pg.curveVertex(x+20, y+20);
+    //pg.curveVertex(x-20, y-20);
+    //rect(x-20, y-20, 4, 4);
+    
+    //pg.curveVertex(x-5, y);
+    
+    if (random(2) > 1) {
+      pg.curveVertex(x - sin(v) * 10, y + cos(v));
+    } else {
+      pg.curveVertex(x + cos(v) * 10, y - sin(v));
+    }
+    
+    // TODO make the strands, vary the x&y a little, and the hsl
+    // Use fill for main strand and noFill() for strands
+    
+    pg.curveVertex(x, y);
+    pg.curveVertex(x, y);
+    rect(x, y, 2, 2);
+    
+    pg.endShape(CLOSE);
     pg.endDraw();
 
     image(pg, 0, 0);
