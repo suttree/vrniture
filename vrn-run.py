@@ -20,11 +20,16 @@ def main():
     day_part = get_part_of_day(datetime.now().hour)
 
     sketches = [ 
+        'brush',
+        'easel',
+        'easel_lines',
+        'spots',
         'special_branch_perlin_shapes',
         'floyd',
         'purple_squares',
         'special_branch_stage_lighting',
         'led',
+        'floyd_bigger',
         'special_branch_layered_squares',
         'shapes',
         'special_branch_layers',

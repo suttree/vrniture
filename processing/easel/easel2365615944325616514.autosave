@@ -9,21 +9,6 @@ then make it random
 - number of strands
 */
 
-// TODO: https://bjango.com/articles/processingperfectloops/
-/*
-float timeLoop(float totalframes, float offset) {
-  return (frameCount + offset) % totalframes / totalframes;
-}
-
-float tri(float t) {
-  return t < 0.5 ? t * 2 : 2 - (t * 2);
-}
-
-float inOutSin(float t) {
-  return 0.5 - cos(PI * t) / 2;
-}
-*/
-
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
 
@@ -34,7 +19,7 @@ color[] colors = colorHarmony.Analogous();
 // PG code from the Processing tutorials
 PGraphics pg;
 
-float easing = 0.005;
+float easing = 0.05;
 float xoff = random(3.75);
 
 Brush[] brushes = new Brush[1];
@@ -69,25 +54,24 @@ class Brush {
   
   Brush(int _strands) {
     strands = _strands;
-    init();
-  }
 
-  void init() {
     v = random(-1, 1);
+
     x = random(50, width);
     y = random(50, height);
-    
-    prevx = x;
-    prevy = y;
 
+    reset();
+    
     points = 5;
     iterations = 1;
     lifetime = (int) random(30);
+    
+    println("start");
+    println(x, y, targetx, targety);
+  }
 
-    delay(500);
-    colors = colorHarmony.GetRandomPalette();
- 
-    // Pick a target, course, and stay with it
+  void reset() {
+    println("reset");
     if (x < width/2) {
       left_to_right = true;
       targetx = x + 200;
@@ -103,48 +87,56 @@ class Brush {
       top_to_bottom = false;
       targety = y - 200;
     }
-
-    println("start");
-    println(x, y, targetx, targety);
-  }
+   }
    
   void update() {
     prevx = x;
     prevy = y;
     
-    // Find our way to the target
     if (left_to_right) {
+      //x = x + 5;
       //x = x + 2 * sin(v) * noise(xoff);
       dx = targetx - x;
       x += dx * easing;
     } else {
-      dx = x - targetx;
-      x -= dx * easing;
+      //x = x - 5;
+      dx = targetx - x;
+      x += dx * easing;
     }
     
     if (top_to_bottom) {
       //y = y + 2 * cos(v) * noise(xoff);
+      //y = y + 5;
       dy = targety - y;
       y += dy * easing;
     } else {
-      dy = y - targety;
-      y -= dy * easing;
+      //y = y - 5;
+      dy = targety - y;
+      y += dy * easing;
     }
 
-    //println(left_to_right, top_to_bottom);
-    //println(x, y, lifetime);
-
+    println(left_to_right, top_to_bottom);
+    println(x, y, lifetime);
+    
+    v += v;
+    
     lifetime--;
     if (lifetime == 0) {
-      init();
+      delay(500);
+      colors = colorHarmony.GetRandomPalette();
+      lifetime = (int) random(30);
+      x = random(50, width);
+      y = random(50, height);
+      reset();
+      v = random(-1, 1);
+      prevx = x;
+      prevy = y;
+      iterations++;
+      
+      if (iterations % 3 == 0) {
+        delay(5000);
+      }
     }
-
-    iterations++;
-    if (iterations % 3 == 0) {
-      delay(5000);
-    }
-
-    v += v;
   }
   
   void render() {
@@ -158,20 +150,46 @@ class Brush {
     pg.stroke(colors[1]);
 
     // thinner/fatter brushes
-    float weight = (int) random(6);
-    //weight = 3;
+    float weight = (int) random(5);
+    weight = 3;
     pg.strokeWeight(weight);
 
-println(prevx, prevy, x, y);
-println("---");
+/*
+    pg.beginShape();
+    pg.curveVertex(prevx, prevy);
+*/
+/*
+    for(int i = 0; i < strands; i++) {
+      // shift the x and y
+      //float _x = x + (i * sin(v));
+      //float _y = y - (i * cos(v));
+      float _x = x + i * 2 * cos(v);
+      float _y = y - i * 2 * sin(v);
+      
+      pg.stroke(colors[3], 10 * i);
+      pg.curveVertex(_x, _y);
+      //println(_x, _y);
+    }
+*/
+/*
+    pg.stroke(colors[1]);
+    //pg.curveVertex(x + (x * easing)/2, y + (y * easing)/2);
+    pg.curveVertex(x, y);
 
+    //pg.line(prevx, prevy, x, y);
+    pg.endShape();
+*/
+
+// set a target x y and use easing to get there with curve points?
+//vertex(20, 20);
+//quadraticVertex(80, 20, 50, 50);
     pg.beginShape();
     pg.vertex(prevx, prevy);
 
-    //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
-    //pg.quadraticVertex(prevx, prevy, dx, dy);
-
     /*
+    //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
+    pg.quadraticVertex(prevx, prevy, dx, dy);
+    
     if (random(0) > 1) {
       pg.quadraticVertex(targetx, targety, targetx * cos(v), targety * sin(v));
       if (random(2) > 1) {
@@ -179,9 +197,6 @@ println("---");
       }
     }
     */
-    pg.quadraticVertex(x, y, x * cos(v), y * sin(v));
-    pg.quadraticVertex(targetx/2, targety/2, x, y);
-    pg.vertex(x/2, y/2);
     
     pg.vertex(x, y);
     
