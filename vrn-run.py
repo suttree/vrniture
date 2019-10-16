@@ -23,6 +23,7 @@ def main():
         'brush',
         'easel',
         'easel_lines',
+        'easel_strokes',
         'spots',
         'special_branch_perlin_shapes',
         'floyd',
