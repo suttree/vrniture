@@ -92,18 +92,18 @@ class Brush {
     // Pick a target, course, and stay with it
     if (x < width/2) {
       left_to_right = true;
-      targetx = x + 200;
+      targetx = x + (int) random(100,300);
     } else {
       left_to_right = false;
-      targetx = x - 200;
+      targetx = x - (int) random(100,300);
     }
     
     if (y < height/2) {
       top_to_bottom = true;
-      targety = y + 200;
+      targety = y + (int) random(100,300);
     } else {
       top_to_bottom = false;
-      targety = y - 200;
+      targety = y - (int) random(100,300);
     }
 
     println("start");
@@ -178,6 +178,11 @@ class Brush {
 
     //println(prevx, prevy, x, y);
     //println("---");
+
+
+    // REFACTOR
+    // THIS IS THE CODE FOR BRUSH LINES
+    // NOW WRITE THE CODE FOR BRUSH CURVES
 
     // TODO: Review https://processing.org/reference/beginShape_.html for different styles
     pg.beginShape();
