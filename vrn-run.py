@@ -24,6 +24,7 @@ def main():
         'easel',
         'easel_lines',
         'easel_strokes',
+        'easel_strokes_2',
         'spots',
         'special_branch_perlin_shapes',
         'floyd',
