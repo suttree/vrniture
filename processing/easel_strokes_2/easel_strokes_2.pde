@@ -42,8 +42,8 @@ float xoff = random(3.75);
 Brush[] brushes = new Brush[1];
 
 void setup() {
-  //fullScreen();
-  size(640, 480);
+  fullScreen();
+  //size(640, 480);
   noCursor();
   smooth();
 
@@ -54,7 +54,7 @@ void setup() {
   }
   
   background(colors[0]);
-  frameRate(25);
+  //frameRate(25);
 }
 
 void draw() {
@@ -92,18 +92,18 @@ class Brush {
     // Pick a target, course, and stay with it
     if (x < width/2) {
       left_to_right = true;
-      targetx = x + 200;
+      targetx = x + (int) random(100,300);
     } else {
       left_to_right = false;
-      targetx = x - 200;
+      targetx = x - (int) random(100,300);
     }
     
     if (y < height/2) {
       top_to_bottom = true;
-      targety = y + 200;
+      targety = y + (int) random(100,300);
     } else {
       top_to_bottom = false;
-      targety = y - 200;
+      targety = y - (int) random(100,300);
     }
 
     println("start");
@@ -138,7 +138,9 @@ class Brush {
     }
 
     //println(left_to_right, top_to_bottom);
-    println(x, y, dx, dy, lifetime);
+    if (debug) {
+      println(x, y, dx, dy, lifetime);
+    }
 
     lifetime--;
     if (lifetime == 0) {
