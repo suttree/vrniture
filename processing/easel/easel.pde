@@ -84,7 +84,7 @@ class Brush {
 
     points = 5;
     iterations = 0;
-    lifetime = (int) random(25);
+    lifetime = (int) random(30);
 
     delay(500);
     colors = colorHarmony.GetRandomPalette();
@@ -141,7 +141,7 @@ class Brush {
     println(x, y, dx, dy, lifetime);
 
     lifetime--;
-    if (lifetime == 0) {
+    if (lifetime <= 0) {
       init();
     }
 
