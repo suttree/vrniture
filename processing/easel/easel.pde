@@ -92,18 +92,18 @@ class Brush {
     // Pick a target, course, and stay with it
     if (x < width/2) {
       left_to_right = true;
-      targetx = x + (int) random(100,300);
+      targetx = x + (int) random(100, 300);
     } else {
       left_to_right = false;
-      targetx = x - (int) random(100,300);
+      targetx = x - (int) random(100, 300);
     }
     
     if (y < height/2) {
       top_to_bottom = true;
-      targety = y + (int) random(100,300);
+      targety = y + (int) random(100, 300);
     } else {
       top_to_bottom = false;
-      targety = y - (int) random(100,300);
+      targety = y - (int) random(100, 300);
     }
 
     println("start");
@@ -137,7 +137,7 @@ class Brush {
       rect(x, y, 5, 5);
     }
 
-    //println(left_to_right, top_to_bottom);
+    println(left_to_right, top_to_bottom);
     println(x, y, dx, dy, lifetime);
 
     lifetime--;
@@ -163,76 +163,158 @@ class Brush {
       rect(targetx, targety, 15, 15);
     }
 
+    /*
     if (random(100) > 99) {
       pg.fill(colors[1]);
     } else {
       pg.noFill();
     }
-    pg.fill(colors[1]); // reset
-    pg.stroke(colors[1]);
+    */
+    
+    if (1 == 2 ) {
+      // Straight line
+      pg.fill(colors[1]); // reset
+      pg.stroke(colors[1]);
+  
+      // thinner/fatter brushes
+      float weight = (int) random(7);
+      //weight = 3;
+      pg.strokeWeight(weight);
+  
+      //println(prevx, prevy, x, y);
+      //println("---");
+  
+  
+      // REFACTOR
+      // THIS IS THE CODE FOR BRUSH LINES
+      // NOW WRITE THE CODE FOR BRUSH CURVES
+  
+      // TODO: Review https://processing.org/reference/beginShape_.html for different styles
+      pg.beginShape();
+      pg.curveVertex(prevx, prevy);
+      pg.curveVertex(prevx, prevy);
+      //rect(prevx, prevy, 2, 2);
+  
+      //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
+      //pg.quadraticVertex(prevx, prevy, dx, dy);
+  
+      /*
+      if (random(0) > 1) {
+        pg.quadraticVertex(targetx, targety, targetx * cos(v), targety * sin(v));
+        if (random(2) > 1) {
+          pg.quadraticVertex(targetx, targety, targetx - noise(xoff), targety - noise(xoff));
+        }
+      }
+      */
+      //pg.quadraticVertex(x, y, x * cos(v), y * sin(v));
+      //rect(x * cos(v), y * sin(v), 2, 2);
+      
+      //pg.quadraticVertex(targetx/2, targety/2, x, y);
+      //rect(targetx/2, targety/2, 2, 2);
+      
+      //pg.vertex(x/2, y/2);
+      //rect(x/2, y/2, 2, 2);
+      
+      // TODO: add a curve to the single line
+      
+      //pg.curveVertex(x+20, y+20);
+      //pg.curveVertex(x-20, y-20);
+      //rect(x-20, y-20, 4, 4);
+      
+      //pg.curveVertex(x-5, y);
+      
+      if (random(2) > 1) {
+        pg.curveVertex(x - sin(v) * 10, y + cos(v));
+      } else {
+        pg.curveVertex(x + cos(v) * 10, y - sin(v));
+      }
+      
+      pg.curveVertex(x, y);
+      pg.curveVertex(x, y);
+      
+      if (debug) {
+        rect(x, y, 2, 2);
+      }
+      
+      pg.endShape();
+    } else {
+      pg.fill(colors[1]);
+      pg.stroke(colors[1]);
+      
+      // thinner/fatter brushes
+      float weight = (int) random(7);
+      pg.strokeWeight(weight);
+      
+      pg.noFill();
+      pg.strokeWeight(5);
+  
+      //println(prevx, prevy, x, y);
+      //println("---");
 
-    // thinner/fatter brushes
-    float weight = (int) random(7);
-    //weight = 3;
-    pg.strokeWeight(weight);
+      //pg.curve(5, 26, 5, 26, 73, 24, 73, 61);
+      
+      /*
+      // This is a nice brush
+      pg.curve(prevx, prevy, prevx, prevy, x - 4, y, x, y - 4);
+      pg.curve(prevx, prevy, prevx, prevy, x + 2, y, x, y + 2);
+      pg.curve(prevx, prevy, prevx, prevy, x, y, x, y);
+      */
+      
+      /*
+      // This is slanted lines
+      pg.curve(prevx, prevy, prevx, prevy, x - dx/lifetime, y - dy/lifetime, x, y);
+      */
 
-    //println(prevx, prevy, x, y);
-    //println("---");
+      if (!left_to_right && top_to_bottom) {
+        pg.curve(prevx, prevy, prevx, prevy, x + dx/lifetime, y + dy/lifetime, prevx + sin(v) + 10, y + cos(v) + 10);
+      } else if (left_to_right && !top_to_bottom) {
+        pg.curve(prevx, prevy, prevx, prevy, x + dx/lifetime, y + dy/lifetime, prevx + sin(v) - lifetime/2, y + cos(v) - lifetime/2);
+      } else {
+        pg.curve(prevx, prevy, prevx, prevy, x - dx/lifetime, y - dy/lifetime, prevx + sin(v) + 10, y + cos(v) + 10);
+      }
 
+      // TODO: Review https://processing.org/reference/beginShape_.html for different styles
+//      pg.beginShape();
+//      pg.vertex(prevx, prevy);
+      //rect(prevx, prevy, 2, 2);
 
-    // REFACTOR
-    // THIS IS THE CODE FOR BRUSH LINES
-    // NOW WRITE THE CODE FOR BRUSH CURVES
+//pg.vertex(20, 20);
+//pg.quadraticVertex(prevx, prevy + 60, prevx + 60, prevy + 60);
+//pg.quadraticVertex(prevx + 40, prevy, prevx + 30, prevy + 30);
+//pg.quadraticVertex(prevx + 40, prevy, x, y);
+//pg.vertex(80, 60);
 
-    // TODO: Review https://processing.org/reference/beginShape_.html for different styles
-    pg.beginShape();
-    pg.curveVertex(prevx, prevy);
-    pg.curveVertex(prevx, prevy);
-    //rect(prevx, prevy, 2, 2);
+      /*
+      //pg.curveVertex(x-sin(v), y);
+      pg.quadraticVertex(prevx, prevy, prevx + 2, y);
+      pg.quadraticVertex(prevx, prevy, prevx + 4, y);
+      pg.quadraticVertex(prevx, prevy, prevx + 6, y);
+      pg.quadraticVertex(prevx, prevy, prevx + 8, y);
+      //pg.quadraticVertex(prevx, prevy, x-30, y);
+      */
 
-    //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
-    //pg.quadraticVertex(prevx, prevy, dx, dy);
+      //prevx = prevx - 20;
+      
+      //pg.vertex(x, y);
+      
+      if (debug) {
+        rect(x, y, 2, 2);
+      }
+      
+      pg.endShape();
+    }
+/*
+pg.noFill();
+pg.strokeWeight(4);
+pg.beginShape();
+pg.vertex(20, 20);
+pg.quadraticVertex(80, 20, 50, 50);
+pg.quadraticVertex(20, 80, 80, 80);
+pg.vertex(80, 60);
+pg.endShape();
+*/
 
     /*
-    if (random(0) > 1) {
-      pg.quadraticVertex(targetx, targety, targetx * cos(v), targety * sin(v));
-      if (random(2) > 1) {
-        pg.quadraticVertex(targetx, targety, targetx - noise(xoff), targety - noise(xoff));
-      }
-    }
-    */
-    //pg.quadraticVertex(x, y, x * cos(v), y * sin(v));
-    //rect(x * cos(v), y * sin(v), 2, 2);
-    
-    //pg.quadraticVertex(targetx/2, targety/2, x, y);
-    //rect(targetx/2, targety/2, 2, 2);
-    
-    //pg.vertex(x/2, y/2);
-    //rect(x/2, y/2, 2, 2);
-    
-    // TODO: add a curve to the single line
-    
-    //pg.curveVertex(x+20, y+20);
-    //pg.curveVertex(x-20, y-20);
-    //rect(x-20, y-20, 4, 4);
-    
-    //pg.curveVertex(x-5, y);
-    
-    if (random(2) > 1) {
-      pg.curveVertex(x - sin(v) * 10, y + cos(v));
-    } else {
-      pg.curveVertex(x + cos(v) * 10, y - sin(v));
-    }
-    
-    pg.curveVertex(x, y);
-    pg.curveVertex(x, y);
-    
-    if (debug) {
-      rect(x, y, 2, 2);
-    }
-    
-    pg.endShape();
-    
     // TODO make the strands, vary the x&y a little, and the hsl
     // Use fill for main strand and noFill() for strands
     for(int i = 0; i < strands; i++) {
@@ -251,6 +333,7 @@ class Brush {
       
       pg.endShape();
     }
+    */
     
     pg.endDraw();
 

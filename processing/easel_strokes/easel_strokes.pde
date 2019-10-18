@@ -42,8 +42,8 @@ float xoff = random(3.75);
 Brush[] brushes = new Brush[1];
 
 void setup() {
-  //fullScreen();
-  size(640, 480);
+  fullScreen();
+  //size(640, 480);
   noCursor();
   smooth();
 
