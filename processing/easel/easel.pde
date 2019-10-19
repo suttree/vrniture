@@ -54,7 +54,7 @@ void setup() {
   }
 
   background(colors[0]);
-  frameRate(25);
+  frameRate( (int) random(5, 25) );
 }
 
 void draw() {
@@ -347,7 +347,17 @@ class Brush {
       pg.noFill();
       pg.stroke(colors[1]);
       //pg.bezier(prevx, prevy, prevx + 10, prevy - 20, prevx + 12, prevy - 22, x, y);
-      pg.bezier(prevx, prevy, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 2, x + sin(v) * 2, y - cos(v) * 2);
+      
+      if (!left_to_right && top_to_bottom) {
+        println("here");
+        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 2, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 2, x, y);
+      } else {
+        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 2, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 2, x + sin(v) * 2, y - cos(v) * 2);
+      }
+
+      v += 0.31472;
+      xoff += 0.31472;
+      
       pg.endShape();
 
       // TODO: Review https://processing.org/reference/beginShape_.html for different styles
