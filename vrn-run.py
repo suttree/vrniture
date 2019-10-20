@@ -22,6 +22,7 @@ def main():
     sketches = [ 
         'brush',
         'easel',
+        'easel_mix',
         'easel_lines',
         'easel_strokes',
         'easel_strokes_2',
