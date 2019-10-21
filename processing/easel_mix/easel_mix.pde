@@ -224,6 +224,7 @@ class Brush {
       float weight = (int) random(8, 20);
       pg.strokeWeight(weight);
       
+      // From https://www.openprocessing.org/sketch/579889
       if (!left_to_right && top_to_bottom) {
         pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 2, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 2, x, y);
       } else {
