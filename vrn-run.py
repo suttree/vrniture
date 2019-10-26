@@ -21,11 +21,11 @@ def main():
 
     sketches = [ 
         'brush',
-        'easel',
+        #'easel',
         'easel_mix',
-        'easel_lines',
-        'easel_strokes',
-        'easel_strokes_2',
+        #'easel_lines',
+        #'easel_strokes',
+        #'easel_strokes_2',
         'spots',
         'special_branch_perlin_shapes',
         'floyd',

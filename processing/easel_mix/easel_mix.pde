@@ -158,7 +158,7 @@ class Brush {
     }
 
     int style = (int) random(18);
-    println(style);
+    //println(style);
     if (style <= 2) {
       // Straight line
       pg.fill(colors[1]);

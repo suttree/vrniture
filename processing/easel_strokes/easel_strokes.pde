@@ -106,8 +106,8 @@ class Brush {
       targety = y - 200;
     }
 
-    println("start");
-    println(x, y, targetx, targety);
+    //println("start");
+    //println(x, y, targetx, targety);
   }
    
   void update() {
@@ -118,7 +118,7 @@ class Brush {
     if (left_to_right) {
       //x = x + 2 * sin(v) * noise(xoff);
       dx = targetx - x;
-      println(x, dx);
+      //println(x, dx);
       x += dx * easing;
     } else {
       dx = x - targetx;
@@ -139,7 +139,7 @@ class Brush {
     }
 
     //println(left_to_right, top_to_bottom);
-    println(x, y, dx, dy, lifetime);
+    //println(x, y, dx, dy, lifetime);
 
     lifetime--;
     if (lifetime == 0) {
