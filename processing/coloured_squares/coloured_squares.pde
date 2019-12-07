@@ -5,21 +5,21 @@ import com.cage.colorharmony.*;
 ColorHarmony colorHarmony = new ColorHarmony(this);
 
 int numLayers = 8;
-int val = round(random(5));
+int val = round(random(8));
 color[] colors = colorHarmony.GetRandomPalette();
 
 float theta = 0.0;
 int points = 4;
-float dist = width/4;
+float dist = width/2;
 
-float t = random(0.0, 1.0);
+float t = random(0.0, 2.0);
 
 void setup() {
   fullScreen();
   //size(640, 480, P3D);
   
   noCursor();
-  frameRate(20);
+  //frameRate(30);
 }
 
 void draw() {
@@ -30,11 +30,11 @@ void draw() {
   fill(20, 20, 20, 90);
   rect(0, 0, width, height);
 
-  int shapeWidth = 200;
-  int shapeHeight = 200;
+  int shapeWidth = 850;
+  int shapeHeight = 850;
   int startx = 0;
   int starty = 0;
-  dist = noise(t) * 6;
+  dist = noise(t) * 30;
   translate(width/2, height/2);
   rotate(75);
   
@@ -67,12 +67,12 @@ void draw() {
     
     endShape(CLOSE);
     
-    shapeWidth = shapeWidth + 20;
-    shapeHeight = shapeHeight + 20;
-    dist = dist + 15;
-    t = t + random(0.0025, 0.025);
-    startx = startx - 20;
-    starty = starty - 20;
+    shapeWidth = shapeWidth + 45;
+    shapeHeight = shapeHeight + 40;
+    dist = dist + 25;
+    t = t + random(0.0025, 0.045);
+    startx = startx - 55;
+    starty = starty - 50;
   }
   
   // Change the palette infrequently
@@ -81,7 +81,7 @@ void draw() {
     if(val == 0) {
       colors = colorHarmony.Monochromatic();
     } else if (val == 1) {
-      colors = colorHarmony.Analogous();
+      colors = colorHarmony.GetRandomPalette();
     } else if (val == 2) {
       colors = colorHarmony.Complementary();
     } else if (val == 3) {

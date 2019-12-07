@@ -5,7 +5,7 @@ import com.cage.colorharmony.*;
 ColorHarmony colorHarmony = new ColorHarmony(this);
 color[] colors = colorHarmony.GetRandomPalette();
 
-int numCircles = 8;
+int numCircles = 7;
 Circle[] circles = new Circle[numCircles];
 
 void setup() {
@@ -21,11 +21,11 @@ void setup() {
 
 void draw() {  
   noStroke();
-  fill(0, 20);
+  fill(0, 10);
   rect(0, 0, width, height);
 
   // Reset circles
-  if(frameCount % 18 == 0) {
+  if(frameCount % 14 == 0) {
     circles = new Circle[numCircles];
     for(int i = 0; i < numCircles; i++) {
       circles[i] = new Circle(width, height, i+1);
@@ -38,7 +38,7 @@ void draw() {
   }
 
   // Reset colours
-  if ( frameCount % 250 == 0 ) {
+  if ( frameCount % 150 == 0 ) {
     colors = colorHarmony.GetRandomPalette();
   }
   
@@ -53,8 +53,8 @@ class Circle {
   color colour;
     
   Circle(int width, int height, int sizeCounter) {
-    x = random(0, 25);
-    y = random(0, 25);
+    x = random(0, 29);
+    y = random(0, 29);
     
     size = (width > height) ? (int)random(10, width/2 - 500/sizeCounter) : (int)random(10, height/2 - 200/sizeCounter);
     x = width/2 - x;
@@ -63,7 +63,7 @@ class Circle {
   }
   
   void render() {
-    fill(colour, 5);
+    fill(colour, 15);
     ellipse(x, y, size, size);
   }
 }

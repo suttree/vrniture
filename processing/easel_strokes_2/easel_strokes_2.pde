@@ -31,7 +31,7 @@ import com.cage.colorharmony.*;
 
 // Create a colorharmony instance
 ColorHarmony colorHarmony = new ColorHarmony(this);
-color[] colors = colorHarmony.Analogous();
+color[] colors = colorHarmony.GetRandomPalette();
 
 // PG code from the Processing tutorials
 PGraphics pg;
@@ -256,6 +256,6 @@ class Brush {
     //noStroke();
     //rect(x, y, 2, 2);
     
-    delay(1000);
+    delay(100);
   }
 }

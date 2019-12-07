@@ -11,16 +11,18 @@ void draw() {
   noFill();
   lights();
   
-  fill(10, 15);
   //fill( 0xee, 0xee, 0xff, 10);
+  noStroke();
+  fill(0, (int) random(15));
   rect(0, 0, width, height);
+
+  fill(0, 15);
+  angle1+=.0002;
   
-  angle1+=.0001;
-  
-  for(int i = 0; i < 100; i++) {
+  for(int i = 0; i < 200; i++) {
     rotateZ(angle1);
-    stroke(255, random(255), random(255));
-    rect(-200 + (i * 20), 0, 10, 10);
+    stroke(random(180, 255), random(255), random(255));
+    rect(-100 + (i * 20), -80, 10, 10);
   }
   
   /*

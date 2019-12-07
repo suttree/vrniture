@@ -9,7 +9,7 @@ Layer[] layers = new Layer[(int)random(3,8)];
 int frames = 0;
 int totalFrames = 440;
 
-int gap = 101;
+int gap = 124;
 
 void setup() {
   smooth();
