@@ -1,6 +1,6 @@
 # m h  dom mon dow   command
 @reboot /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
-*/24 05-23 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
+*/24 05-22 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
 14 23 * * * killall java >> /tmp/cron.log 2>&1
 
 */30 * * * * cd /home/pi/src/vrniture && git pull >> /tmp/cron.log 2>&1
