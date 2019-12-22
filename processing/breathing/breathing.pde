@@ -5,7 +5,7 @@ import com.cage.colorharmony.*;
 ColorHarmony colorHarmony = new ColorHarmony(this);
 color[] colors = colorHarmony.Triads();
 
-int numCircles = 5;
+int numCircles = random(1,6);
 Circle[] circles = new Circle[numCircles];
 
 void setup() {
@@ -17,6 +17,9 @@ void setup() {
   for(int i = 0; i < numCircles; i++) {
     circles[i] = new Circle(width, height, i+1);
   }
+
+  // pause before breathing/sleeping
+  delay(random(60000, 300000));
 }
 
 void draw() {  
@@ -25,7 +28,8 @@ void draw() {
   rect(0, 0, width, height);
 
   // Reset circles (very infrequently)
-  if(frameCount % 1000 == 0) {
+  if(frameCount > 0 && frameCount % 1000 == 0) {
+    numCircles = random(1,6);
     circles = new Circle[numCircles];
     for(int i = 0; i < numCircles; i++) {
       circles[i] = new Circle(width, height, i+1);
@@ -38,7 +42,7 @@ void draw() {
   }
 
   // Reset colours
-  if ( frameCount % 250 == 0 ) {
+  if ( frameCount > 0 && frameCount % 250 == 0 ) {
     colors = colorHarmony.GetRandomPalette();
   }
   
