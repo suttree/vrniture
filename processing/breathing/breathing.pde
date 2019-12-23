@@ -17,9 +17,6 @@ void setup() {
   for(int i = 0; i < numCircles; i++) {
     circles[i] = new Circle(width, height, i+1);
   }
-
-  // pause before breathing/sleeping
-  delay((int) random(60000, 300000));
 }
 
 void draw() {  
@@ -29,7 +26,7 @@ void draw() {
 
   // Reset circles (very infrequently)
   if(frameCount > 0 && frameCount % 1000 == 0) {
-    numCircles = (int) random(1,6);
+    numCircles = (int) random(2,7);
     circles = new Circle[numCircles];
     for(int i = 0; i < numCircles; i++) {
       circles[i] = new Circle(width, height, i+1);
@@ -46,7 +43,7 @@ void draw() {
     colors = colorHarmony.GetRandomPalette();
   }
   
-  delay(25);
+  delay(125);
 }
 
 class Circle {
@@ -60,8 +57,8 @@ class Circle {
   color colour;
     
   Circle(int width, int height, int sizeCounter) {
-    x = width/2 - random(0, 25);
-    y = height/3 + random(0, 50);
+    x = width/2 - random(0, 45);
+    y = height/3 + random(0, 70);
     colour = colors[(int)random(8)];
   }
   
@@ -72,6 +69,6 @@ class Circle {
     float size = 193 + 220 * sin(v) + 70;
     ellipse(x, y, size, size);
     
-    v += 0.125;
+    v += 0.126;
   }
 }
