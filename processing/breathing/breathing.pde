@@ -19,7 +19,7 @@ void setup() {
   }
 
   // pause before breathing/sleeping
-  delay(random(60000, 300000));
+  delay((int) random(60000, 300000));
 }
 
 void draw() {  
@@ -29,7 +29,7 @@ void draw() {
 
   // Reset circles (very infrequently)
   if(frameCount > 0 && frameCount % 1000 == 0) {
-    numCircles = random(1,6);
+    numCircles = (int) random(1,6);
     circles = new Circle[numCircles];
     for(int i = 0; i < numCircles; i++) {
       circles[i] = new Circle(width, height, i+1);
