@@ -5,7 +5,7 @@ import com.cage.colorharmony.*;
 ColorHarmony colorHarmony = new ColorHarmony(this);
 color[] colors = colorHarmony.Triads();
 
-int numCircles = random(1,6);
+int numCircles = (int) random(1,6);
 Circle[] circles = new Circle[numCircles];
 
 void setup() {
