@@ -17,6 +17,12 @@ void setup() {
   for(int i = 0; i < numCircles; i++) {
     circles[i] = new Circle(width, height, i+1);
   }
+
+  noStroke();
+  fill(0);
+  rect(0, 0, width, height);
+
+  delay( (int) random(3000, 6000) );
 }
 
 void draw() {  
@@ -39,7 +45,7 @@ void draw() {
   }
 
   // Reset colours
-  if ( frameCount > 0 && frameCount % 250 == 0 ) {
+  if ( frameCount > 0 && frameCount % 1250 == 0 ) {
     colors = colorHarmony.GetRandomPalette();
   }
   
@@ -57,8 +63,8 @@ class Circle {
   color colour;
     
   Circle(int width, int height, int sizeCounter) {
-    x = width/2 - random(0, 45);
-    y = height/3 + random(0, 70);
+    x = width/2 - random(0, 55);
+    y = height/3 + random(0, 80);
     colour = colors[(int)random(8)];
   }
   
