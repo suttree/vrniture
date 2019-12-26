@@ -21,7 +21,6 @@ def main():
 
     sketches = [ 
         'colour_wipes',
-        'special_branch_perlin_shapes',
         'purple_squares',
         'special_branch_spotlights',
         'floyd_bigger',
