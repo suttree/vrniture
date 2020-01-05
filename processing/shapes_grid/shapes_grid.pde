@@ -16,14 +16,14 @@ void draw() {
   fill(0);
   rect(0, 0, width, height);
 
-  angle1+=.00126;
+  angle1 += .00126;
   rotate(angle1);
   
-  int gap = (width > height ? width/6 : height/6);
+  int gap = (width > height ? width/3 : height/3);
   for (int x = -gap; (x * 35) < (width + gap); x++) {
     for( int y = -gap; (y * 35) < (height + gap); y++ ) {
       if ((int) random(500) == 10) {
-        fill(random(180, 255), random(255), random(255));
+        fill(random(180, 255), random(97, 255), random(14, 255));
       } else {
         fill(0);
       }
