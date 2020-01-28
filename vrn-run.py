@@ -26,6 +26,7 @@ def main():
         'floyd_bigger',
         'special_branch_layered_squares',
         'shapes_grid',
+        'easel_strokes',
         'led',
         'plain_waves',
         'special_branch_shoreline',

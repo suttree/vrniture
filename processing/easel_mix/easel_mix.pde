@@ -42,8 +42,8 @@ void setup() {
     brushes[i] = new Brush(4);
   }
 
-  background(colors[0]);
-  frameRate( (int) random(5, 25) );
+  background(48, 48, 48);
+  frameRate( (int) random(5, 60) );
 }
 
 void draw() {
@@ -71,11 +71,11 @@ class Brush {
     prevx = x;
     prevy = y;
 
-    points = 5;
+    points = 50;
     iterations = 0;
     lifetime = (int) random(30);
 
-    delay(500);
+    delay(10);
     colors = colorHarmony.GetRandomPalette();
 
     // Pick a target, course, and stay with it
@@ -141,7 +141,7 @@ class Brush {
 
     iterations++;
     if (iterations % 3 == 0) {
-      delay(2500);
+      delay(250);
     }
 
     v += v;
@@ -157,15 +157,16 @@ class Brush {
       rect(targetx, targety, 15, 15);
     }
 
-    int style = (int) random(18);
-    //println(style);
+    int style = (int) random(8);
+    println(style);
+
     if (style <= 2) {
       // Straight line
       pg.fill(colors[1]);
       pg.stroke(colors[1]);
 
       // thinner/fatter brushes
-      float weight = (int) random(6, 16);
+      float weight = (int) random(10, 26);
       pg.strokeWeight(weight);
 
       // TODO: Review https://processing.org/reference/beginShape_.html for different styles
@@ -193,7 +194,7 @@ class Brush {
       pg.stroke(colors[1]);
 
       // thinner/fatter brushes
-      float weight = (int) random(8, 18);
+      float weight = (int) random(8, 28);
       pg.strokeWeight(weight);
 
       pg.noFill();
@@ -207,7 +208,7 @@ class Brush {
       pg.stroke(colors[1]);
 
       // thinner/fatter brushes
-      float weight = (int) random(4, 10);
+      float weight = (int) random(14, 20);
       pg.strokeWeight(weight);
 
       pg.noFill();
@@ -290,6 +291,6 @@ class Brush {
     v += 0.125;
     xoff += 0.125;
 
-    delay((int) random(500));
+    delay((int) random(50));
   }
 }

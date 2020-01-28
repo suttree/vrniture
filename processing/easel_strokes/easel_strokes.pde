@@ -36,12 +36,15 @@ color[] colors = colorHarmony.Analogous();
 // PG code from the Processing tutorials
 PGraphics pg;
 
-float easing = 0.25;
+float easing = 0.025;
 float xoff = random(3.75);
 
 Brush[] brushes = new Brush[1];
 
 void setup() {
+  background(48, 48, 48);
+  frameRate(12);
+  
   fullScreen();
   //size(640, 480);
   noCursor();
@@ -52,9 +55,6 @@ void setup() {
   for(int i = 0; i < brushes.length; i++) {
     brushes[i] = new Brush(1);
   }
-  
-  background(colors[0]);
-  frameRate(25);
 }
 
 void draw() {
@@ -75,35 +75,35 @@ class Brush {
   }
 
   void init() {
-    v = random(-1, 1);
-    x = (int) random(50, width - 50);
-    y = (int) random(50, height - 50);
+    v = random(-5, 5);
+    x = (int) random(24, width - (int) random(5, 50));
+    y = (int) random(23, height - (int) random(5, 50));
     
-    prevx = x;
-    prevy = y;
+    prevx = x - (int) random(1, 4);
+    prevy = y - (int) random(1, 4);
 
-    points = 5;
-    iterations = 0;
-    lifetime = (int) random(30);
+    points = 40;
+    iterations = 24;
+    lifetime = (int) random(12, 65);
 
-    delay(500);
-    colors = colorHarmony.GetRandomPalette();
+    delay((int) random(2550));
+    colors = colorHarmony.Triads(color(0, 0, 0));
  
     // Pick a target, course, and stay with it
     if (x < width/2) {
       left_to_right = true;
-      targetx = x + 200;
+      targetx = x + (int) random(100, 200);
     } else {
       left_to_right = false;
-      targetx = x - 200;
+      targetx = x - (int) random(100, 200);
     }
     
     if (y < height/2) {
       top_to_bottom = true;
-      targety = y + 200;
+      targety = y + (int) random(100, 200);
     } else {
       top_to_bottom = false;
-      targety = y - 200;
+      targety = y - (int) random(100, 200);
     }
 
     //println("start");
@@ -142,13 +142,21 @@ class Brush {
     //println(x, y, dx, dy, lifetime);
 
     lifetime--;
-    if (lifetime == 0) {
+    if (lifetime <= 0) {
       init();
     }
 
     iterations++;
-    if (iterations % 3 == 0) {
-      //delay(5000);
+    if (iterations % 5 == 0 && iterations > 1) {
+      colors = colorHarmony.GetRandomPalette();
+    }
+
+    if (iterations % 12 == 0 && iterations > 1) {
+      delay((int) random(1500, 2500));
+      background(48, 48, 48);
+      pg.beginDraw(); 
+      pg.clear();
+      pg.endDraw();
     }
 
     v += v;
@@ -164,8 +172,8 @@ class Brush {
       rect(targetx, targety, 15, 15);
     }
 
-    if (random(100) > 99) {
-      pg.fill(colors[1]);
+    if (random(100) > 95) {
+      pg.fill(colors[1], 10);
     } else {
       pg.noFill();
     }
@@ -173,17 +181,17 @@ class Brush {
     pg.stroke(colors[1]);
 
     // thinner/fatter brushes
-    float weight = (int) random(6);
-    //weight = 3;
+    float weight = (int) random(8, 178);
     pg.strokeWeight(weight);
 
     //println(prevx, prevy, x, y);
     //println("---");
 
+
     // TODO: Review https://processing.org/reference/beginShape_.html for different styles
-    pg.beginShape();
-    pg.curveVertex(prevx, prevy);
-    pg.curveVertex(prevx, prevy);
+//    pg.beginShape();
+//    pg.curveVertex(prevx, prevy);
+//    pg.curveVertex(prevx, prevy);
     //rect(prevx, prevy, 2, 2);
 
     //pg.quadraticVertex(targetx, targety, targetx * sin(v), targety * cos(v));
@@ -214,23 +222,72 @@ class Brush {
     
     //pg.curveVertex(x-5, y);
     
-    if (random(2) > 1) {
-      pg.curveVertex(x - sin(v) * 10, y + cos(v));
-    } else {
-      pg.curveVertex(x + cos(v) * 10, y - sin(v));
-    }
+//    if (random(2) > 1) {
+//      pg.curveVertex(x - sin(v) * 40, y + cos(v));
+//    } else {
+//      pg.curveVertex(x + cos(v) * 80, y - sin(v));
+//    }
     
     // TODO make the strands, vary the x&y a little, and the hsl
     // Use fill for main strand and noFill() for strands
     
-    pg.curveVertex(x, y);
-    pg.curveVertex(x, y);
-    
+//    pg.curveVertex(x, y);
+//    pg.curveVertex(x, y);
+
+/*
+      pg.curve(prevx, prevy, prevx, prevy, x - 4, y, x, y - 4);
+      pg.curve(prevx, prevy, prevx, prevy, x + 2, y, x, y + 2);
+      pg.curve(prevx, prevy, prevx, prevy, x, y, x, y);
+*/      
+      
+      // Curves
+      pg.beginShape();
+      
+      pg.noFill();
+      pg.stroke(colors[1]);
+      
+      //float weight = (int) random(8, 20);
+      pg.strokeWeight(weight);
+      
+      // From https://www.openprocessing.org/sketch/579889
+      if (!left_to_right && top_to_bottom) {
+        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 4, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 4, x, y);
+      } else {
+        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 4, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 4, x + sin(v) * 2, y - cos(v) * 2);
+      }
+
+      //v += 0.31472;
+      //xoff += 0.31472;
+      
+      pg.endShape();
+
     if (debug) {
       rect(x, y, 2, 2);
     }
     
     pg.endShape(CLOSE);
+    
+    
+    // Use fill for main strand and noFill() for strands
+    for(int i = 0; i < strands; i++) {
+      pg.beginShape();
+       
+      pg.noFill();
+      pg.stroke(colors[1]);
+      pg.strokeWeight((int) random(14, 32));
+       
+      pg.curveVertex(prevx - i * sin(20), prevy - i * 20);
+      pg.curveVertex(prevx - i * 10, prevy - i * 10);
+       
+      pg.curveVertex(x + 20 * sin(v) * noise(xoff), y + 20 * cos(v) * noise(xoff));
+       
+      pg.curveVertex(x - i * cos(20), y - i * 20);
+      pg.curveVertex(x - i * 10, y - i * 10);
+       
+      pg.endShape();
+    }
+    
+    
     pg.endDraw();
 
     image(pg, 0, 0);
@@ -238,6 +295,9 @@ class Brush {
     //noStroke();
     //rect(x, y, 2, 2);
     
-    delay(1000);
+    v += 0.125;
+    xoff += 0.125;
+    
+    delay((int) random(120, 240));
   }
 }
