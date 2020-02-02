@@ -53,7 +53,7 @@ void setup() {
   pg = createGraphics(width, height);
 
   for(int i = 0; i < brushes.length; i++) {
-    brushes[i] = new Brush(1);
+    brushes[i] = new Brush(0);
   }
 }
 
@@ -251,9 +251,9 @@ class Brush {
       
       // From https://www.openprocessing.org/sketch/579889
       if (!left_to_right && top_to_bottom) {
-        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 4, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 4, x, y);
+        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 4, prevx + dx/3, prevy - dx/3, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 4, x, y);
       } else {
-        pg.bezier(prevx - cos(v) * 2, prevy + sin(v) * 4, prevx + dx/10, prevy - dx/10, prevx + dx/8 + noise(xoff) * 2, prevy - dx/8 - noise(xoff) * 4, x + sin(v) * 2, y - cos(v) * 2);
+        pg.bezier(prevx + cos(v) * 2, prevy - sin(v) * 4, prevx - dx/4, prevy + dx/4, prevx + dx/8 + noise(xoff) * 2, prevy + dx/8 + noise(xoff) * 4, x + sin(v) * 2, y + cos(v) * 2);
       }
 
       //v += 0.31472;
@@ -269,23 +269,29 @@ class Brush {
     
     
     // Use fill for main strand and noFill() for strands
+    // meh...
+    /*
     for(int i = 0; i < strands; i++) {
       pg.beginShape();
        
       pg.noFill();
-      pg.stroke(colors[1]);
-      pg.strokeWeight((int) random(14, 32));
+      pg.stroke(colors[4]);
+      pg.strokeWeight((int) random(12, 48));
+      
+      pg.curveVertex(prevx, prevy);
+      pg.curveVertex(prevx - i * sin(4), prevy - i * 4);
+      pg.curveVertex(prevx - i * 4, prevy - i * 4);
        
-      pg.curveVertex(prevx - i * sin(20), prevy - i * 20);
-      pg.curveVertex(prevx - i * 10, prevy - i * 10);
+      pg.curveVertex(x + 5 * sin(v) * noise(xoff), y + 5 * cos(v) * noise(xoff));
+      pg.curveVertex(x + 5 * cos(v) * noise(xoff), y + 5 * sin(v) * noise(xoff));
        
-      pg.curveVertex(x + 20 * sin(v) * noise(xoff), y + 20 * cos(v) * noise(xoff));
-       
-      pg.curveVertex(x - i * cos(20), y - i * 20);
-      pg.curveVertex(x - i * 10, y - i * 10);
+      pg.curveVertex(x - i * cos(10), y - i * 10);
+      pg.curveVertex(x - i * 2, y - i * 2);
+      pg.curveVertex(x, y);
        
       pg.endShape();
     }
+    */
     
     
     pg.endDraw();
