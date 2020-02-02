@@ -15,7 +15,8 @@ void setup() {
   //size(640, 480);
   noCursor();
 
-  background(0);
+  background(48, 48, 48);
+  frameRate( (int) random(6, 12) );
 
   pg = createGraphics(width, height);
 
@@ -73,7 +74,7 @@ class Brush {
   
   void render() {
     pg.beginDraw();
-    pg.stroke(colors[3]);
+    pg.stroke(colors[3], 60);
 
     // thinner/fatter brushes
     float weight = map(strands, 0, 5, 0, 3);
@@ -81,8 +82,8 @@ class Brush {
 
     for(int i = 0; i < strands; i++) {
       // shift the x and y
-      float _x = x + (i * sin(v));
-      float _y = y - (i * cos(v));
+      float _x = x + (i * sin(v) * 4);
+      float _y = y - (i * cos(v) * 4);
       pg.vertex(_x, _y);
     }
     
