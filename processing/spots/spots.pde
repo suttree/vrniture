@@ -15,7 +15,7 @@ void setup() {
   //size(640, 480);
   noCursor();
 
-  background(colors[0]);
+  background(0);
 
   pg = createGraphics(width, height);
 
@@ -95,5 +95,7 @@ class Brush {
     
     noStroke();
     rect(x, y, 2, 2);
+    
+    delay((int) random(120, 240));
   }
 }

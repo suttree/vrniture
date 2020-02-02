@@ -28,6 +28,7 @@ def main():
         'shapes_grid',
         'easel_strokes',
         'led',
+        'spots',
         'plain_waves',
         'special_branch_shoreline',
         'coloured_squares',
