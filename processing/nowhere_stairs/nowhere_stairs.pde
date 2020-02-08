@@ -1,3 +1,6 @@
+// Fix other curve
+// Draw each on step a layer then render in reverse order? ugh
+
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
 ColorHarmony colorHarmony = new ColorHarmony(this);
@@ -18,11 +21,19 @@ void setup() {
   colorMode(HSB, 255);
   frameRate(24);
   
-  stroke(48, 48, 48);
+  stroke(48, 48, 48, 90);
+  strokeWeight(1);
   background(48, 48, 48, 40);
 }
 
 void draw() {
+  /*
+  for( int i = 0; i < width; i++){
+    stroke(map(i,0,width,150,255),0,255-map(i,0,width,150,255));
+    line(i,0,i,height);
+  }
+  */
+
   startx = -20;
   starty = height / 3;
   
@@ -38,14 +49,11 @@ void draw() {
   float max = map(frameCount, 0, 500, 0, 1000);  
 
   for(int i = 0; i < max; i++) {
-    if (brightness_color <= 0) {
-    } else {
-      brightness_color -= 1;
-    }
-    fill(hue_color, saturation_color, brightness_color);
+    float temp = brightness_color - map(i, 0, 255, 0, max);
+    fill(hue_color, saturation_color, temp);
 
     if (gapx > 0) {
-      if (false) {
+      if (i%2==0) {
         quad(
           startx, 
           starty, 
@@ -95,15 +103,17 @@ void draw() {
         gapy -= noise(xoff);
       }
     } else {
-      startx = -30;
-      starty = height / 3;
+      startx = random(-50, -10);
+      starty = random(0, height);
     
       gapx = 80;
       gapy = 200;
       perspective = 0;
       curve = 0.2;
+      
+      background(48, 48, 48, 40);
     }
   }
   xoff += 0.0075;
-  delay(125);
+  delay(1125);
 }
