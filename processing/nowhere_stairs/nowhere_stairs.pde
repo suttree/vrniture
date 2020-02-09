@@ -1,5 +1,7 @@
 // Fix other curve
 // Draw each on step a layer then render in reverse order? ugh
+// vs.
+// make it 3d, drop the stems down a fraction each time (x, y, z co-ords)
 
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
