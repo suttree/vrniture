@@ -16,12 +16,16 @@ float perspective;
 float curve;
 float xoff = 0.75;
 
+PShape rectangle;
+
 void setup() {
-  fullScreen();
-  //size(640, 480);
+  //fullScreen();
+  size(640, 480, P3D);
   noCursor();
   colorMode(HSB, 255);
   frameRate(24);
+
+  rectangle = createShape(RECT,mouseX,mouseY,100,50);
   
   stroke(48, 48, 48, 90);
   strokeWeight(1);
@@ -29,12 +33,29 @@ void setup() {
 }
 
 void draw() {
-  /*
-  for( int i = 0; i < width; i++){
-    stroke(map(i,0,width,150,255),0,255-map(i,0,width,150,255));
-    line(i,0,i,height);
-  }
-  */
+  ////// WIP 3d stairs
+
+
+  lights();
+  //TODO experiment with a swinging overhead light?
+  //directionalLight(0, 255, 0, 0, -1, 0);
+  //spotLight(255, 0, 0, width/2, height/2, 400, 0, 0, -1, PI/4, 2);
+
+  shape(rectangle);
+
+  box(w, h, .d) // where d reduces for each step, along with width and height?
+                // problem? the box will be perfect straight
+
+
+  // Or... translate to each layer and draw a rect (or quad, etc)
+  translate(0, 0, z);
+  rect(0, 0, 50, 50);
+
+
+
+  //////////////// 
+
+
 
   startx = -20;
   starty = height / 3;
