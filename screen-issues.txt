@@ -1,0 +1,5 @@
+Run this to reset the screen settings:
+
+curl https://get.pimoroni.com/hyperpixel4 | bash
+
+from https://learn.pimoroni.com/tutorial/sandyj/getting-started-with-hyperpixel-4
