@@ -1,7 +1,7 @@
 # From https://stackoverflow.com/questions/54225192/how-to-play-a-shuffled-list-of-videos-in-omxplayer
 import os, random
 
-path = "/home/pi/src/vrniture/sheffield"
+path = "/home/pi/src/sheffield"
 
 os.system('setterm -cursor off')
 
