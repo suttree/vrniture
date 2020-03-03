@@ -42,7 +42,12 @@ def main():
     print(now.strftime("%Y-%m-%d %H:%M:%S"))
     print(sketch)
     print('-----')
+
+
+    # Stop any existing sketches or films
+    os.system('killall omxplayer')
     os.system('killall java')
+
     os.system(sketch)    
 
 def get_part_of_day(hour):
