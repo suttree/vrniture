@@ -3,6 +3,8 @@ import os, random
 
 path = "/home/pi/src/vrniture/sheffield"
 
+os.system('setterm -cursor off')
+
 videoList = os.listdir(path)
 random.shuffle(videoList)
 for video in videoList:
