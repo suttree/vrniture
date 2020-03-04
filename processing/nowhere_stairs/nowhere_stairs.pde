@@ -43,7 +43,7 @@ void draw() {
 
   shape(rectangle);
 
-  box(w, h, .d) // where d reduces for each step, along with width and height?
+  box(w, h, d) // where d reduces for each step, along with width and height?
                 // problem? the box will be perfect straight
 
 
