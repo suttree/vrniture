@@ -14,3 +14,10 @@ random.shuffle(videoList)
 for video in videoList:
     target = os.path.join(path, video)
     os.system('/usr/bin/omxplayer "{}" > /dev/null'.format(target))
+
+path = "/home/pi/src/vrniture-movies"
+videoList = os.listdir(path)
+random.shuffle(videoList)
+for video in videoList:
+    target = os.path.join(path, video)
+    os.system('/usr/bin/omxplayer "{}" > /dev/null'.format(target))
