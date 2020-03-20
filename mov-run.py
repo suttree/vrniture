@@ -1,6 +1,9 @@
 # From https://stackoverflow.com/questions/54225192/how-to-play-a-shuffled-list-of-videos-in-omxplayer
 import os, random
 
+print("mov-run.py")
+print("----------")
+
 # hide the cursor
 os.system('setterm -cursor off')
 
