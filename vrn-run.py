@@ -1,7 +1,10 @@
 #! /usr/bin/env python
 
-import sys
+import sys, os
 from datetime import datetime
+
+# hide the cursor
+os.system('DISPLAY=:0 xdotool mousemove 800 800')
 
 def main():
     if shutdown_at_nighttime():

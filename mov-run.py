@@ -1,11 +1,11 @@
 # From https://stackoverflow.com/questions/54225192/how-to-play-a-shuffled-list-of-videos-in-omxplayer
 import os, random
 
+# hide the cursor
+os.system('DISPLAY=:0 xdotool mousemove 800 800')
+
 print("mov-run.py")
 print("----------")
-
-# hide the cursor
-os.system('setterm -cursor off')
 
 # stop any existing sketches or films
 os.system('killall omxplayer')
