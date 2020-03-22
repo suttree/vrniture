@@ -21,5 +21,6 @@
 #
 # m h  dom mon dow   command
 @reboot /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
+*/48 07-21 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
 
 * */30 * * * cd /home/pi/src/vrniture && git pull >> /tmp/cron.log 2>&1
