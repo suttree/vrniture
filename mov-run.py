@@ -10,6 +10,7 @@ print("----------")
 # stop any existing sketches or films
 os.system('killall omxplayer')
 os.system('killall java')
+os.system('killall feh')
 
 path = "/home/pi/src/vrniture-movies"
 videoList = os.listdir(path)

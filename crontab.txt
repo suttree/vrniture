@@ -22,14 +22,4 @@
 # m h  dom mon dow   command
 @reboot /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
 
-0 9 * * * /usr/bin/env python /home/pi/src/vrniture/mov-run.py >> /tmp/cron.log 2>&1
-0 10 * * * /usr/bin/env python /home/pi/src/vrniture/img-run.py >> /tmp/cron.log 2>&1
-
-*/28 10-21 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
-
-0 13 * * * /usr/bin/env python /home/pi/src/vrniture/mov-run.py >> /tmp/cron.log 2>&1
-0 14 * * * /usr/bin/env python /home/pi/src/vrniture/img-run.py >> /tmp/cron.log 2>&1
-
-14 22 * * * DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1
-
 * */30 * * * cd /home/pi/src/vrniture && git pull >> /tmp/cron.log 2>&1
