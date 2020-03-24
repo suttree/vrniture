@@ -1,4 +1,3 @@
-# From https://stackoverflow.com/questions/54225192/how-to-play-a-shuffled-list-of-videos-in-omxplayer
 import os, random
 
 from omxplayer.player import OMXPlayer
@@ -30,7 +29,7 @@ for video in videoList:
         player.load(target)
 
     # it takes about this long for omxplayer to warm up and start displaying a picture on a rpi3
-    sleep(2.5)
+    #sleep(2.5)
 
     # throw in a random pause() here?
 
