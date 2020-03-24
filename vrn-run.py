@@ -43,6 +43,7 @@ def main(argv):
 	if (_startup or datetime.datetime.now().hour >= 22):
 	    # stop any existing sketches or films
 	    os.system('killall omxplayer.bin')
+            os.system('killall omxplayer.bin')
 	    os.system('killall omxplayer')
 	    os.system('killall java')
 	    os.system('killall feh')
