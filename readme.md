@@ -6,3 +6,8 @@ xdotool mousemove 500 500
 
 To run a slideshow of images:
 sudo apt-get install feh
+
+To run a slideshow of movies:
+sudo apt-get update && sudo apt-get install -y libdbus-1-dev
+sudo reboot
+pip3 install omxplayer-wrapper
