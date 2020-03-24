@@ -36,12 +36,13 @@ def main(argv):
 
     # chance cubes!
     if (_startup or random.choice([1,2,3,4,5,6]) <= 3):
-	print( '/usr/bin/env python /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
-	os.system( '/usr/bin/env python /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
+	print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
+	os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
 
 	import datetime
 	if (_startup or datetime.datetime.now().hour >= 22):
 	    # stop any existing sketches or films
+	    os.system('killall omxplayer.bin')
 	    os.system('killall omxplayer')
 	    os.system('killall java')
 	    os.system('killall feh')
