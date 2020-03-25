@@ -15,4 +15,4 @@ os.system('killall feh')
 
 path = "/home/pi/src/vrniture-pictures"
 
-os.system( 'DISPLAY=:0 feh -Y -x -q -D 60 -B black --auto-rotate -F -Z -z -r ' + path )
+os.system( 'DISPLAY=:0 feh -Y -x -q -D 180 -B black --auto-rotate -F -Z -z -r ' + path )
