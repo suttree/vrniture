@@ -23,6 +23,8 @@ random.shuffle(videoList)
 
 for video in videoList:
     target = Path(path + '/' + video)
+    print(target)
+    print("----target----")
 
     if player is None:
         player = OMXPlayer(target, args=['--no-osd'])
