@@ -1,6 +1,7 @@
 import os, random
 
 from omxplayer.player import OMXPlayer
+from pathlib import Path
 from time import sleep
 
 # hide the cursor
@@ -21,7 +22,7 @@ videoList = os.listdir(path)
 random.shuffle(videoList)
 
 for video in videoList:
-    target = os.path.join(path, video)
+    target = Path(path + '/' + video)
 
     if player is None:
         player = OMXPlayer(target, args=['--no-osd'])
