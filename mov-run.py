@@ -1,9 +1,5 @@
 import os, random
 
-from omxplayer.player import OMXPlayer
-from pathlib import Path
-from time import sleep
-
 # hide the cursor
 os.system('DISPLAY=:0 xdotool mousemove 800 800')
 
@@ -16,25 +12,12 @@ os.system('killall omxplayer')
 os.system('killall java')
 os.system('killall feh')
 
-player = None
-path = "/home/pi/src/vrniture-movies"
+path = "/home/pi/src/vrniture-movies/"
 videoList = os.listdir(path)
-random.shuffle(videoList)
 
-for video in videoList:
-    target = Path(path + '/' + video)
-    print(target)
-    print("----target----")
+# Create a playlist and play
+with open('./playlist.txt', 'w') as playlist:
+    for video in videoList:
+        playlist.write(path + video + '\n')
 
-    if player is None:
-        player = OMXPlayer(target, args=['--no-osd'])
-    else:
-        player.load(target)
-
-    # it takes about this long for omxplayer to warm up and start displaying a picture on a rpi3
-    #sleep(2.5)
-
-    # throw in a random pause() here?
-
-    player.play_sync()
-    player.quit()
+os.system('mplayer -fs -shuffle -playlist ./playlist.txt')
