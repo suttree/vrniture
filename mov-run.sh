@@ -1,3 +1,5 @@
+# From https://keytosmart.com/single-board-computers/looping-video-playlist-omxplayer-raspberry-pi/
+
 #!/bin/sh
 
 # get rid of the cursor so we don't see it when videos are running
