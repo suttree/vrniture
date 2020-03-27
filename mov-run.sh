@@ -25,7 +25,9 @@ else
                 clear
 
                 # -r for stretched over the entire screen
-                omxplayer -r /home/pi/src/vrniture-movies/$entry > /dev/null
+                omxplayer -r $entry > /dev/null
         done
 fi
 done
+
+# kick off another script now that we're done - breathing?
