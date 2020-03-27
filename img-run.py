@@ -8,8 +8,6 @@ print("img-run.py")
 print("----------")
 
 # stop any existing sketches or films
-os.system('killall omxplayer.bin')
-os.system('killall omxplayer')
 os.system('killall java')
 os.system('killall feh')
 
