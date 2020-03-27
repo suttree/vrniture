@@ -17,14 +17,15 @@ while true; do
         then
         sleep 1;
 else
-	for entry in `ls /home/pi/src/vrniture-movies | sort -R | head -20`
+	#for entry in `ls /home/pi/src/vrniture-movies | sort -R | head -20`
+	for entry in $VIDEOPATH/*
         do
 		echo $entry
 
                 clear
 
                 # -r for stretched over the entire screen
-                omxplayer -r $entry > /dev/null
+                omxplayer -r /home/pi/src/vrniture-movies/$entry > /dev/null
         done
 fi
 done
