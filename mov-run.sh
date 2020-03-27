@@ -17,9 +17,10 @@ while true; do
         then
         sleep 1;
 else
-        #for entry in $VIDEOPATH/*
-	for entry in `ls /home/pi/src/vrniture-movies | sort -R`
+	for entry in `ls /home/pi/src/vrniture-movies | sort -R | head -20`
         do
+		echo $entry
+
                 clear
 
                 # -r for stretched over the entire screen
