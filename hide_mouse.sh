@@ -1,1 +1,1 @@
-xdotool mousemove 800 800
+export DISPLAY=:0.0 && xdotool mousemove 800 800
