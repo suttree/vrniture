@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export TERM=ansi
+
 # From https://keytosmart.com/single-board-computers/looping-video-playlist-omxplayer-raspberry-pi/
 # set here the path to the directory containing your videos
 VIDEOPATH="/home/pi/src/vrniture-movies/" 
