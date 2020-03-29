@@ -3,8 +3,11 @@
 #!/bin/sh
 
 # get rid of the cursor so we don't see it when videos are running
-setterm -cursor off
+export TERM=xterm
+setterm -term xterm -cursor off
+xdotool mousemove 800 800
 DISPLAY=:0 xdotool mousemove 800 800
+export TERM=xterm && DISPLAY=:0 xdotool mousemove 800 800
 
 # set here the path to the directory containing your videos
 VIDEOPATH="/home/pi/src/vrniture-movies/" 
