@@ -17,3 +17,9 @@ sudo apt-get install mplayer
 mplayer -fs -shuffle -playlist playlist.txt
 
 
+To stop screensaver, and hide the mouse cursor:
+sudo vi /etc/lightdm/lightdm.conf
+
+# don't sleep the screen, and hide the cursor
+xserver-command=X -s 0 dpms
+xserver-command = X -nocursor
