@@ -36,4 +36,4 @@ fi
 done
 
 # kick off another script now that we're done - breathing?
-DISPLAY=:0 feh -Y -x -q -D 90 -B black --auto-rotate -F -Z -z -r ${IMAGEPATH}
+DISPLAY=:0 feh -Y -x -q -D 90 -B black --auto-rotate -F -Z -z --on-last-slide quit -r ${IMAGEPATH}
