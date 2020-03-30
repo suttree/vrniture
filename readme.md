@@ -23,3 +23,16 @@ sudo vi /etc/lightdm/lightdm.conf
 # don't sleep the screen, and hide the cursor
 xserver-command=X -s 0 dpms
 xserver-command = X -nocursor
+
+// Install feh to the latest version (the rpi default version doesn't include a 'quit on finish' feature)
+sudo apt-get --purge remove feh
+sudo apt-get install libcurl4-openssl-dev libx11-dev libxt-dev libimlib2-dev libxinerama-dev libjpeg-progs libpng-dev libexif-dev libexif12
+pwd
+mkdir Feh_Build
+cd Feh_Build
+wget https://feh.finalrewind.org/feh-3.3.tar.bz2
+tar jxvf feh-3.3.tar.bz2 
+cd feh-3.3/
+make -j4 curl=0 xinerama=0 verscmp=1
+sudo make install
+sudo ldconfig
