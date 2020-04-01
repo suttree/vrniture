@@ -3,16 +3,11 @@
 export TERM=ansi
 
 # From https://keytosmart.com/single-board-computers/looping-video-playlist-omxplayer-raspberry-pi/
-# set here the path to the directory containing your videos
 VIDEOPATH="/home/pi/src/vrniture-movies/" 
 IMAGEPATH="/home/pi/src/vrniture-pictures/"
-
-# you can normally leave this alone
 SERVICE="omxplayer"
 
 looping=true
-
-# now for our infinite loop!
 while [ "$looping" = true ]; do
         if ps ax | grep -v grep | grep $SERVICE > /dev/null
         then
@@ -32,6 +27,6 @@ else
 fi
 done
 
+DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/pictureframe/PictureFrame.py
+
 # kick off another script now that we're done - breathing?
-#DISPLAY=:0 /usr/local/bin/feh -Y -x -q -D 90 -B black -F -Z -z --on-last-slide quit -r ${IMAGEPATH}
-DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/PictureFrame.py
