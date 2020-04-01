@@ -168,9 +168,9 @@ DISPLAY = pi3d.Display.create(x=0, y=0, frames_per_second=FPS,
 CAMERA = pi3d.Camera(is_3d=False)
 print(DISPLAY.opengl.gl_id)
 
-#shader = pi3d.Shader("/home/pi/src/pi3d_demos/shaders/blend_new")
+shader = pi3d.Shader("/home/pi/src/vrniture/pictureframe/shaders/blend_new")
 slide = pi3d.Sprite(camera=CAMERA, w=DISPLAY.width, h=DISPLAY.height, z=5.0)
-#slide.set_shader(shader)
+slide.set_shader(shader)
 slide.unif[47] = EDGE_ALPHA
 
 
