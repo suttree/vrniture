@@ -1,20 +1,8 @@
 #!/usr/bin/python
 
 from __future__ import absolute_import, division, print_function, unicode_literals
-''' Simplified slideshow system using ImageSprite and without threading for background
-loading of images (so may show delay for v large images).
-    Also has a minimal use of PointText and TextBlock system with reduced  codepoints
-and reduced grid_size to give better resolution for large characters.
-    Also shows a simple use of MQTT to control the slideshow parameters remotely
-see http://pi3d.github.io/html/FAQ.html and https://www.thedigitalpictureframe.com/control-your-digital-picture-frame-with-home-assistents-wifi-presence-detection-and-mqtt/
-and https://www.cloudmqtt.com/plans.html
-
-USING exif info to rotate images
-
-    by default the global KEYBOARD is set False so the only way to stop the
-    probram is Alt-F4 or reboot. If you intend to test from command line set
-    KEYBOARD True. After that:
-    ESC to quit, 's' to reverse, any other key to move on one.
+''' Simplified slideshow system ufrom pi3d
+https://github.com/pi3d/pi3d_demos
 '''
 import os
 import time
@@ -23,7 +11,6 @@ import sys
 sys.path.insert(1, '/home/pi/pi3d')
 
 import pi3d
-
 from PIL import Image, ExifTags, ImageFilter # these are needed for getting exif data from images
 
 #####################################################
@@ -35,34 +22,29 @@ FIT = True
 EDGE_ALPHA = 0 # see background colour at edge. 1.0 would show reflection of image
 BACKGROUND = (0, 0, 0, 1.0)
 RESHUFFLE_NUM = 1 # times through before reshuffling
-FONT_FILE = '/home/pi/src/pi3d_demos/fonts/NotoSans-Regular.ttf'
-#FONT_FILE = '/home/patrick/python/pi3d_demos/fonts/NotoSans-Regular.ttf'
-CODEPOINTS = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ., _-/' # limit to 49 ie 7x7 grid_size
-USE_MQTT = False
 RECENT_N = 0 # shuffle the most recent ones to play before the rest
-SHOW_NAMES = False
 CHECK_DIR_TM = 60.0 # seconds to wait between checking if directory has changed
-#####################################################
 BLUR_EDGES = False # use blurred version of image to fill edges - will override FIT = False
 BLUR_AMOUNT = 12 # larger values than 12 will increase processing load quite a bit
 BLUR_ZOOM = 1.0 # must be >= 1.0 which expands the backgorund to just fill the space around the image
 KENBURNS = True # will set FIT->False and BLUR_EDGES->False
 KEYBOARD = False # set to False when running headless to avoid curses error. True for debugging
+
 #####################################################
 # these variables can be altered using MQTT messaging
 #####################################################
 time_delay = 60.0 # between slides
-fade_time = 2.0
+fade_time = 3.0
 shuffle = True # shuffle on reloading
 date_from = None
 date_to = None
 quit = False
 paused = False # NB must be set to True after the first iteration of the show!
+
 #####################################################
 # only alter below here if you're keen to experiment!
 #####################################################
 if KENBURNS:
-  kb_up = True
   FIT = False
   BLUR_EDGES = False
 if BLUR_ZOOM < 1.0:
@@ -70,6 +52,7 @@ if BLUR_ZOOM < 1.0:
 delta_alpha = 1.0 / (FPS * fade_time) # delta alpha
 last_file_change = 0.0 # holds last change time in directory structure
 next_check_tm = time.time() + CHECK_DIR_TM # check if new file or directory every hour
+
 #####################################################
 # some functions to tidy subsequent code
 #####################################################
@@ -114,11 +97,6 @@ def tex_load(fname, orientation, size=None):
     print('''Couldn't load file {} giving error: {}'''.format(fname, e))
     tex = None
   return tex
-
-def tidy_name(path_name):
-    name = os.path.basename(path_name).upper()
-    name = ''.join([c for c in name if c in CODEPOINTS])
-    return name
 
 def check_changes():
   global last_file_change
@@ -189,10 +167,10 @@ DISPLAY = pi3d.Display.create(x=0, y=0, frames_per_second=FPS,
               display_config=pi3d.DISPLAY_CONFIG_HIDE_CURSOR, background=BACKGROUND)
 CAMERA = pi3d.Camera(is_3d=False)
 print(DISPLAY.opengl.gl_id)
-shader = pi3d.Shader("/home/pi/src/pi3d_demos/shaders/blend_new")
-#shader = pi3d.Shader("/home/patrick/python/pi3d_demos/shaders/blend_new")
+
+#shader = pi3d.Shader("/home/pi/src/pi3d_demos/shaders/blend_new")
 slide = pi3d.Sprite(camera=CAMERA, w=DISPLAY.width, h=DISPLAY.height, z=5.0)
-slide.set_shader(shader)
+#slide.set_shader(shader)
 slide.unif[47] = EDGE_ALPHA
 
 
@@ -222,7 +200,7 @@ while DISPLAY.loop_running():
         sfg = tex_load(iFiles[pic_num][0], iFiles[pic_num][1], (DISPLAY.width, DISPLAY.height))
         next_pic_num += 1
         if next_pic_num >= nFi:
-          DISPLAY.destroy()
+          DISPLAY.destroy() # don't loop, exit one we've rendered all the pictures - DG
 
           #num_run_through += 1
           #if shuffle and num_run_through >= RESHUFFLE_NUM:
@@ -248,7 +226,6 @@ while DISPLAY.loop_running():
           xstep, ystep = (slide.unif[i] * 2.0 / time_delay for i in (48, 49))
           slide.unif[48] = 0.0
           slide.unif[49] = 0.0
-          kb_up = not kb_up
       # set the file name as the description
     if KENBURNS:
       t_factor = nexttm - tm
@@ -273,4 +250,3 @@ try:
 except Exception as e:
   print("this was going to fail if previous try failed!")
 DISPLAY.destroy()
-
