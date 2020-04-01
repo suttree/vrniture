@@ -23,7 +23,7 @@ EDGE_ALPHA = 0 # see background colour at edge. 1.0 would show reflection of ima
 BACKGROUND = (0, 0, 0, 1.0)
 RESHUFFLE_NUM = 1 # times through before reshuffling
 RECENT_N = 0 # shuffle the most recent ones to play before the rest
-CHECK_DIR_TM = 60.0 # seconds to wait between checking if directory has changed
+CHECK_DIR_TM = 86400 # seconds to wait between checking if directory has changed
 BLUR_EDGES = False # use blurred version of image to fill edges - will override FIT = False
 BLUR_AMOUNT = 12 # larger values than 12 will increase processing load quite a bit
 BLUR_ZOOM = 1.0 # must be >= 1.0 which expands the backgorund to just fill the space around the image
@@ -33,8 +33,8 @@ KEYBOARD = False # set to False when running headless to avoid curses error. Tru
 #####################################################
 # these variables can be altered using MQTT messaging
 #####################################################
-time_delay = 60.0 # between slides
-fade_time = 3.0
+time_delay = 66.0 # between slides
+fade_time = 6.0
 shuffle = True # shuffle on reloading
 date_from = None
 date_to = None
@@ -47,8 +47,10 @@ paused = False # NB must be set to True after the first iteration of the show!
 if KENBURNS:
   FIT = False
   BLUR_EDGES = False
+
 if BLUR_ZOOM < 1.0:
   BLUR_ZOOM = 1.0
+
 delta_alpha = 1.0 / (FPS * fade_time) # delta alpha
 last_file_change = 0.0 # holds last change time in directory structure
 next_check_tm = time.time() + CHECK_DIR_TM # check if new file or directory every hour
@@ -202,31 +204,29 @@ while DISPLAY.loop_running():
         if next_pic_num >= nFi:
           DISPLAY.destroy() # don't loop, exit one we've rendered all the pictures - DG
 
-          #num_run_through += 1
-          #if shuffle and num_run_through >= RESHUFFLE_NUM:
-          #  num_run_through = 0
-          #  random.shuffle(iFiles)
-          #next_pic_num = 0
       if sbg is None: # first time through
         sbg = sfg
       slide.set_textures([sfg, sbg])
       slide.unif[45:47] = slide.unif[42:44] # transfer front width and height factors to back
       slide.unif[51:53] = slide.unif[48:50] # transfer front width and height offsets
+
       wh_rat = (DISPLAY.width * sfg.iy) / (DISPLAY.height * sfg.ix)
       if (wh_rat > 1.0 and FIT) or (wh_rat <= 1.0 and not FIT):
         sz1, sz2, os1, os2 = 42, 43, 48, 49
       else:
         sz1, sz2, os1, os2 = 43, 42, 49, 48
         wh_rat = 1.0 / wh_rat
+
       slide.unif[sz1] = wh_rat
       slide.unif[sz2] = 1.0
       slide.unif[os1] = (wh_rat - 1.0) * 0.5
       slide.unif[os2] = 0.0
+
       if KENBURNS:
           xstep, ystep = (slide.unif[i] * 2.0 / time_delay for i in (48, 49))
           slide.unif[48] = 0.0
           slide.unif[49] = 0.0
-      # set the file name as the description
+
     if KENBURNS:
       t_factor = nexttm - tm
       slide.unif[48] = xstep * t_factor
