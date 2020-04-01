@@ -33,4 +33,5 @@ fi
 done
 
 # kick off another script now that we're done - breathing?
-DISPLAY=:0 /usr/local/bin/feh -Y -x -q -D 90 -B black -F -Z -z --on-last-slide quit -r ${IMAGEPATH}
+#DISPLAY=:0 /usr/local/bin/feh -Y -x -q -D 90 -B black -F -Z -z --on-last-slide quit -r ${IMAGEPATH}
+DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/PictureFrame.py
