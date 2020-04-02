@@ -26,7 +26,3 @@ else
 	looping=false
 fi
 done
-
-DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/pictureframe/PictureFrame.py
-
-# kick off another script now that we're done - breathing?
