@@ -7,6 +7,6 @@ print("mov-run.py")
 print("----------")
 
 # stop any existing sketches or films
-os.system('killall python3')
+# os.system('killall python3')
 
 os.system('/home/pi/src/vrniture/./mov-run.sh > /tmp/cron.log')

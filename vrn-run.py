@@ -42,7 +42,7 @@ def main(argv):
 	import datetime
 	if (_startup or datetime.datetime.now().hour >= 22):
 	    # stop any existing sketches or films
-	    os.system('killall python3')
+	    # os.system('killall python3')
 
 	    os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1')
     else:
