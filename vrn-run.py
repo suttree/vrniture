@@ -44,8 +44,6 @@ def main(argv):
 	    # stop any existing sketches or films
 	    # os.system('killall python3')
 
-	    os.system('killall java')
-
 	    os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1')
     else:
 	print 'Pass'
