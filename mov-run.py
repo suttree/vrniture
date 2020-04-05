@@ -9,4 +9,6 @@ print("----------")
 # stop any existing sketches or films
 # os.system('killall python3')
 
+os.system('killall omxplayer.bin')
+
 os.system('/home/pi/src/vrniture/./mov-run.sh > /tmp/cron.log')
