@@ -13,10 +13,10 @@ while [ "$looping" = true ]; do
         then
         sleep 1;
 else
-	#for entry in `ls /home/pi/src/vrniture-movies | sort -R | head -20`
-	for entry in $VIDEOPATH/*
+	for entry in `ls /home/pi/src/vrniture-movies/* | sort -R | head -20`
+	#for entry in $VIDEOPATH/*
         do
-		echo $entry
+                echo $entry
 
                 clear
 
