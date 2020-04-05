@@ -33,8 +33,8 @@ KEYBOARD = False # set to False when running headless to avoid curses error. Tru
 #####################################################
 # these variables can be altered using MQTT messaging
 #####################################################
-time_delay = 66.0 # between slides
-fade_time = 6.0
+time_delay = 180 # between slides
+fade_time = 20.0
 shuffle = True # shuffle on reloading
 date_from = None
 date_to = None
@@ -180,6 +180,11 @@ slide.unif[47] = EDGE_ALPHA
 nexttm = 0.0
 iFiles, nFi = get_files(date_from, date_to)
 random.shuffle(iFiles)
+
+# now just limit the files - DG
+iFiles = iFiles[:5]
+nFi = len(iFiles)
+
 next_pic_num = 0
 sfg = None # slide for background
 sbg = None # slide for foreground
