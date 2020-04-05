@@ -21,7 +21,7 @@ else
                 clear
 
                 # -r for stretched over the entire screen
-                omxplayer -r $entry > /dev/null
+                omxplayer -r $entry > /tmp/cron.log
         done
 	looping=false
 fi
