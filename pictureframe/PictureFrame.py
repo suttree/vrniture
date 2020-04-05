@@ -34,7 +34,7 @@ KEYBOARD = False # set to False when running headless to avoid curses error. Tru
 # these variables can be altered using MQTT messaging
 #####################################################
 time_delay = 180 # between slides
-fade_time = 20.0
+fade_time = 30.0
 shuffle = True # shuffle on reloading
 date_from = None
 date_to = None
@@ -118,7 +118,7 @@ def get_files(dt_from=None, dt_to=None):
     dt_to = time.mktime(dt_to + (0, 0, 0, 0, 0, 0))
   global shuffle, PIC_DIR, EXIF_DATID, last_file_change
   file_list = []
-  extensions = ['.png','.jpg','.jpeg'] # can add to these
+  extensions = ['.png','.JPG', '.jpg','.jpeg'] # can add to these
   for root, _dirnames, filenames in os.walk(PIC_DIR):
       mod_tm = os.stat(root).st_mtime # time of alteration in a directory
       if mod_tm > last_file_change:
