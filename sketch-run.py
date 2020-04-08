@@ -51,9 +51,7 @@ def main():
 
 
     # Stop any existing sketches or films
-    os.system('killall omxplayer')
     os.system('killall java')
-    os.system('killall feh')
 
     os.system(sketch)    
 

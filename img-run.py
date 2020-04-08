@@ -8,10 +8,7 @@ print("img-run.py")
 print("----------")
 
 # stop any existing sketches or films
-os.system('killall omxplayer')
-os.system('killall java')
-os.system('killall feh')
+#os.system('killall python3')
+os.system('killall PictureFrame.py')
 
-path = "/home/pi/src/vrniture-pictures"
-
-os.system( 'DISPLAY=:0 feh -Y -x -q -D 10 -B black --auto-rotate -F -Z -z -r ' + path )
+os.system( "DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/pictureframe/PictureFrame.py" )
