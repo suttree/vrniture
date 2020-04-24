@@ -34,19 +34,17 @@ def main(argv):
 	'sketch-run.py',
     ]
 
-    # chance cubes!
-    if (_startup or random.choice([1,2,3,4,5,6]) <= 3):
-	print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
-	os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
-
-	import datetime
-	if (_startup or datetime.datetime.now().hour >= 22):
-	    # stop any existing sketches or films
-	    # os.system('killall python3')
-
-	    os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1')
+    import datetime
+    if (_startup or datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
+        os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1')
     else:
-	print 'Pass'
+        # chance cubes!
+        if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
+            print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
+            os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
+
+        else:
+            print 'Pass'
 
 if __name__ == "__main__":
     main(sys.argv[1:]) 
