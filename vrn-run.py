@@ -36,12 +36,12 @@ def main(argv):
 
     import datetime
     if (_startup or datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
-        os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1')
+        os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
-            print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
-            os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) + ' >> /tmp/cron.log 2>&1' )
+            print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
+            os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
 
         else:
             print 'Pass'
