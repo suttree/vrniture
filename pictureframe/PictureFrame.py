@@ -27,14 +27,17 @@ CHECK_DIR_TM = 86400 # seconds to wait between checking if directory has changed
 BLUR_EDGES = False # use blurred version of image to fill edges - will override FIT = False
 BLUR_AMOUNT = 12 # larger values than 12 will increase processing load quite a bit
 BLUR_ZOOM = 1.0 # must be >= 1.0 which expands the backgorund to just fill the space around the image
-KENBURNS = True # will set FIT->False and BLUR_EDGES->False
+
+# Random ken burns or not - DG 25/4/20
+KENBURNS = bool(random.getrandbits(1)) # will set FIT->False and BLUR_EDGES->False
+
 KEYBOARD = False # set to False when running headless to avoid curses error. True for debugging
 
 #####################################################
 # these variables can be altered using MQTT messaging
 #####################################################
-time_delay = 180 # between slides
-fade_time = 30.0
+time_delay = 120 # between slides
+fade_time = 5.0
 shuffle = True # shuffle on reloading
 date_from = None
 date_to = None
@@ -182,7 +185,7 @@ iFiles, nFi = get_files(date_from, date_to)
 random.shuffle(iFiles)
 
 # now just limit the files - DG
-iFiles = iFiles[:5]
+iFiles = iFiles[:25]
 nFi = len(iFiles)
 
 next_pic_num = 0

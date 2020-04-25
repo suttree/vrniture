@@ -11,14 +11,27 @@ print("----------")
 
 def main():
     if shutdown_at_nighttime():
+        print("Shut down at night time")
         sys.exit()
 
-    import random
 
-    # We run via cron every 24 minutes, so this means we only change infrequently
-    if random.randint(0,19) > 17:
-        print("No change")
-        sys.exit()
+    # Check if any sketches are running
+    import subprocess
+
+    proc1 = subprocess.Popen(['ps', 'cax'], stdout=subprocess.PIPE)
+    proc2 = subprocess.Popen(['grep', 'processing-java'], stdin=proc1.stdout,
+                              stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+    proc1.stdout.close() # Allow proc1 to receive a SIGPIPE if proc2 exits.
+    out, err = proc2.communicate()
+
+    # if we are running, then make it probable that we keep running as is
+    # otherwise, let's fire up a new skethc - DG 25/4/20
+    if len(out.decode()) > 0:
+        import random
+        if random.randint(0,19) > 17:
+            print("No change")
+            sys.exit()
 
     import os
 
@@ -52,16 +65,20 @@ def main():
 
     # Stop any existing sketches or films
     os.system('killall java')
+    os.system('killall omxplayer')
+    os.system('killall omxplayer.bin')
+    os.system('killall java')
+    os.system('killall PictureFrame.py')
 
     os.system(sketch)    
 
 def get_part_of_day(hour):
     return (
-        "morning" if 5 <= hour <= 11
+        "morning" if 7 <= hour <= 11
     else
         "afternoon" if 12 <= hour <= 17
     else
-        "evening" if 18 <= hour <= 22
+        "evening" if 18 <= hour <= 21
     else
         "night"
     )

@@ -9,5 +9,6 @@ print("----------")
 os.system('killall omxplayer')
 os.system('killall omxplayer.bin')
 os.system('killall java')
+os.system('killall PictureFrame.py')
 
-os.system('/home/pi/src/vrniture/./mov-run.sh > /tmp/cron.log')
+os.system('/home/pi/src/vrniture/./mov-run.sh')

@@ -23,7 +23,7 @@
 #@reboot /home/pi/src/vrniture/./mov-run.sh >> /tmp/cron.log 2>&1
 
 @reboot /usr/bin/env python /home/pi/src/vrniture/vrn-run.py -s >> /tmp/cron.log 2>&1
-*/18 07-21 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
+*/28 07-21 * * * /usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1
 14 22 * * * DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run >> /tmp/cron.log 2>&1
 
 * */30 * * * cd /home/pi/src/vrniture && git pull >> /tmp/cron.log 2>&1

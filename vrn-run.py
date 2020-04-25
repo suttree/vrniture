@@ -29,9 +29,9 @@ def main(argv):
 
 
     media = [
-	'img-run.py',
-	'mov-run.py',
-	'sketch-run.py',
+      'img-run.py',
+      'mov-run.py',
+      'sketch-run.py',
     ]
 
     import datetime
