@@ -12,5 +12,6 @@ os.system('killall java')
 os.system('killall PictureFrame.py')
 
 os.system('/home/pi/src/vrniture/./mov-run.sh')
+
 print("mov done")
 print("--------")

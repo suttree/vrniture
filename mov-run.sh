@@ -38,8 +38,6 @@ while [ "$looping" = true ]; do
 		do
 			echo $entry
 
-			clear
-
 			# -r for stretched over the entire screen
 			omxplayer -r $entry
 		done
