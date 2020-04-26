@@ -16,6 +16,7 @@ def main():
 
 
     # Check if any sketches are running
+    import random
     import subprocess
 
     proc1 = subprocess.Popen(['ps', 'cax'], stdout=subprocess.PIPE)
@@ -28,7 +29,6 @@ def main():
     # if we are running, then make it probable that we keep running as is
     # otherwise, let's fire up a new skethc - DG 25/4/20
     if len(out.decode()) > 0:
-        import random
         if random.randint(0,19) > 17:
             print("No change")
             sys.exit()

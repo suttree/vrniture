@@ -9,31 +9,41 @@ SERVICE="omxplayer"
 SKETCH_SERVICE="processing"
 IMG_SERVICE="pictureframe"
 
+echo '-'
+
 looping=true
 while [ "$looping" = true ]; do
-        if ps ax | grep -v grep | grep $SERVICE > /dev/null
-        then
-        sleep 1;
-
         if ps ax | grep -v grep | grep $SKETCH_SERVICE > /dev/null
         then
-        sleep 10;
+		echo '2'
+		killall processing-java
+		sleep 10;
+		continue;
+	fi
 
         if ps ax | grep -v grep | grep $IMG_SERVICE > /dev/null
         then
-        sleep 10;
+		echo '3'
+		killall python3
+		sleep 10;
+		continue;
+	fi
 
-else
-	for entry in `ls /home/pi/src/vrniture-movies/* | sort -R | head -30`
-	#for entry in $VIDEOPATH/*
-        do
-                echo $entry
+	echo '0'
+        if ps ax | grep -v grep | grep $SERVICE > /dev/null
+        then
+		echo '1'
+		sleep 1;
+	else
+		for entry in `ls /home/pi/src/vrniture-movies/* | sort -R | head -30`
+		#for entry in $VIDEOPATH/*
+		do
+			echo $entry
 
-                clear
+			# -r for stretched over the entire screen
+			omxplayer -r $entry
+		done
+		looping=false
+	fi
 
-                # -r for stretched over the entire screen
-                omxplayer -r $entry
-        done
-	looping=false
-fi
 done
