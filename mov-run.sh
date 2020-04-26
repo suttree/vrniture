@@ -16,6 +16,7 @@ while [ "$looping" = true ]; do
         if ps ax | grep -v grep | grep $SKETCH_SERVICE > /dev/null
         then
 		echo '2'
+		killall processing-java
 		sleep 10;
 		continue;
 	fi
@@ -23,6 +24,7 @@ while [ "$looping" = true ]; do
         if ps ax | grep -v grep | grep $IMG_SERVICE > /dev/null
         then
 		echo '3'
+		killall python3
 		sleep 10;
 		continue;
 	fi
