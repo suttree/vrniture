@@ -185,7 +185,7 @@ iFiles, nFi = get_files(date_from, date_to)
 random.shuffle(iFiles)
 
 # now just limit the files - DG
-iFiles = iFiles[:25]
+iFiles = iFiles[:50]
 nFi = len(iFiles)
 
 next_pic_num = 0
@@ -258,3 +258,7 @@ try:
 except Exception as e:
   print("this was going to fail if previous try failed!")
 DISPLAY.destroy()
+
+# Run the main vrnjr script if we're done
+import os
+os.system("/usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1")

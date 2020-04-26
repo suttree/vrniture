@@ -14,4 +14,6 @@ os.system('killall PictureFrame.py')
 os.system('/home/pi/src/vrniture/./mov-run.sh')
 
 print("mov done")
+print("running vrn-run now...")
+os.system("/usr/bin/env python /home/pi/src/vrniture/vrn-run.py")
 print("--------")
