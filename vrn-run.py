@@ -32,19 +32,28 @@ def main(argv):
       'img-run.py',
       'mov-run.py',
       'sketch-run.py',
+      'sketch-run.py', # stack the deck
+      'sketch-run.py', # stack the deck again
     ]
 
     import datetime
     if (datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
         print('Running the breathing sketch overnight...')
+        clean_up()
         os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
+            clean_up()
             print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
             os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
         else:
             print 'Pass'
+
+def clean_up():
+    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
 
 if __name__ == "__main__":
     main(sys.argv[1:]) 
