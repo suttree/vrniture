@@ -9,7 +9,7 @@ print("----------")
 
 # stop any existing sketches or films
 os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
-os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
+os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
 os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
 
 os.system( "DISPLAY=:0 /usr/bin/python3 /home/pi/src/vrniture/pictureframe/PictureFrame.py" )
