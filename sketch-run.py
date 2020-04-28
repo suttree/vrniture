@@ -44,7 +44,6 @@ def main():
         'special_branch_spotlights',
         'floyd_bigger',
         'special_branch_layered_squares',
-        'shapes_grid',
         'easel_strokes',
         'led',
         'spots',
