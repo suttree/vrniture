@@ -35,7 +35,7 @@ while [ "$looping" = true ]; do
 		echo '1'
 		sleep 1;
 	else
-		for entry in `ls /home/pi/src/vrniture-movies/* | sort -R | head -30`
+		for entry in `ls /home/pi/src/vrniture-movies/* | sort -R | head -50`
 		#for entry in $VIDEOPATH/*
 		do
 			echo $entry
