@@ -65,7 +65,7 @@ def main():
     print('-----')
 
     #os.system(sketch)
-    subprocess.Popen([ 'DISPLAY=:0 /usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(sketch) ])
+    subprocess.Popen([ 'DISPLAY=:0', '/usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(sketch) ])
 
 def get_part_of_day(hour):
     return (

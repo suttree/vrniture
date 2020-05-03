@@ -41,14 +41,14 @@ def main(argv):
         print('Running the breathing sketch overnight...')
         clean_up()
         #os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
-        subprocess.Popen(['DISPLAY=:0 /usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/breathing/', '--run' ])
+        subprocess.Popen(['/usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/breathing/', '--run' ])
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
             clean_up()
             print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
             #os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
-            subprocess.Popen([ '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) ])
+            subprocess.Popen([ '/usr/bin/env', 'python3', '/home/pi/src/vrniture/' + random.choice(media) ])
         else:
             print 'Pass'
     sys.exit(0)
