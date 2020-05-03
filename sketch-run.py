@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-import sys, os
+import sys, os, subprocess, random
 from datetime import datetime
 
 # hide the cursor
@@ -16,9 +16,6 @@ def main():
 
 
     # Check if any sketches are running
-    import random
-    import subprocess
-
     proc1 = subprocess.Popen(['ps', 'cax'], stdout=subprocess.PIPE)
     proc2 = subprocess.Popen(['grep', 'processing-java'], stdin=proc1.stdout,
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -27,7 +24,7 @@ def main():
     out, err = proc2.communicate()
 
     # if we are running, then make it probable that we keep running as is
-    # otherwise, let's fire up a new skethc - DG 25/4/20
+    # otherwise, let's fire up a new sketch - DG 25/4/20
     if len(out.decode()) > 0:
         if random.randint(0,19) > 17:
             print("No change")
@@ -45,7 +42,6 @@ def main():
         'floyd_bigger',
         'special_branch_layered_squares',
         'easel_strokes',
-        'led',
         'spots',
         'plain_waves',
         'special_branch_shoreline',
@@ -54,13 +50,6 @@ def main():
         'special_branch_natural_squares',
     ]
 
-    sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
-
-    now = datetime.now()
-    print(now.strftime("%Y-%m-%d %H:%M:%S"))
-    print(sketch)
-    print('-----')
-
 
     # Stop any existing sketches or films
     os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
@@ -68,7 +57,15 @@ def main():
     os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
 
-    os.system(sketch)    
+    sketch = random.choice(sketches)
+
+    now = datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+    print(sketch)
+    print('-----')
+
+    #os.system(sketch)
+    subprocess.Popen([ 'DISPLAY=:0 /usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(sketch) ])
 
 def get_part_of_day(hour):
     return (

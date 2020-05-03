@@ -1,4 +1,4 @@
-import os, random, getopt, sys
+import os, random, getopt, sys, subprocess
 
 def usage():
     print "vrn-run.py -s (startup) -h (help)"
@@ -40,15 +40,18 @@ def main(argv):
     if (datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
         print('Running the breathing sketch overnight...')
         clean_up()
-        os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
+        #os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
+        subprocess.Popen(['DISPLAY=:0 /usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/breathing/', '--run' ])
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
             clean_up()
             print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
-            os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
+            #os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
+            subprocess.Popen([ '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) ])
         else:
             print 'Pass'
+    sys.exit(0)
 
 def clean_up():
     os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
