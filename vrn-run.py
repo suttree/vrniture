@@ -54,10 +54,11 @@ def main(argv):
     sys.exit(0)
 
 def clean_up():
-    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep mov-run.sh | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
 
 if __name__ == "__main__":
     main(sys.argv[1:]) 

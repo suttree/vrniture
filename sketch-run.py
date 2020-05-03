@@ -52,10 +52,11 @@ def main():
 
 
     # Stop any existing sketches or films
-    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep mov-run.sh | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
+    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
 
     sketch = random.choice(sketches)
 
@@ -64,8 +65,11 @@ def main():
     print(sketch)
     print('-----')
 
-    #os.system(sketch)
-    subprocess.Popen([ '/usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(sketch) ])
+    # os.system(sketch)
+
+    env = os.environ.copy()
+    env['DISPLAY'] = ':0.0'
+    subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/{0}/'.format(sketch),  '--run'], env=env)
 
 def get_part_of_day(hour):
     return (
