@@ -41,7 +41,10 @@ def main(argv):
         print('Running the breathing sketch overnight...')
         clean_up()
         #os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
-        subprocess.Popen(['/usr/local/bin/processing-java', '--sketch="/home/pi/src/vrniture/processing/breathing/', '--run' ])
+
+        env = os.environ.copy()
+        env['DISPLAY'] = ':0.0'
+        subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/breathing/',  '--run'], env=env)
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):

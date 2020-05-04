@@ -260,5 +260,6 @@ except Exception as e:
 DISPLAY.destroy()
 
 # Run the main vrnjr script if we're done
-import os
-os.system("/usr/bin/env python /home/pi/src/vrniture/vrn-run.py >> /tmp/cron.log 2>&1")
+import os, subprocess
+subprocess.Popen([ '/usr/bin/env', 'python3', '/home/pi/src/vrniture/vrn-run.py' ])
+sys.exit(0)
