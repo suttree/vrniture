@@ -36,11 +36,11 @@ def main(argv):
       'sketch-run.py', # stack the deck again
     ]
 
+    clean_up()
+
     import datetime
     if (datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
         print('Running the breathing sketch overnight...')
-        clean_up()
-        #os.system('DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run')
 
         env = os.environ.copy()
         env['DISPLAY'] = ':0.0'
@@ -48,12 +48,11 @@ def main(argv):
     else:
         # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
-            clean_up()
             print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
-            #os.system( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
             subprocess.Popen([ '/usr/bin/env', 'python3', '/home/pi/src/vrniture/' + random.choice(media) ])
         else:
             print 'Pass'
+
     sys.exit(0)
 
 def clean_up():

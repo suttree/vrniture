@@ -70,6 +70,7 @@ def main():
     env = os.environ.copy()
     env['DISPLAY'] = ':0.0'
     subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/{0}/'.format(sketch),  '--run'], env=env)
+    sys.exit(0)
 
 def get_part_of_day(hour):
     return (
