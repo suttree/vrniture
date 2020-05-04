@@ -10,22 +10,22 @@ print("sketch-run.py")
 print("----------")
 
 def main():
-    if shutdown_at_nighttime():
-		# Cron should run the breathing script instead of us
-        print("Shut down at night time")
-        sys.exit()
+   if shutdown_at_nighttime():
+       # Cron should run the breathing script instead of us
+       print("Shut down at night time")
+       sys.exit()
 
-    import random
+   import random
 
-    # We run via cron every 24 minutes, so this means we only change infrequently
-    if random.randint(0,19) > 17:
-        print("No change")
-        sys.exit()
+   # We run via cron every 24 minutes, so this means we only change infrequently
+   if random.randint(0,19) > 17:
+       print("No change")
+       sys.exit()
 
-    import os
+   import os
 
-    # TODO: select scripts based on this? or dim screen...
-    day_part = get_part_of_day(datetime.now().hour)
+   # TODO: select scripts based on this? or dim screen...
+   day_part = get_part_of_day(datetime.now().hour)
 
    sketches = [
         'colour_wipes',
@@ -43,12 +43,12 @@ def main():
     ]
 
     #sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
-	#
+    #
     #print(sketch)
     #os.system('killall java')
-    #os.system(sketch)    
-	
-   	# Stop any existing sketches or films
+    #os.system(sketch)
+
+    # Stop any existing sketches or films
     os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
     os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
 
@@ -63,7 +63,6 @@ def main():
     env['DISPLAY'] = ':0.0'
     subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/{0}/'.format(sketch),  '--run'], env=env)
     sys.exit(0)
-
 
 def get_part_of_day(hour):
     return (
