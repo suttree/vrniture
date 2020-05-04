@@ -185,7 +185,7 @@ iFiles, nFi = get_files(date_from, date_to)
 random.shuffle(iFiles)
 
 # now just limit the files - DG
-iFiles = iFiles[:50]
+#iFiles = iFiles[:50]
 nFi = len(iFiles)
 
 next_pic_num = 0
