@@ -1,4 +1,5 @@
-import os, random, getopt, sys, subprocess
+import os, random, getopt, sys, random
+from datetime import datetime
 
 def usage():
     print "vrn-run.py -s (startup) -h (help)"
@@ -24,43 +25,52 @@ def main(argv):
     # hide the cursor
     os.system('DISPLAY=:0 xdotool mousemove 800 800')
 
-    print("vrn-run.py")
-    print("----------")
+    # We run via cron every 24 minutes, so this means we only change infrequently
+    if random.randint(0,19) > 17:
+        print("No change")
+        sys.exit(0)
 
+    now = datetime.now()
+    print(now.strftime("%Y-%m-%d %H:%M:%S"))
 
-    media = [
-      'img-run.py',
-      'mov-run.py',
-      'sketch-run.py',
-      'sketch-run.py', # stack the deck
-      'sketch-run.py', # stack the deck again
-    ]
-
-    clean_up()
-
-    import datetime
-    if (datetime.datetime.now().hour >= 22 or datetime.datetime.now().hour <= 8):
+    # Breathing at night or a random sketch
+    if (datetime.now().hour >= 22 or datetime.now().hour <= 8):
         print('Running the breathing sketch overnight...')
+        
+        sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/breathing/" --run'
+        
+        print(sketch)
+        print('-----')
 
-        env = os.environ.copy()
-        env['DISPLAY'] = ':0.0'
-        subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/breathing/',  '--run'], env=env)
+        os.system('killall java')
+        os.system(sketch)
     else:
-        # chance cubes!
         if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
-            print( '/usr/bin/env python3 /home/pi/src/vrniture/' + random.choice(media) )
-            subprocess.Popen([ '/usr/bin/env', 'python3', '/home/pi/src/vrniture/' + random.choice(media) ])
+            sketches = [
+                'colour_wipes',
+                'purple_squares',
+                'special_branch_spotlights',
+                'floyd_bigger',
+                'special_branch_layered_squares',
+                'easel_strokes',
+                'spots',
+                'plain_waves',
+                'special_branch_shoreline',
+                'coloured_squares',
+                'mcferrin_circles',
+                'special_branch_natural_squares',
+            ]
+
+            sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
+
+            print(sketch)
+            print('-----')
+
+            os.system('killall java')
+            os.system(sketch)
         else:
             print 'Pass'
 
-    sys.exit(0)
-
-def clean_up():
-    os.system("kill -9 `ps aux | grep mov-run.sh | grep -v grep | awk '{print $2}'`")
-    os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
-    os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
-    os.system("kill -9 `ps aux | grep PictureFrame | grep -v grep | awk '{print $2}'`")
-    os.system("kill -9 `ps aux | grep omxplayer | grep -v grep | awk '{print $2}'`")
 
 if __name__ == "__main__":
     main(sys.argv[1:]) 
