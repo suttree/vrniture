@@ -13,14 +13,14 @@ def main():
     if shutdown_at_nighttime():
         # Cron should run the breathing script instead of us
         print("Shut down at night time")
-        sys.exit()
+        sys.exit(0)
 
     import random
 
     # We run via cron every 24 minutes, so this means we only change infrequently
     if random.randint(0,19) > 17:
         print("No change")
-        sys.exit()
+        sys.exit(0)
 
     import os
 
@@ -48,20 +48,25 @@ def main():
     #os.system(sketch)
 
     # Stop any existing sketches or films
-    os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
-    os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
+    #os.system('killall java')
+    #os.system("kill -9 `ps aux | grep java | grep -v grep | awk '{print $2}'`")
+    #os.system("kill -9 `ps aux | grep processing | grep -v grep | awk '{print $2}'`")
 
-    sketch = random.choice(sketches)
+    sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
 
     now = datetime.now()
     print(now.strftime("%Y-%m-%d %H:%M:%S"))
     print(sketch)
     print('-----')
 
-    env = os.environ.copy()
-    env['DISPLAY'] = ':0.0'
-    subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/{0}/'.format(sketch),  '--run'], env=env)
-    sys.exit(0)
+    os.system('killall java')
+    os.system(sketch)
+
+    #sketch = random.choice(sketches)
+    #env = os.environ.copy()
+    #env['DISPLAY'] = ':0.0'
+    #subprocess.Popen(['/usr/local/bin/processing-java', '--sketch=/home/pi/src/vrniture/processing/{0}/'.format(sketch),  '--run'], env=env)
+    #sys.exit(0)
 
 def get_part_of_day(hour):
     return (
