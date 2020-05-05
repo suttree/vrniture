@@ -43,7 +43,6 @@ def main(argv):
         print('-----')
 
         os.system('killall java')
-        os.system('killall processing')
         os.system(sketch)
     else:
         print("Running a random daily sketch")
@@ -63,13 +62,12 @@ def main(argv):
             'special_branch_natural_squares',
         ]
 
-        sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
+        sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run >> /tmp/cron.log 2>&1'.format(random.choice(sketches))
 
         print(sketch)
         print('-----')
 
         os.system('killall java')
-        os.system('killall processing')
         os.system(sketch)
         #else:
         #    print 'Pass'
