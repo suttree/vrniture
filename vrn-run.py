@@ -26,9 +26,9 @@ def main(argv):
     os.system('DISPLAY=:0 xdotool mousemove 800 800')
 
     # We run via cron every 24 minutes, so this means we only change infrequently
-    if random.randint(0,19) > 17:
-        print("No change")
-        sys.exit(0)
+    #if random.randint(0,19) > 17:
+    #    print("No change")
+    #    sys.exit(0)
 
     now = datetime.now()
     print(now.strftime("%Y-%m-%d %H:%M:%S"))
@@ -43,33 +43,36 @@ def main(argv):
         print('-----')
 
         os.system('killall java')
+        os.system('killall processing')
         os.system(sketch)
     else:
-        if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
-            sketches = [
-                'colour_wipes',
-                'purple_squares',
-                'special_branch_spotlights',
-                'floyd_bigger',
-                'special_branch_layered_squares',
-                'easel_strokes',
-                'spots',
-                'plain_waves',
-                'special_branch_shoreline',
-                'coloured_squares',
-                'mcferrin_circles',
-                'special_branch_natural_squares',
-            ]
+        print("Running a random daily sketch")
+        #if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
+        sketches = [
+            'colour_wipes',
+            'purple_squares',
+            'special_branch_spotlights',
+            'floyd_bigger',
+            'special_branch_layered_squares',
+            'easel_strokes',
+            'spots',
+            'plain_waves',
+            'special_branch_shoreline',
+            'coloured_squares',
+            'mcferrin_circles',
+            'special_branch_natural_squares',
+        ]
 
-            sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
+        sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run'.format(random.choice(sketches))
 
-            print(sketch)
-            print('-----')
+        print(sketch)
+        print('-----')
 
-            os.system('killall java')
-            os.system(sketch)
-        else:
-            print 'Pass'
+        os.system('killall java')
+        os.system('killall processing')
+        os.system(sketch)
+        #else:
+        #    print 'Pass'
 
 
 if __name__ == "__main__":
