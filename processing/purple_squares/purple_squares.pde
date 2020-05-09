@@ -96,7 +96,7 @@ void draw() {
     shapeWidth = shapeWidth + 20;
     shapeHeight = shapeHeight + 20;
     dist = dist + 15;
-    t = t + 0.0025;
+    t = t + 0.035;
     startx = startx - 20;
     starty = starty - 20;
   }
