@@ -10,6 +10,8 @@ ColorHarmony colorHarmony = new ColorHarmony(this);
 color[] colors = colorHarmony.GetRandomPalette();
 color bg = colors[0];
 
+float _style = random(1, 5);
+
 void setup() {
   //size(800, 800);
   fullScreen();
@@ -22,12 +24,12 @@ void setup() {
     waves[i] = new Wave(c, 0 - (i * 120), random(10), 15, random(1.5));
   }
   
-  frameRate(12);
+  frameRate(4);
 }
 
 void draw() {
   noStroke();
-  fill(bg, 50);
+  fill(bg, 60);
   rect(0, 0, width, height);
   
   for(int i = 0; i < waves.length; i++) {
@@ -44,6 +46,8 @@ class Wave {
   float inc = 0;
   float x = 0;
   float xoff = random(3.75);
+  float _rw = random(width);
+  float _rh = random(height);
   
   Wave(color _c, int _x, float _mag, float _gap, float _inc) {
     c = _c;
@@ -51,9 +55,26 @@ class Wave {
     mag = _mag;
     gap = _gap;
     inc = _inc;
+    
+    if (_style == 1) {
+      // set one random vertex only
+    } else if (_style == 2) {
+      // reset random vertex on instantion
+      _rw = random(width);
+      _rh = random(height);
+    }else if (_style == 3) {
+      // we'll randomise on each nth render
+    } else if (_style == 4) {
+      // don't use the extra vertex
+    }
   }
   
   void update() {
+    if (_style == 3 && frameCount % 12 == 0) {
+      _rw = random(width);
+      _rh = random(height);
+    }
+    
     x = x + inc;
     if (x >= (width + gap)) { 
       x = 0 - gap * 3;
@@ -71,6 +92,10 @@ class Wave {
       vertex(x + (noise(xoff) * 100), i);
     }
 
+    if (_style != 4) {
+      vertex(_rw, _rh);
+    }
+    
     vertex(width + 100, x + 10);
     vertex(width + 10, -10);
 
