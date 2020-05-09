@@ -49,7 +49,6 @@ def main(argv):
         #if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
         sketches = [
             'colour_wipes',
-            'purple_squares',
             'special_branch_spotlights',
             'floyd_bigger',
             'special_branch_layered_squares',
@@ -57,7 +56,6 @@ def main(argv):
             'special_branch_shoreline',
             'coloured_squares',
             'mcferrin_circles',
-            'special_branch_natural_squares',
         ]
 
         sketch = 'DISPLAY=:0 /usr/local/bin/processing-java --sketch="/home/pi/src/vrniture/processing/{0}/" --run >> /tmp/cron.log 2>&1'.format(random.choice(sketches))
