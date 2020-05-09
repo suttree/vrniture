@@ -7,8 +7,9 @@ color[] colors = colorHarmony.Triads();
 color bg;
 color c;
 
-int y = -2;
-int head = 0;
+float y = -10;
+float head = 0.0;
+float rotate = random(-0.002, 0.002);
 
 void setup() {
   fullScreen();
@@ -24,19 +25,17 @@ void draw() {
  
   c = colors[1];
   stroke(c);
-  strokeWeight(4);
+  strokeWeight( random(10, 30) );
+
   pushMatrix();
-  rotate(0);
-  line(0, y, head, y);
+  rotate( rotate );
+  line(-100, y, width + 100, (y + noise(y) * 25) );
   popMatrix();
-  head = head + 5;
   
-  if (head > width) {
-    y = y + 2;
-  }
+  y = y + random(-1, 3);
   
   if (y > height) {
-    y = 0;
+    y = random(-10, -4);
     colors = colorHarmony.Triads();
   }
 }
