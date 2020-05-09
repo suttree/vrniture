@@ -14,6 +14,8 @@ float dist = width/2;
 
 float t = random(0.0, 2.0);
 
+float _rotate = random(20, 85);
+
 void setup() {
   fullScreen();
   //size(640, 480, P3D);
@@ -25,18 +27,19 @@ void setup() {
 void draw() {
   color c = colors[(int)random(numLayers)];
   
-  background(0);
+  background(0, 10);
   noStroke();
   fill(20, 20, 20, 90);
   rect(0, 0, width, height);
 
-  int shapeWidth = 850;
+  int shapeWidth = 1850;
   int shapeHeight = 850;
   int startx = 0;
   int starty = 0;
-  dist = noise(t) * 30;
+  dist = noise(t) * 60;
   translate(width/2, height/2);
-  rotate(75);
+  rotate( radians(_rotate) );
+  _rotate = _rotate + noise(t) / 10;
   
   for(int i = 0; i < numLayers; i++) {
     c = colors[i];
