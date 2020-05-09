@@ -1,4 +1,4 @@
-int numSpots = 5;
+int numSpots = (int) random(3, 6);
 Spot[] spots = new Spot[numSpots];
 
 void setup() {
@@ -23,6 +23,7 @@ void draw() {
   fill(255);
 
   if (frameCount % 18 == 0) {
+    numSpots = (int) random(3, 6);
     spots = new Spot[numSpots];
     for (int i = 0; i < numSpots; i++) {
       spots[i] = new Spot(width, height);
@@ -69,7 +70,7 @@ class Spot {
   Spot(int width, int height) {
     x = random(-10, width + 10);
     y = random(-10, height + 10);
-    size = (width > height) ? (int)random(200, width - 200) : (int)random(200, height - 200);
+    size = (width > height) ? (int)random(300, width - 100) : (int)random(300, height - 100);
   }
 
   void render() {
