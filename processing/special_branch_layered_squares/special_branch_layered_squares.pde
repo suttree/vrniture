@@ -11,6 +11,9 @@ int totalFrames = 824;
 
 int gap = 100;
 
+float _accel = random(0.08, 0.98);
+int _repeat = (int) random(1, 2);
+
 void setup() {
   noSmooth();
   //size(800, 800, P3D);
@@ -42,7 +45,7 @@ void draw() {
   */
   
   //fill(10, 200, 255, 85);
-  fill(0, 20);
+  fill(10, 20);
   rect(0, 0, width, height);
  
   for(int i = 0; i < layers.length; i++) {
@@ -70,8 +73,9 @@ void export() {
 
 class Layer {
   float x, y, w, h;
-  float accel = 0.98;
-  color c = color(255, 255, 255);
+  float startx, starty, startw, starth;
+  float accel = _accel;
+  color c = color(255, 255, 225);
   String status = "ready";
   
   Layer(float _x, float _y, float _w, float _h, color _c) {
@@ -80,6 +84,11 @@ class Layer {
     w = _w;
     h = _h;
     c = _c;
+    
+    startx = x;
+    starty = y;
+    startw = w;
+    starth = h;
   }
   
   void update() {
@@ -90,17 +99,26 @@ class Layer {
     
     if (w <= 0) {
       status = "repeating";
-      accel = 0 - accel;
+      
+      if (_repeat == 1) {
+        accel = 0 - accel;
+      } else {
+        accel = _accel;
+        x = startx;
+        y = starty;
+        w = startw;
+        h = starth;
+      }
     } else if (w > width && status == "repeating") {
-      accel = 0.98;
-      c = color(100 + random(155), random(255), 160);
+      accel = _accel;
+      c = color(100 + random(155), random(255), random(144, 255));
     }
   }
   
   void render() {
     noFill();
     stroke(c);
-    rotateX(PI/32);
+    rotateX(PI/24);
     rect(x, y, w, h);
   }
 }
