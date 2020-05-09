@@ -53,8 +53,6 @@ def main(argv):
             'special_branch_spotlights',
             'floyd_bigger',
             'special_branch_layered_squares',
-            'easel_strokes',
-            'spots',
             'plain_waves',
             'special_branch_shoreline',
             'coloured_squares',
