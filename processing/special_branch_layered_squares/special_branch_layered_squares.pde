@@ -12,7 +12,9 @@ int totalFrames = 824;
 int gap = 100;
 
 float _accel = random(0.28, 0.98);
-int _repeat = (int) random(1, 2);
+//int _repeat = (int) random(1, 2);
+int _repeat = 0;
+
 
 void setup() {
   noSmooth();
