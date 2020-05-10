@@ -120,7 +120,7 @@ class Layer {
   void render() {
     noFill();
     stroke(c);
-    rotateX(PI/24);
+    //rotateX(PI/24);
     rect(x, y, w, h);
   }
 }
