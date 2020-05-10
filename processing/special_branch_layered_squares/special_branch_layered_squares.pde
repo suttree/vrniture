@@ -17,7 +17,7 @@ int _repeat = 0;
 
 
 void setup() {
-  noSmooth();
+  //noSmooth();
   //size(800, 800, P3D);
   fullScreen(P3D);
   noCursor();
@@ -27,13 +27,13 @@ void setup() {
   //gifExport.setRepeat(0);
 
   for(int i = 0; i < layers.length; i++) {
-    int start = 0 - (i * gap);
+    int start = -20 - (i * gap);
     layers[i] = new Layer(
       start, 
       start, 
       width + (i * gap * 2), 
       height + (i * gap * 2), 
-      color(100 + random(155), random(255), 106)
+      color(100 + random(155), random(255), 77)
      );
   }
 }
@@ -113,7 +113,7 @@ class Layer {
       }
     } else if (w > width && status == "repeating") {
       accel = _accel;
-      c = color(100 + random(155), random(255), random(144, 255));
+      c = color(100 + random(155), random(255), random(144, 255), 77);
     }
   }
   
