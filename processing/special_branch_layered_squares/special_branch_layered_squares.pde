@@ -3,15 +3,22 @@
 //import gifAnimation.*;
 
 //PFont font;
-Layer[] layers = new Layer[5];
+Layer[] layers = new Layer[ (int) random(3, 8)];
+
+// Color Harmony library: https://github.com/cageehv/ColorHarmony/
+import com.cage.colorharmony.*;
+
+// Create a colorharmony instance
+ColorHarmony colorHarmony = new ColorHarmony(this);
+color[] colors = colorHarmony.Analogous();
 
 //GifMaker gifExport;
-int frames = 0;
-int totalFrames = 824;
+//int frames = 0;
+//int totalFrames = 824;
 
-int gap = 100;
+int gap = (int) random(50, 120);
 
-float _accel = random(0.28, 0.98);
+float _accel = random(0.18, 0.98);
 //int _repeat = (int) random(1, 2);
 int _repeat = 0;
 
@@ -19,7 +26,7 @@ int _repeat = 0;
 void setup() {
   //noSmooth();
   //size(800, 800, P3D);
-  fullScreen(P3D);
+  fullScreen();
   noCursor();
   //font = createFont("Arial Bold", 36);
   
@@ -33,7 +40,7 @@ void setup() {
       start, 
       width + (i * gap * 2), 
       height + (i * gap * 2), 
-      color(100 + random(155), random(255), 77)
+      colors[i]
      );
   }
 }
@@ -46,9 +53,9 @@ void draw() {
   text(frameCount, 20, 40);
   */
   
-  //fill(10, 200, 255, 85);
+  //fill(10, 200, 255, 50);
   fill(10, 20);
-  rect(0, 0, width, height);
+  rect(0 - gap, 0 - gap, width + gap, height + gap);
  
   for(int i = 0; i < layers.length; i++) {
     layers[i].render();
@@ -56,6 +63,11 @@ void draw() {
   }
   
   //export();
+  
+  // Reset colours
+  if ( frameCount % 100 == 0 ) {
+    colors = colorHarmony.Analogous();
+  }
 }
 
 /*
@@ -99,7 +111,7 @@ class Layer {
     w = w - (accel * 2);
     h = h - (accel * 2);
     
-    if (w <= 0) {
+    if (w <= 0 || h <= 0) {
       status = "repeating";
       
       if (_repeat == 1) {
@@ -113,7 +125,8 @@ class Layer {
       }
     } else if (w > width && status == "repeating") {
       accel = _accel;
-      c = color(100 + random(155), random(255), random(144, 255), 77);
+      int rand = (int) random(colors.length);
+      c = colors[rand];
     }
   }
   
