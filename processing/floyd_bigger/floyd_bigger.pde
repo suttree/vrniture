@@ -12,7 +12,7 @@ Triangle[] triangles = new Triangle[numTriangles];
 int size = 512;
 int biggifier = (height > width ? height + 1550 : width + 1550);
 
-int[] rotations = { 6, 45, 80, 69, 70, 12, 44, 99, 118, 161, 225, 256, 294, 359, 745 };
+int[] rotations = { 6, 45, 80, 70, 12, 44, 99, 118, 161, 225, 256, 294, 359, 745 };
 int rotation = rotations[ int(random(rotations.length)) ];
 
 
