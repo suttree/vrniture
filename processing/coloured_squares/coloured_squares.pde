@@ -14,7 +14,7 @@ float dist = width/2;
 
 float t = random(0.0, 2.0);
 
-float _rotate = random(20, 85);
+float _rotate = random(-120, 185);
 
 void setup() {
   fullScreen();
@@ -36,6 +36,7 @@ void draw() {
   int shapeHeight = 850;
   int startx = 0;
   int starty = 0;
+
   dist = noise(t) * 60;
   translate(width/2, height/2);
   rotate( radians(_rotate) );
@@ -43,7 +44,7 @@ void draw() {
   
   for(int i = 0; i < numLayers; i++) {
     c = colors[i];
-    fill(c, 100 - 25 * 1);
+    fill(c, 100 - 10 * i);
     
     if(i % 2 == 0) {
       stroke(colors[0], 95);
@@ -74,12 +75,13 @@ void draw() {
     shapeHeight = shapeHeight + 40;
     dist = dist + 25;
     t = t + random(0.0025, 0.045);
+
     startx = startx - 55;
     starty = starty - 50;
   }
   
   // Change the palette infrequently
-  if ( frameCount % 250 == 0 ) {
+  if ( frameCount % 750 == 0 ) {
     int val = round(random(4));
     if(val == 0) {
       colors = colorHarmony.Monochromatic();
