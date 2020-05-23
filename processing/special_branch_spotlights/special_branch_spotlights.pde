@@ -11,7 +11,7 @@ void setup() {
     spots[i] = new Spot(width, height);
   }
 
-  frameRate(4);
+  frameRate(12);
 }
 
 void draw() {  
@@ -49,7 +49,7 @@ void draw() {
 
         spots[j].stroke = 255;
         spots[j].fill = 255;
-        spots[i].transp = 100;
+        spots[j].transp = 100;
       }
     }
   }
@@ -58,7 +58,7 @@ void draw() {
     spots[i].render();
   }
 
-  delay( (int) random(125, 525) );
+  delay( (int) random(525, 1525) );
 }
 
 class Spot {
