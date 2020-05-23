@@ -1,4 +1,4 @@
-int numSpots = (int) random(3, 6);
+int numSpots = (int) random(2, 6);
 Spot[] spots = new Spot[numSpots];
 
 void setup() {
@@ -23,7 +23,7 @@ void draw() {
   fill(255);
 
   if (frameCount % 18 == 0) {
-    numSpots = (int) random(3, 6);
+    numSpots = (int) random(2, 5);
     spots = new Spot[numSpots];
     for (int i = 0; i < numSpots; i++) {
       spots[i] = new Spot(width, height);
@@ -43,11 +43,13 @@ void draw() {
       boolean hit = circleCircle(cX1, cY1, cSize1, cX2, cY2, cSize2);
 
       if (hit) {
-        spots[i].stroke = 205;
+        spots[i].stroke = 195;
         spots[i].fill = 205;
+        spots[i].transp = 20;
 
         spots[j].stroke = 255;
         spots[j].fill = 255;
+        spots[i].transp = 100;
       }
     }
   }
@@ -56,7 +58,7 @@ void draw() {
     spots[i].render();
   }
 
-  delay( (int) random(25, 125) );
+  delay( (int) random(125, 525) );
 }
 
 class Spot {
@@ -76,6 +78,10 @@ class Spot {
   void render() {
     fill(fill, transp);
     ellipse(x, y, size, size);
+
+    if (transp == 100) {
+      tint(0, 153, 204, 126);
+    }
   }
 }
 
