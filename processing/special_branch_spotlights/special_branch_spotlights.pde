@@ -11,7 +11,7 @@ void setup() {
     spots[i] = new Spot(width, height);
   }
 
-  frameRate(12);
+  frameRate(24);
 }
 
 void draw() {  
@@ -47,8 +47,8 @@ void draw() {
         spots[i].fill = 205;
         spots[i].transp = 20;
 
-        spots[j].stroke = 255;
-        spots[j].fill = 255;
+        spots[j].stroke = 155;
+        spots[j].fill = 155;
         spots[j].transp = 100;
       }
     }
@@ -58,7 +58,7 @@ void draw() {
     spots[i].render();
   }
 
-  delay( (int) random(525, 1525) );
+  delay( (int) random(525, 5625) );
 }
 
 class Spot {
@@ -67,19 +67,19 @@ class Spot {
   int size;
   int stroke = 225;
   int fill = 255;
-  float transp = random(20, 100);
+  float transp = random(30, 100);
 
   Spot(int width, int height) {
-    x = random(-10, width + 10);
-    y = random(-10, height + 10);
-    size = (width > height) ? (int)random(300, width - 100) : (int)random(300, height - 100);
+    x = random(-60, width + 60);
+    y = random(-60, height + 60);
+    size = (width > height) ? (int)random(300, width - 80) : (int)random(300, height - 80);
   }
 
   void render() {
     fill(fill, transp);
     ellipse(x, y, size, size);
 
-    if (transp == 100) {
+    if (transp < 70) {
       tint(0, 153, 204, 126);
     }
   }
