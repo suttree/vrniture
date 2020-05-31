@@ -43,7 +43,7 @@ void setup() {
   triangles[3] = new Triangle(x1 + 90, y1 - 50, x2, y2 + 90, x3 - 90, y3 - 50);
   triangles[4] = new Triangle(x1 + 100, y1 - 60, x2, y2 + 100, x3 - 100, y3 - 60);
   
-  frameRate(10);
+  frameRate(8);
   delay(25);
 }
 
@@ -59,12 +59,12 @@ void draw() {
   }
 
   // Reset colours
-  if ( frameCount % 280 == 0 ) {
+  if ( frameCount % 680 == 0 ) {
     colors = colorHarmony.GetRandomPalette();
   }
  
-  if ( frameCount % 100 == 0 ) {
-    int val = round(random(5));                                                                      
+  if ( frameCount % 240 == 0 ) {
+    int val = round(random(6));                                                                      
     if(val == 0) {
       colors2 = colorHarmony.Monochromatic();
     } else if (val == 1) {
