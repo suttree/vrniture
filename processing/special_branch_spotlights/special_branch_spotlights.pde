@@ -11,7 +11,7 @@ void setup() {
     spots[i] = new Spot(width, height);
   }
 
-  frameRate(24);
+  frameRate(32);
 }
 
 void draw() {  
@@ -47,8 +47,8 @@ void draw() {
         spots[i].fill = 205;
         spots[i].transp = 20;
 
-        spots[j].stroke = 155;
-        spots[j].fill = 155;
+        spots[j].stroke = 5;
+        spots[j].fill = 0;
         spots[j].transp = 100;
       }
     }
@@ -70,9 +70,9 @@ class Spot {
   float transp = random(30, 100);
 
   Spot(int width, int height) {
-    x = random(-60, width + 60);
-    y = random(-60, height + 60);
-    size = (width > height) ? (int)random(300, width - 80) : (int)random(300, height - 80);
+    x = random(-80, width + 60);
+    y = random(-60, height + 80);
+    size = (width > height) ? (int)random(360, width - 80) : (int)random(360, height - 80);
   }
 
   void render() {
