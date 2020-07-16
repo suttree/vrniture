@@ -1,4 +1,4 @@
-int numSpots = (int) random(2, 6);
+int numSpots = (int) random(2, 3);
 Spot[] spots = new Spot[numSpots];
 
 void setup() {
@@ -11,19 +11,19 @@ void setup() {
     spots[i] = new Spot(width, height);
   }
 
-  frameRate(32);
+  //frameRate(32);
 }
 
 void draw() {  
   noStroke();
-  fill(7, 75);
+  fill(7, 85);
   rect(0, 0, width, height);
 
   //stroke(27);
   fill(255);
 
   if (frameCount % 18 == 0) {
-    numSpots = (int) random(2, 5);
+    numSpots = (int) random(2, 3);
     spots = new Spot[numSpots];
     for (int i = 0; i < numSpots; i++) {
       spots[i] = new Spot(width, height);
@@ -44,12 +44,12 @@ void draw() {
 
       if (hit) {
         spots[i].stroke = 195;
-        spots[i].fill = 205;
-        spots[i].transp = 20;
+        spots[i].fill = 235;
+        spots[i].transp = 40;
 
         spots[j].stroke = 5;
         spots[j].fill = 0;
-        spots[j].transp = 100;
+        spots[j].transp = 90;
       }
     }
   }
@@ -67,12 +67,12 @@ class Spot {
   int size;
   int stroke = 225;
   int fill = 255;
-  float transp = random(30, 100);
+  float transp = random(5, 100);
 
   Spot(int width, int height) {
     x = random(-80, width + 60);
     y = random(-60, height + 80);
-    size = (width > height) ? (int)random(360, width - 80) : (int)random(360, height - 80);
+    size = (width > height) ? (int)random(560, width - 80) : (int)random(560, height - 80);
   }
 
   void render() {
