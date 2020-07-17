@@ -45,11 +45,11 @@ void draw() {
       if (hit) {
         spots[i].stroke = 195;
         spots[i].fill = 235;
-        spots[i].transp = 40;
+        spots[i].transp = 0;
 
         spots[j].stroke = 5;
         spots[j].fill = 0;
-        spots[j].transp = 90;
+        spots[j].transp = 0;
       }
     }
   }
@@ -58,7 +58,7 @@ void draw() {
     spots[i].render();
   }
 
-  delay( (int) random(525, 5625) );
+  // delay( (int) random(525, 5625) );
 }
 
 class Spot {
@@ -67,21 +67,22 @@ class Spot {
   int size;
   int stroke = 225;
   int fill = 255;
-  float transp = random(5, 100);
+  //float transp = random(5, 100);
+  float transp = 10;
 
   Spot(int width, int height) {
-    x = random(-80, width + 60);
-    y = random(-60, height + 80);
-    size = (width > height) ? (int)random(560, width - 80) : (int)random(560, height - 80);
+    x = random(-180, width + 160);
+    y = random(-160, height + 180);
+    size = (width > height) ? (int)random(960, width - 180) : (int)random(960, height - 180);
   }
 
   void render() {
     fill(fill, transp);
     ellipse(x, y, size, size);
 
-    if (transp < 70) {
-      tint(0, 153, 204, 126);
-    }
+    //if (transp < 70) {
+      //tint(0, 153, 204, 126);
+    //}
   }
 }
 
