@@ -51,7 +51,7 @@ def main(argv):
             'colour_wipes',
             'special_branch_spotlights',
             'floyd_bigger',
-            'special_branch_layered_squares',
+            #'special_branch_layered_squares',
             'plain_waves',
             'special_branch_shoreline',
             'coloured_squares',
