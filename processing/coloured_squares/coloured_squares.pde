@@ -39,7 +39,7 @@ void draw() {
 
   dist = noise(t) * 60;
   translate(width/2, height/2);
-  rotate( radians(_rotate) );
+  rotate( radians(_rotate / 10) );
   _rotate = _rotate + noise(t) / 10;
   
   for(int i = 0; i < numLayers; i++) {

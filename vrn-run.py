@@ -49,7 +49,7 @@ def main(argv):
         #if (_startup or random.choice([1,2,3,4,5,6]) <= 4):
         sketches = [
             'colour_wipes',
-            'special_branch_spotlights',
+            'special_branch_stage_lighting',
             'floyd_bigger',
             #'special_branch_layered_squares',
             'plain_waves',

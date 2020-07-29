@@ -58,7 +58,7 @@ void draw() {
     spots[i].render();
   }
 
-  // delay( (int) random(525, 5625) );
+  delay( (int) random(525, 5625) );
 }
 
 class Spot {
@@ -68,12 +68,13 @@ class Spot {
   int stroke = 225;
   int fill = 255;
   //float transp = random(5, 100);
-  float transp = 10;
+  float transp = 90;
 
   Spot(int width, int height) {
     x = random(-180, width + 160);
     y = random(-160, height + 180);
-    size = (width > height) ? (int)random(960, width - 180) : (int)random(960, height - 180);
+    //size = (width > height) ? (int)random(260, width + 180) : (int)random(260, height + 180);
+    size = (width > height) ? (int)random(1, width - 100) : (int)random(1, height - 100);
   }
 
   void render() {

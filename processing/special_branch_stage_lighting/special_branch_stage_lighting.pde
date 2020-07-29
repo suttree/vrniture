@@ -1,4 +1,4 @@
-int numRects = 8;
+int numRects = 7;
 Rectangle[] rectangles = new Rectangle[numRects];
 
 int frames = 0;
@@ -44,10 +44,10 @@ void draw() {
       boolean hit = rectRect(rX1, rY1, rW1, rH1, rX2, rY2, rW2, rH2);
       
       if (hit) {
-        rectangles[i].stroke = 225;
-        rectangles[i].fill = 225;
-        rectangles[j].stroke = 225;
-        rectangles[j].fill = 225;
+        rectangles[i].stroke = 175;
+        rectangles[i].fill = 205;
+        rectangles[j].stroke = 205;
+        rectangles[j].fill = 215;
       }
     }
   }
@@ -56,7 +56,7 @@ void draw() {
     rectangles[i].render();
   }
 
-  delay(125);
+  delay(728);
   
   //saveFrame("line-######.png");
 }
@@ -66,14 +66,14 @@ class Rectangle {
     float y;
     float w;
     float h;
-    int stroke = 250;
+    int stroke = 200;
     int fill = 255;
     
   Rectangle(int width, int height) {
-    x = random(40, width);
-    y = random(40, height);
-    w = random(40, width/2);
-    h = random(40, height/2);
+    x = random(40, width + 40);
+    y = random(-20, height + 40);
+    w = random(-100 + width/3, width - 40);
+    h = random(-200 + height/3, height - 40);
   }
   
   void render() {
