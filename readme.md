@@ -1,3 +1,14 @@
+# VRNJR
+
+Digital art furniture.
+
+Using a Raspberry Pi and Processing to create generative art for the home.
+
+![alt text](https://github.com/suttree/vrniture/blob/master/vrnjr.jpg?raw=true)
+
+---
+
+### Notes / todos / misc
 Add display_rotate=2 to boot/config.txt to rotate the screen 180
 
 To position the mouse cursor off screen:
