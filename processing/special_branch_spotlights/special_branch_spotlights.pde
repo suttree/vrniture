@@ -43,8 +43,8 @@ void draw() {
       boolean hit = circleCircle(cX1, cY1, cSize1, cX2, cY2, cSize2);
 
       if (hit) {
-        spots[i].stroke = 195;
-        spots[i].fill = 235;
+        spots[i].stroke = 255;
+        spots[i].fill = 255;
         spots[i].transp = 0;
 
         spots[j].stroke = 5;
@@ -65,7 +65,7 @@ class Spot {
   float x;
   float y;
   int size;
-  int stroke = 225;
+  int stroke = 255;
   int fill = 255;
   //float transp = random(5, 100);
   float transp = 90;
