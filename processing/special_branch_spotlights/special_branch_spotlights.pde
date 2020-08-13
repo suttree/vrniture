@@ -42,15 +42,17 @@ void draw() {
 
       boolean hit = circleCircle(cX1, cY1, cSize1, cX2, cY2, cSize2);
 
+      /*
       if (hit) {
         spots[i].stroke = 255;
         spots[i].fill = 255;
         spots[i].transp = 0;
 
-        spots[j].stroke = 5;
+        spots[j].stroke = 0;
         spots[j].fill = 0;
         spots[j].transp = 0;
       }
+      */
     }
   }
 
@@ -58,7 +60,7 @@ void draw() {
     spots[i].render();
   }
 
-  delay( (int) random(525, 5625) );
+  delay( (int) random(825, 8625) );
 }
 
 class Spot {
@@ -68,7 +70,7 @@ class Spot {
   int stroke = 255;
   int fill = 255;
   //float transp = random(5, 100);
-  float transp = 90;
+  float transp = 100;
 
   Spot(int width, int height) {
     x = random(-180, width + 160);
