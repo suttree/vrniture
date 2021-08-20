@@ -28,3 +28,12 @@ xserver-command = X -nocursor
 
 // Ditch feh for pi3d
 https://github.com/pi3d/pi3d.github.com
+
+--
+
+### Removing power/voltage warnings
+/boot/config.txt
+avoid_warnings=1
+
+sudo apt remove lxpanel
+
