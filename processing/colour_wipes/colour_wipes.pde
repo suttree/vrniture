@@ -1,5 +1,6 @@
 // Color Harmony library: https://github.com/cageehv/ColorHarmony/
 import com.cage.colorharmony.*;
+//import colorharmony.*;
 
 // Create a colorharmony instance
 ColorHarmony colorHarmony = new ColorHarmony(this);

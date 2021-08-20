@@ -53,6 +53,7 @@ def main(argv):
             'floyd_bigger',
             #'special_branch_layered_squares',
             'plain_waves',
+            'led',
             'special_branch_shoreline',
             'coloured_squares',
             'mcferrin_circles',
