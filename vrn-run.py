@@ -2,25 +2,25 @@ import os, random, getopt, sys, random
 from datetime import datetime
 
 def usage():
-    print "vrn-run.py -s (startup) -h (help)"
+    print("vrn-run.py -s (startup) -h (help)")
 
 def main(argv):
     try:
-	opts, args = getopt.getopt(argv, "hs", ['help', 'startup'])
+      opts, args = getopt.getopt(argv, "hs", ['help', 'startup'])
     except getopt.GetoptError:
-	usage()
-	sys.exit(2)
+      usage()
+      sys.exit(2)
 
     global _startup
     _startup = False
 
     for opt, arg in opts:
-	if opt in ("-h", "--help"):
-	    usage()
-	    sys.exit()
+      if opt in ("-h", "--help"):
+        usage()
+        sys.exit()
 
-	if opt in ("-s", "--startup"):
-	    _startup = True
+      if opt in ("-s", "--startup"):
+        _startup = True
 
     # hide the cursor
     os.system('DISPLAY=:0 xdotool mousemove 800 800')

@@ -37,3 +37,17 @@ avoid_warnings=1
 
 sudo apt remove lxpanel
 
+
+--
+
+#### Install & setup notes 2024
+1. Download and install processing
+2. Copy processing-java to /usr/local/bin
+3. Install java - sudo apt install default-jdk
+
+
+Run from inside the processing source folder /home/duncan/src/processing/
+
+ ./processing-java --sketch="/home/duncan/src/vrniture/processing/breathing/" --run
+
+export CLASSPATH=/path/to/your/java/application.jar
